@@ -36,7 +36,9 @@ export default function Header({ wants }) {
                 <Link to='/signin'>
                     <div className="text-[#495199] font-medium rounded-lg py-[3px] px-[8px] duration-[0.6s] cursor-pointer hover:bg-[#94bdff] hover:text-white active:bg-[#94bdff] active:text-white">Login</div>
                 </Link>
-                <div className="text-white font-medium rounded-lg py-[3px] px-[8px] duration-[0.5s] cursor-pointer bg-[#003c9c] hover:bg-[#0062ff] active:bg-[#0062ff]">Get Started</div>
+                <Link to='/signup'>
+                    <div className="text-white font-medium rounded-lg py-[3px] px-[8px] duration-[0.5s] cursor-pointer bg-[#003c9c] hover:bg-[#0062ff] active:bg-[#0062ff]">Get Started</div>
+                </Link>
                 <div
                     onMouseEnter={TrueAndChange}
                     onMouseLeave={TrueAndChange}

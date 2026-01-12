@@ -28,7 +28,7 @@ export default function Main() {
                     </div>
                 </div>
             </div>
-            <div className="bg-gradient-left w-screen h-[500px] pt-[20px]">
+            <div className="bg-gradient-left w-screen pt-[20px]">
                 <p className="font-bold text-[25px] ml-[20px] max-[520px]:text-[20px] text-white">What will you learn?</p>
                 <p className="ml-[20px] bg-conic-180 from-indigo-600 via-indigo-50 to-indigo-600 text-transparent bg-clip-text max-[520px]:text-[13px]">Here is you might like.</p>
                 <div className="mt-[20px]"> {/* border of card */}
@@ -58,7 +58,7 @@ export default function Main() {
                                 </div>
                             </div>
                             <p className="mx-[20px] mt-[10px] mb-[20px] text-[#7582a1] text-[13px]">
-                                A very popular JavaScript framework which most of programmer also know it. It was created by Facebook worker for building user interfaces and create website. 
+                                A very popular JavaScript framework which most of programmer also know it. It was created by Facebook worker for building user interfaces and create website.
                             </p>
                         </div>
                         <div className="mx-[10px] w-[300px] h-[171px] bg-[#1f2940] border border-solid border-transparent shadow-xl rounded-[10px] duration-[0.5s] hover:translate-x-[-10px] hover:translate-y-[-10px] cursor-pointer active:translate-x-[-10px] active:translate-y-[-10px]">

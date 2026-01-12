@@ -7,12 +7,12 @@ const Dashboard = ({ logout }) => {
     const handleLogout = () => {
         localStorage.removeItem('ss_token')
         logout();
-        navigate('/');
+        navigate('/signin');
     };
 
     return (
         <div>
-            <title>ProDEVs - Admin Dashboard</title>
+            <title>StrikerX - Admin Dashboard</title>
             <h2>Hello User Welcome to Admin Dashboard</h2>
             <h3>This page is protected</h3><br />
             <button onClick={handleLogout}>

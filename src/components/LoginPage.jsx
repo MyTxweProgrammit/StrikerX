@@ -1,14 +1,40 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Header from './Header';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from './../firebase-config'
 
 const LoginPage = ({ login }) => {
+    // New Zone (firebase)
+    const nav = useNavigate();
+    const [emailFirebase, setEmailFirebase]= useState('');
+    const [passwordFirebase, setPasswordFirebase] = useState('');
+    const [error, setError] = useState('');
+    const [authentication, setAuthentication]= useState(false);
+    async function handleFirebaseLogin() {
+        setAuthentication(true);
+        setError('');
+
+        signInWithEmailAndPassword(auth, emailFirebase, passwordFirebase)
+        .then((userCredential) => {
+            console.log("Login Succesful:", userCredential.user)
+            nav('/user')
+        }).catch((error) => {
+            setError(error.message); 
+            setAuthentication(false);
+            alert("Error to Auth")
+            nav('/signin')
+        });
+    }
+
+    // Old Zone
     const [checkedBox, setCheckedBox] = useState(true);
     const [userId, setUserId] = useState('');
     const [pass, setPass] = useState('');
     const navigate = useNavigate();
     const username = import.meta.env.VITE_API_ADMIN_USER
     const password = import.meta.env.VITE_API_ADMIN_PASS
+    const regex = /@.+\..+$/;
 
     Date.prototype.addMinute = function (h) {
         this.setTime(this.getTime() + ((h * 60 * 60 * 1000) / 60));
@@ -19,15 +45,21 @@ const LoginPage = ({ login }) => {
         return this;
     }
 
-    const SESSION = localStorage.ss_token ? JSON.parse(localStorage.ss_token) : ''
-    console.log(SESSION)
+    const SESSION = localStorage.ss_token ? JSON.parse(localStorage.ss_token) : '' // Admin Session
+    // console.log(SESSION)
     if (SESSION.remember && SESSION.exp >= new Date().getTime()) {
         login(SESSION.username, SESSION.password);
         navigate('/dashboard');
     } else { localStorage.removeItem('ss_token') }
 
-    const handleLogin = () => {
-        if (userId === username && pass === password) {
+    const SESSION_USER = localStorage.user_token ? JSON.parse(localStorage.user_token) : '' // User Session
+    if (SESSION_USER.remember) {
+        login(SESSION_USER.userId, SESSION_USER.pass);
+        navigate('/user');
+    } else { localStorage.removeItem('user_token') }
+
+    async function handleLogin() { // this original were constant type not function
+        if (userId === username && pass === password) { // Admin
             var session = {
                 token: '2dc1c45d-575c-4658-8ef1-8c0a79d2510b',
                 exp: new Date().addMinute(2).getTime(),
@@ -38,15 +70,33 @@ const LoginPage = ({ login }) => {
             login(userId, pass);
             navigate('/dashboard');
         }
+        else if (userId !== username && pass !== password && regex.test(userId) && userId !== '' && pass !== '') { // User
+            var sessionUser = {
+                token: 'bdd293e6-5b3e-4cce-8a54-7be422fdbb70',
+                remember: checkedBox,
+            }
+            setAuthentication(true);
+            signInWithEmailAndPassword(auth, userId, pass)
+            .then((userCredential) => {
+                console.log("Login Succesful:", userCredential.user)
+                localStorage.setItem('user_token', JSON.stringify(sessionUser))
+                login(userId, pass);
+                nav('/user')
+            }).catch((error) => {
+                setAuthentication(false);
+                alert("Error to Auth")
+                nav('/signin')
+            });
+        }
         else { alert('Invalid login!') }
     };
     return (
         <>
             <Header wants={true} />
-            <div className='w-screen h-screen bg-white'>
-                <title>ProDEVs - Login</title>
+            <div className='w-screen height-change bg-white'>
+                <title>StrikerX - Login</title>
                 <div className='center py-[30px]'>
-                    <div className='border border-solid border-[#BFBFBF] w-[270px] py-[20px] rounded-[10px] shadow-xl center'>
+                    <div className='border border-solid border-[#BFBFBF] w-[270px] pt-[20px] rounded-[10px] shadow-xl center'>
                         <div>
                             <p className='text-black font-bold inter-txwe text-[28px]'>Sign In</p>
                             <p className='text-black inter-txwe text-[15px] mt-[-5px]'>Welcome Back My Friend!</p>
@@ -58,6 +108,8 @@ const LoginPage = ({ login }) => {
                                     placeholder="Example@gmail.com"
                                     value={userId}
                                     onChange={(e) => setUserId(e.target.value)}
+                                    // value={emailFirebase}
+                                    // onChange={(e) => setEmailFirebase(e.target.value)}
                                 />
                             </section>
                             <section className='mt-[20px] w-fit'>
@@ -71,6 +123,8 @@ const LoginPage = ({ login }) => {
                                     placeholder="Password"
                                     value={pass}
                                     onChange={(e) => setPass(e.target.value)}
+                                    // value={passwordFirebase}
+                                    // onChange={(e) => setPasswordFirebase(e.target.value)}
                                 />
                             </section>
                             <section className="flex gap-[7px] mt-[10px]">
@@ -80,6 +134,7 @@ const LoginPage = ({ login }) => {
                             </section>
                             <div
                                 onClick={handleLogin}
+                                // onClick={handleFirebaseLogin}
                                 className='cursor-pointer bg-linear-to-r from-[#89CCFF] to-[#005DA4] inter-txwe text-[13px] text-center py-[8px] rounded-[20px] mt-[10px] text-white'>
                                 Submit
                             </div>
@@ -112,6 +167,7 @@ const LoginPage = ({ login }) => {
                                     <p className='text-white'>Continue with Instagram</p>
                                 </div>
                             </div>
+                            <p className='w-fit mx-auto my-[10px]'><Link to='/signup'>Create an Account</Link></p>
                         </div>
                     </div>
                 </div>
