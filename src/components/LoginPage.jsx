@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Header from './Header';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth } from './../firebase-config'
 
 const LoginPage = ({ login }) => {
@@ -17,7 +17,6 @@ const LoginPage = ({ login }) => {
 
         signInWithEmailAndPassword(auth, emailFirebase, passwordFirebase)
         .then((userCredential) => {
-            console.log("Login Succesful:", userCredential.user)
             nav('/user')
         }).catch((error) => {
             setError(error.message); 
@@ -46,7 +45,6 @@ const LoginPage = ({ login }) => {
     }
 
     const SESSION = localStorage.ss_token ? JSON.parse(localStorage.ss_token) : '' // Admin Session
-    // console.log(SESSION)
     if (SESSION.remember && SESSION.exp >= new Date().getTime()) {
         login(SESSION.username, SESSION.password);
         navigate('/dashboard');
@@ -58,7 +56,7 @@ const LoginPage = ({ login }) => {
         navigate('/user');
     } else { localStorage.removeItem('user_token') }
 
-    async function handleLogin() { // this original were constant type not function
+    const handleLogin = async (userId, pass) => { // this original were constant type not function
         if (userId === username && pass === password) { // Admin
             var session = {
                 token: '2dc1c45d-575c-4658-8ef1-8c0a79d2510b',
@@ -76,17 +74,23 @@ const LoginPage = ({ login }) => {
                 remember: checkedBox,
             }
             setAuthentication(true);
-            signInWithEmailAndPassword(auth, userId, pass)
-            .then((userCredential) => {
-                console.log("Login Succesful:", userCredential.user)
-                localStorage.setItem('user_token', JSON.stringify(sessionUser))
-                login(userId, pass);
-                nav('/user')
-            }).catch((error) => {
-                setAuthentication(false);
-                alert("Error to Auth")
-                nav('/signin')
-            });
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, userId, pass);
+                const user = userCredential.user;
+        
+                if (user.emailVerified === false) {
+                    alert("คุณยังไม่ได้ยืนยันอีเมล! กรุณากดลิงก์ในอีเมลก่อน");
+                    setAuthentication(false)
+                    await signOut(auth);
+                } else {
+                    alert("ยินดีต้อนรับ!");
+                    login(userId, pass);
+                    localStorage.setItem('user_token', JSON.stringify(sessionUser))
+                    nav('/user');
+                }
+            } catch (err) {
+                alert(err.message);
+            }
         }
         else { alert('Invalid login!') }
     };
@@ -108,8 +112,6 @@ const LoginPage = ({ login }) => {
                                     placeholder="Example@gmail.com"
                                     value={userId}
                                     onChange={(e) => setUserId(e.target.value)}
-                                    // value={emailFirebase}
-                                    // onChange={(e) => setEmailFirebase(e.target.value)}
                                 />
                             </section>
                             <section className='mt-[20px] w-fit'>
@@ -123,8 +125,6 @@ const LoginPage = ({ login }) => {
                                     placeholder="Password"
                                     value={pass}
                                     onChange={(e) => setPass(e.target.value)}
-                                    // value={passwordFirebase}
-                                    // onChange={(e) => setPasswordFirebase(e.target.value)}
                                 />
                             </section>
                             <section className="flex gap-[7px] mt-[10px]">
@@ -133,8 +133,7 @@ const LoginPage = ({ login }) => {
                                 <p className='text-black text-[12px] inter-txwe'>Remember Me</p>
                             </section>
                             <div
-                                onClick={handleLogin}
-                                // onClick={handleFirebaseLogin}
+                                onClick={() => handleLogin(userId, pass)}
                                 className='cursor-pointer bg-linear-to-r from-[#89CCFF] to-[#005DA4] inter-txwe text-[13px] text-center py-[8px] rounded-[20px] mt-[10px] text-white'>
                                 Submit
                             </div>
