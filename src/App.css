@@ -22,8 +22,6 @@
     .inter-txwe {
         font-family: "Inter", sans-serif;
         font-optical-sizing: auto;
-        font-weight: <weight>;
-        font-style: normal;
     }
     .height-change { height: calc(100vh + 40px) }
 }
