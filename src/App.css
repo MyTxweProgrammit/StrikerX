@@ -24,4 +24,17 @@
         font-optical-sizing: auto;
     }
     .height-change { height: calc(100vh + 40px) }
+
+    .animate-to-left { animation: animateToLeft 0.5s ease-in; } /* for second inner auth when come on */
+    @keyframes animateToLeft {
+        from { transform: translateX(250px); }
+        to { transform: translateX(0px);; }
+    } 
+
+    .animate-to-left-f { animation: animateToLeft_F 0.5s ease-in; } /* for second inner auth when come on */
+    @keyframes animateToLeft_F {
+        from { transform: translateX(0px); }
+        to { transform: translateX(-250px);; }
+    } 
+
 }

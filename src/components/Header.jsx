@@ -18,8 +18,8 @@ export default function Header({ wants }) {
                     <div className="center gap-[7px]">
                         <img src={CaptureLogo} alt="logo website" class="w-[32px] h-[30px]" />
                         <div className="center">
-                            <h3 className="text-[#495199] text-lg font-extrabold max-[440px]:hidden">Pro</h3>
-                            <h3 className="text-[#495199] text-lg font-medium max-[440px]:hidden">DEVs</h3>
+                            <h3 className="text-[#495199] text-lg font-extrabold max-[440px]:hidden">Striker</h3>
+                            <h3 className="text-[#495199] text-lg font-medium max-[440px]:hidden">X</h3>
                         </div>
                     </div>
                 </Link>
@@ -27,8 +27,8 @@ export default function Header({ wants }) {
                 <div className="center gap-[7px] cursor-pointer">
                     <img src={CaptureLogo} alt="logo website" class="w-[32px] h-[30px]" />
                     <div className="center">
-                        <h3 className="text-[#495199] text-lg font-extrabold max-[440px]:hidden">Pro</h3>
-                        <h3 className="text-[#495199] text-lg font-medium max-[440px]:hidden">DEVs</h3>
+                        <h3 className="text-[#495199] text-lg font-extrabold max-[440px]:hidden">Striker</h3>
+                        <h3 className="text-[#495199] text-lg font-medium max-[440px]:hidden">X</h3>
                     </div>
                 </div>
             )}

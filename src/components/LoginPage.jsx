@@ -155,7 +155,7 @@ const LoginPage = ({ login }) => {
                                 <input type="checkbox" checked={checkedBox} onChange={(e) => setCheckedBox(e.target.checked)} />
                                 <p className='text-black text-[12px] inter-txwe'>Remember Me</p>
                             </section>
-                            <div
+                            <div     
                                 onClick={() => handleLogin(userId, pass)}
                                 className='cursor-pointer bg-linear-to-r from-[#89CCFF] to-[#005DA4] inter-txwe text-[13px] text-center py-[8px] rounded-[20px] mt-[10px] text-white'>
                                 Submit
