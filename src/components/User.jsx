@@ -45,15 +45,17 @@ export function HeaderUser({ logoutHead }) {
 
     const [Down, setDown] = useState(false)
     const [Size, setSize] = useState("w-[0px] h-[0px] p-[0px]")
+    const [ShowSearchPop, setShowSearchPop] = useState(false)
+    const [SizeSearch, setSizeSearch] = useState("w-[0px] h-[0px]")
     const handlePopup = () => {
         setDown(!Down)
         if (!Down) { 
-            setSize("w-[200px] h-fit px-[10px] py-[10px] border border-solid border-[#BFBFBF]") 
+            setSize("w-[200px] h-fit px-[10px] pt-[10px] border border-solid border-[#BFBFBF]") 
         }
         else { setSize("w-[0px] h-[0px] p-[0px]") }
     }
     return (
-        <div className="w-fit mx-auto bg-white shadow-xl h-[60px] border border-solid border-slate-200 center gap-[10px] sticky top-[10px] px-[20px] rounded-[30px]">
+        <div className="relative w-fit mx-auto bg-white shadow-xl h-[60px] border border-solid border-slate-200 center gap-[10px] sticky top-[10px] px-[20px] rounded-[30px]">
             <img src={CaptureLogo} className="w-[25px] h-[25px]"/>
             <div onClick={handlePopup} 
                 className="relative rounded-full w-[35px] h-[35px] cursor-pointer center duration-[0.5s] hover:bg-slate-200 active:bg-slate-200">
@@ -73,20 +75,33 @@ export function HeaderUser({ logoutHead }) {
                         </svg>
                         <p className={`${ Down ? "text-[#BFBFBF] inter-txwe font-bold text-[11px]" : "hidden"}`}>Setting</p>
                     </div>
+                    <div className={`${Down ? "relative rounded-[7px] flex items-center hover:bg-slate-100 active:bg-slate-100 duration-[0.5s] gap-[5px] cursor-pointer py-[5px] pl-[5px]" : "hidden"}`} onClick={handleLogout}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 20 20">
+	                        <path fill="#BFBFBF" d="M4 8a6 6 0 0 1 4.03-5.67a2 2 0 1 1 3.95 0A6 6 0 0 1 16 8v6l3 2v1H1v-1l3-2zm8 10a2 2 0 1 1-4 0z" />
+                        </svg>
+                        <p className={`${Down ? "text-[#BFBFBF] inter-txwe font-bold text-[11px]" : "hidden"}`}>Notification</p>
+                        <div className="absolute bg-red-500 rounded-full py-[1px] px-[6px] right-[10px] center font-bold text-[10px] inter-txwe">8</div>
+                    </div>
                     <div className={`${Down ? "rounded-[7px] flex items-center hover:bg-slate-100 active:bg-slate-100 duration-[0.5s] gap-[5px] cursor-pointer py-[5px] pl-[5px]" : "hidden"}`} onClick={handleLogout}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256">
 	                        <path fill="#BFBFBF" d="M124 216a12 12 0 0 1-12 12H48a12 12 0 0 1-12-12V40a12 12 0 0 1 12-12h64a12 12 0 0 1 0 24H60v152h52a12 12 0 0 1 12 12m108.49-96.49l-40-40a12 12 0 0 0-17 17L195 116h-83a12 12 0 0 0 0 24h83l-19.52 19.51a12 12 0 0 0 17 17l40-40a12 12 0 0 0 .01-17" />
                         </svg>
                         <p className={`${Down ? "text-[#BFBFBF] inter-txwe font-bold text-[11px]" : "hidden"}`}>Sign Out</p>
                     </div>
+                    <p className={`${Down ? "text-[#BFBFBF] text-[5px] text-center my-[3px]" : "hidden"}`}>{isuid}</p>
                 </div>
             </div>
-            <div className="relative rounded-full w-[35px] h-[35px] cursor-pointer center duration-[0.5s] hover:bg-slate-200 active:bg-slate-200">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <div className="rounded-full w-[35px] h-[35px] cursor-pointer center duration-[0.5s] hover:bg-slate-200 active:bg-slate-200" onClick={() => setShowSearchPop(!ShowSearchPop)}>
+                <svg className={`duration-[1s] ${ShowSearchPop ? "translate-x-[-123px] translate-y-[66px] z-50" : "translate-x-[0px] translate-y-[0px]"}`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
 	                <path fill="#BFBFBF" fill-rule="evenodd" d="m16.622 15.172l4.244 4.244l-1.414 1.415l-4.24-4.24a7 7 0 1 1 1.41-1.42zM16 11a5 5 0 1 0-10 0a5 5 0 0 0 10 0" />
                 </svg>
-                {/* DO IT HERE SOON */}
-                {/* <div className="absolute top-[60px] border-test w-[200px]"></div>*/}
+            </div>
+            <div className={`${ShowSearchPop ? "absolute top-[70px] border border-solid border-[#BFBFBF] shadow-xl rounded-lg p-[10px]" : "hidden"}`}>
+                <input 
+                    type="text" 
+                    className={`${ShowSearchPop ? "w-[200px] h-[30px] bg-slate-200 rounded-[20px] pl-[30px] text-black text-[13px] inter-txwe outline-none" : "hidden"}`}
+                    placeholder="Search a Courses"
+                />
             </div>
         </div>
     )
