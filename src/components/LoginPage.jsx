@@ -1,30 +1,30 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Header from './Header';
-import { signInWithEmailAndPassword, signOut, signInWithRedirect, getRedirectResult } from 'firebase/auth';
+import ThemeToggle from './ThemeToggle';
+import { signInWithEmailAndPassword, signOut, signInWithPopup } from 'firebase/auth';
 import { auth, provider } from './../firebase-config'
-import { get } from 'firebase/database';
 
 const LoginPage = ({ login }) => {
     // New Zone (firebase)
     const nav = useNavigate();
-    const [emailFirebase, setEmailFirebase]= useState('');
+    const [emailFirebase, setEmailFirebase] = useState('');
     const [passwordFirebase, setPasswordFirebase] = useState('');
     const [error, setError] = useState('');
-    const [authentication, setAuthentication]= useState(false);
+    const [authentication, setAuthentication] = useState(false);
     async function handleFirebaseLogin() {
         setAuthentication(true);
         setError('');
 
         signInWithEmailAndPassword(auth, emailFirebase, passwordFirebase)
-        .then((userCredential) => {
-            nav('/user')
-        }).catch((error) => {
-            setError(error.message); 
-            setAuthentication(false);
-            alert("Error to Auth")
-            nav('/signin')
-        });
+            .then((userCredential) => {
+                nav('/user')
+            }).catch((error) => {
+                setError(error.message);
+                setAuthentication(false);
+                alert("Error to Auth")
+                nav('/signin')
+            });
     }
 
     // Old Zone
@@ -79,7 +79,7 @@ const LoginPage = ({ login }) => {
             try {
                 const userCredential = await signInWithEmailAndPassword(auth, userId, pass);
                 const user = userCredential.user;
-        
+
                 if (user.emailVerified === false) {
                     alert("คุณยังไม่ได้ยืนยันอีเมล! กรุณากดลิงก์ในอีเมลก่อน");
                     setAuthentication(false)
@@ -97,13 +97,22 @@ const LoginPage = ({ login }) => {
         else { alert('Invalid login!') }
     }
     const handlePopupSignin = async () => { // Have a problem
+        let userCredential;
         try {
-            const result = await signInWithRedirect(auth, provider)
-            const userCredential = await getRedirectResult(auth)
-            login(userCredential.user.email, userCredential.user.displayName)
-            nav('/user')
+            console.log("Starting Sign-In...");
+            userCredential = await signInWithPopup(auth, provider);
+            console.log("Sign-In Success!");
         } catch (error) {
-            alert(error)
+            if (error.code === 'auth/popup-closed-by-user') {
+                console.warn("Popup was closed, but let's check if user actually logged in.");
+            } else {
+                alert("Firebase Error: " + error.code);
+            }
+            return;
+        }
+        if (userCredential) {
+            login(userCredential.user.email, userCredential.user.displayName);
+            nav('/user');
         }
     }
     const handleOpenEye = () => {
@@ -144,10 +153,10 @@ const LoginPage = ({ login }) => {
                                         value={pass}
                                         onChange={(e) => setPass(e.target.value)}
                                     />
-                                    <svg onClick={handleOpenEye} 
-                                        className='absolute right-[15px] top-[7px] cursor-pointer' 
+                                    <svg onClick={handleOpenEye}
+                                        className='absolute right-[15px] top-[7px] cursor-pointer'
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                        <path fill="#A7A7A7" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/>
+                                        <path fill="#A7A7A7" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5" />
                                     </svg>
                                 </div>
                             </section>
@@ -155,7 +164,7 @@ const LoginPage = ({ login }) => {
                                 <input type="checkbox" checked={checkedBox} onChange={(e) => setCheckedBox(e.target.checked)} />
                                 <p className='text-black text-[12px] inter-txwe'>Remember Me</p>
                             </section>
-                            <div     
+                            <div
                                 onClick={() => handleLogin(userId, pass)}
                                 className='cursor-pointer bg-linear-to-r from-[#89CCFF] to-[#005DA4] inter-txwe text-[13px] text-center py-[8px] rounded-[20px] mt-[10px] text-white'>
                                 Submit
@@ -194,25 +203,9 @@ const LoginPage = ({ login }) => {
                     </div>
                 </div>
             </div>
+            <ThemeToggle />
         </>
     );
 };
 
 export default LoginPage;
-
-{/* <input
-    type="text"
-    placeholder="User ID"
-    value={userId}
-    onChange={(e) =>
-        setUserId(e.target.value)}
-/>
-<input
-    type="text"
-    placeholder="Password"
-    value={pass}
-    onChange={(e) =>
-    setPass(e.target.value)}
-/> 
-<button onClick={handleLogin}>Login</button>
-*/}

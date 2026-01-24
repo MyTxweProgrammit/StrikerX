@@ -1,8 +1,10 @@
 import React, { useState } from "react"
 import CaptureLogo from "../assets/CaptureLogo.png"
 import { Link } from "react-router-dom"
+import { darkON } from "./Auth/DarkModeSession"
 
 export default function Header({ wants }) {
+    console.log(darkON)
     const [touch, setTouch] = useState(false)
     const [colorWorldIcon, setColorWorldIcon] = useState("#495199")
     const TrueAndChange = () => {
@@ -12,7 +14,7 @@ export default function Header({ wants }) {
     }
 
     return (
-        <div className="shadow-sm w-screen h-[60px] around bg-white sticky top-0 z-10">
+        <div className={`shadow-sm w-screen h-[60px] around sticky top-0 z-10 ${darkON ? 'bg-black' : 'bg-white'}`}>
             {(wants) ? (
                 <Link to='/'>
                     <div className="center gap-[7px]">

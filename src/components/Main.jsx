@@ -1,5 +1,6 @@
 import React from "react"
 import Header from "./Header"
+import ThemeToggle from "./ThemeToggle"
 import CaptureLogo from "../assets/CaptureLogo.png"
 import Markdown from "../assets/Markdown.png"
 import react from "../assets/React.png"
@@ -78,6 +79,7 @@ export default function Main() {
                     </Marquee>
                 </div>
             </div>
+            <ThemeToggle />
         </div>
     )
 }

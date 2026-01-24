@@ -7,8 +7,18 @@ import Dashboard from './components/Dashboard'
 import Register from './components/Register'
 import ProtectedRoute from './components/ProtectedRoute'
 import User from './components/User'
+// import { database } from './firebase-config'
+// import { ref, set } from 'firebase/database'
 
-function App() {
+export default function App() {
+  // const addDatabase = async () => { I will do it soon
+  //   try {
+  //     await set(ref(database, 'utilities/'), {darkmode: 'off'})
+  //   } catch(error) { console.log("Can't add a Database") }
+  // }
+  // useEffect(() => {
+  //   addDatabase();
+  // }, [])
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const login = () => { setIsAuthenticated(true) }
   const logout = () => { setIsAuthenticated(false) }
@@ -27,5 +37,3 @@ function App() {
     </BrowserRouter>
   )
 }
-
-export default App
