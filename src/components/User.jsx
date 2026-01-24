@@ -63,7 +63,7 @@ export function HeaderUser({ logoutHead }) {
                 <div className={`absolute rounded-[15px] ${Size} top-[60px] duration-[0.5s] shadow-lg cursor-default`}>
                     <div className="center w-fit gap-[7px]">
                         <section className={`${Down ? "w-[30px] h-[30px] rounded-full center bg-blue-500 " : ""}`}>
-                            <p className={`${Down ? "font-bold" : "hidden"}`}>{displayName.charAt(0)}</p>
+                            <p className={`${Down ? "font-bold text-white" : "hidden"}`}>{displayName.charAt(0)}</p>
                         </section>
                         <p className={`${Down ? "inter-txwe text-black text-[12px] font-bold" : "hidden"}`}>{displayName}</p>
                     </div>
