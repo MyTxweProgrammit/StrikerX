@@ -1,17 +1,35 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router"
 import { onAuthStateChanged } from "firebase/auth"
-import { auth } from "./../firebase-config"
+import { auth, database } from "./../firebase-config"
+import { ref, set } from "firebase/database"
 import CaptureLogo from "../assets/CaptureLogo.png"
 import Markdown from "../assets/Markdown.png"
 
 export default function User({ logout }) {
-    const [SizeCardCourse, setSizeCardCourse] = useState(false)
-    const [tailwindSize, setTailwindSize] = useState("h-[40px]")
-    const handleCardCourse = () => {
-        setSizeCardCourse(!SizeCardCourse)
-        if (SizeCardCourse) setTailwindSize("h-[40px]")
-        else setTailwindSize("h-[80px]")
+
+    const [MarkdownDate, setMarkdownDate] = useState(new Date().toLocaleString())
+    const [MarkdownExpire, setMarkdownExpire] = useState("")
+    useEffect(() => {
+        const date = new Date()
+        date.setMonth(date.getMonth() + 2)
+        date.getMonth() + 1
+        setMarkdownExpire(date.toLocaleString())
+    }, [])
+    const EnrollMarkDown = async () => {
+        try {
+            const user = auth.currentUser
+            if (user) {
+                const uid = user.uid
+                await set(ref(database, 'users/' + uid + '/courses/Markdown/'), { // ใช้ uid ตรงนี้
+                    EnrollDate: MarkdownDate,
+                    Expire: MarkdownExpire,
+                });
+                alert("You can start to learn now!");
+            } else {
+                alert("Please sign in to enroll in a course.");
+            }
+        } catch(err) { alert(err.message) }
     }
     return (
         <>
@@ -20,15 +38,36 @@ export default function User({ logout }) {
                 <HeaderUser logoutHead={logout} />
                 <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px]">Your Course (0) :</p>
                 <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px]">All Courses :</p>
-                <div onMouseEnter={handleCardCourse} onMouseLeave={handleCardCourse}
-                    className={`overflow-hidden relative center ${tailwindSize} duration-[0.5s] gap-[10px] border border-solid border-slate-300 bg-white w-[165px] rounded-lg shadow-xl ml-[20px] mt-[10px] cursor-pointer`}>
-                    {console.log(SizeCardCourse)}
-                    <div className={`${SizeCardCourse ? "translate-y-[-17px]" : null}`}>
+                <div 
+                    onClick={()=>document.getElementById('my_modal').showModal()}
+                    className="py-[5px] overflow-hidden relative center duration-[0.5s] hover:scale-[1.1] gap-[10px] border border-solid border-slate-300 bg-white w-[165px] rounded-lg shadow-xl ml-[20px] mt-[10px] cursor-pointer">
+                    <div>
                         <img src={Markdown} className="w-[26px] h-[26px]"/>
                     </div>
-                    <p className={`inter-txwe text-slate-400 font-bold text-[13px] ${SizeCardCourse ? "translate-y-[-17px]" : null}`}>Markdown</p>
+                    <p className="inter-txwe text-slate-400 font-bold text-[13px]">Markdown</p>
                     <section className="absolute bg-red-500 w-[60px] h-[12px] text-white inter-txwe text-[7px] text-center font-bold right-[-20px] top-[6px] rotate-[45deg]">NEW</section>
                 </div>
+                <dialog id="my_modal" className="modal">
+                    <div className="modal-box">
+                        <h3 className="font-bold text-lg">Markdown Language</h3>
+                        <p className="py-4">
+                            In this course You will learn an easiest programming language in the world. 
+                            It's not like python because It just a lightweight markup language that you need to know it first. You will know about .md file and Its syntax.
+                        </p>
+                        <div className="modal-action">
+                            <div onClick={EnrollMarkDown} 
+                                className="bg-blue-600 center px-[10px] py-[3px] rounded-[10px] cursor-pointer duration-[0.5s] hover:bg-blue-500 active:bg-blue-500">
+                                <p className="inter-txwe font-bold">Enroll</p>
+                            </div>
+                            <form method="dialog">
+                                <button className="btn">Ignore it</button>
+                            </form>
+                        </div>
+                    </div>
+                    <form method="dialog" className="modal-backdrop">
+                        <button>close</button>
+                    </form>
+                </dialog>
             </div>
         </>
     )
