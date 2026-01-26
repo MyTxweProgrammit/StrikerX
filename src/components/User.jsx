@@ -26,6 +26,7 @@ export default function User({ logout }) {
                     Expire: MarkdownExpire,
                 });
                 alert("You can start to learn now!");
+                document.getElementById('my_modal').close()
             } else {
                 alert("Please sign in to enroll in a course.");
             }
