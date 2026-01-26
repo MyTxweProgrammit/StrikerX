@@ -113,7 +113,7 @@ export function HeaderUser({ logoutHead }) {
         else { setSize("w-[0px] h-[0px] p-[0px]") }
     }
     return (
-        <div className="relative w-fit mx-auto bg-white shadow-xl h-[60px] border border-solid border-slate-200 center gap-[10px] sticky top-[10px] px-[20px] rounded-[30px]">
+        <div className="z-50 relative w-fit mx-auto bg-white shadow-xl h-[60px] border border-solid border-slate-200 center gap-[10px] sticky top-[10px] px-[20px] rounded-[30px]">
             <img src={CaptureLogo} className="w-[25px] h-[25px]" />
             <div onClick={handlePopup}
                 className="relative rounded-full w-[35px] h-[35px] cursor-pointer center duration-[0.5s] hover:bg-slate-200 active:bg-slate-200">
@@ -142,7 +142,7 @@ export function HeaderUser({ logoutHead }) {
                         </svg>
                         <p className={`${Down ? "text-[#BFBFBF] inter-txwe font-bold text-[11px]" : "hidden"}`}>Setting</p>
                     </div>
-                    <div className={`${Down ? "relative rounded-[7px] flex items-center hover:bg-slate-100 active:bg-slate-100 duration-[0.5s] gap-[5px] cursor-pointer py-[5px] pl-[5px]" : "hidden"}`} onClick={handleLogout}>
+                    <div className={`${Down ? "relative rounded-[7px] flex items-center hover:bg-slate-100 active:bg-slate-100 duration-[0.5s] gap-[5px] cursor-pointer py-[5px] pl-[5px]" : "hidden"}`}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 20 20">
                             <path fill="#BFBFBF" d="M4 8a6 6 0 0 1 4.03-5.67a2 2 0 1 1 3.95 0A6 6 0 0 1 16 8v6l3 2v1H1v-1l3-2zm8 10a2 2 0 1 1-4 0z" />
                         </svg>
