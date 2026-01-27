@@ -24,6 +24,11 @@
         font-optical-sizing: auto;
     }
     .height-change { height: calc(100vh + 40px) }
+    .enroll-rounded {
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
 
     .animate-to-left { animation: animateToLeft 0.5s ease-in; } /* for second inner auth when come on */
     @keyframes animateToLeft {

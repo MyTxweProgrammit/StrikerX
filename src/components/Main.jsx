@@ -7,11 +7,10 @@ import react from "../assets/React.png"
 import Python from "../assets/Python.png"
 import Marquee from "react-fast-marquee"
 
-// doing next
-// media query for card 
 export default function Main() {
     return (
-        <div className="w-screen h-screen">
+        <div className="relative w-screen h-[1000px]">
+            <div className="absolute bg-white w-screen h-[60px]"></div>
             <title>StrikerX - Learn Everything About Programming!</title>
             <Header wants={false} />
             <div className="bg-white w-screen bg-white pt-[10%] pb-[25px] max-[450px]:pt-[80px]">

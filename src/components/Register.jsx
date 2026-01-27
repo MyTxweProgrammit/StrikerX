@@ -26,7 +26,8 @@ export default function Register() {
                 await set(ref(database, 'users/' + userCredential.user.uid), {
                     username: username,
                     email: email,
-                    Created: dateCreated
+                    Created: dateCreated,
+                    AllCourse: 0
                 })
                 await sendEmailVerification(userCredential.user)
                 await signOut(auth)
@@ -43,6 +44,7 @@ export default function Register() {
     return (
         <>
             <title>StrikerX - Register</title>
+            <div className="absolute bg-white w-screen h-[60px]"></div>
             <Header wants={true} />
             <div className='w-screen h-screen bg-white'>
                 <div className='border border-solid border-[#BFBFBF] shadow-xl rounded-[10px] w-[250px] mx-auto translate-y-[30px] relative flex overflow-hidden'>

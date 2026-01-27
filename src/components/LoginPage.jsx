@@ -121,9 +121,10 @@ const LoginPage = ({ login }) => {
     }
 
     return (
-        <>
+        <>  
+            <div className="absolute bg-white w-screen h-[60px]"></div>
             <Header wants={true} />
-            <div className='w-screen height-change bg-white'>
+            <div className='w-screen height-change bg-white relative'>
                 <title>StrikerX - Login</title>
                 <div className='center py-[30px]'>
                     <div className='border border-solid border-[#BFBFBF] w-[270px] pt-[20px] rounded-[10px] shadow-xl center'>
