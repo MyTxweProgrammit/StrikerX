@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard'
 import Register from './components/Register'
 import ProtectedRoute from './components/ProtectedRoute'
 import User from './components/User'
+import Markdown from './components/Markdown'
 // import { database } from './firebase-config'
 // import { ref, set } from 'firebase/database'
 
@@ -29,6 +30,7 @@ export default function App() {
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />} >
           <Route path="dashboard" element={<Dashboard logout={logout} />} />
           <Route path="/user" element={<User logout={logout} />} />
+          <Route path="/user/markdown" element={<Markdown logout={logout}/>}/>
         </Route>
         <Route path="/signin" element={<LoginPage login={login}/>} />
         <Route path="/" element={<Main />} />
