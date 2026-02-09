@@ -13,7 +13,7 @@ export default function Header({ wants }) {
     }
 
     return (
-        <div className={`shadow-sm w-screen h-[60px] around sticky top-0 z-10 glass`}>
+        <div className={`shadow-sm w-screen h-[60px] around sticky top-0 z-10 bg-white`}>
             {(wants) ? (
                 <Link to='/'>
                     <div className="center gap-[7px]">

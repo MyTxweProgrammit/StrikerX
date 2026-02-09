@@ -38,6 +38,7 @@ export default function User({ logout }) {
                     Expire: MarkdownExpire,
                     Enroll: true
                 });
+                
                 alert("You can start to learn now!");
                 document.getElementById('my_modal').close()
             } else {
@@ -124,7 +125,7 @@ export default function User({ logout }) {
     )
 }
 
-export function HeaderUser({ logoutHead }) {
+export function HeaderUser({ logoutHead, markdown }) {
     const [displayName, setDisplayName] = useState('')
     const [isemail, setEmail] = useState('')
     const [isuid, setUID] = useState('')
@@ -155,13 +156,20 @@ export function HeaderUser({ logoutHead }) {
     const [Down, setDown] = useState(false)
     const [Size, setSize] = useState("w-[0px] h-[0px] p-[0px]")
     const [ShowSearchPop, setShowSearchPop] = useState(false)
-    const [SizeSearch, setSizeSearch] = useState("w-[0px] h-[0px]")
     const handlePopup = () => {
         setDown(!Down)
         if (!Down) {
             setSize("w-[200px] h-fit px-[10px] pt-[10px] border border-solid border-[#BFBFBF]")
         }
         else { setSize("w-[0px] h-[0px] p-[0px]") }
+    }
+
+    const [courseNav, setCourseNav] = useState("w-[0px] h-[0px] hidden")
+    const [courseTrue, setCourseTrue] = useState(false)
+    const handleNavMarkdown = () => {
+        setCourseTrue(!courseTrue)
+        if (courseTrue) setCourseNav("w-[250px]")
+        else setCourseNav("w-[0px] h-[0px]")
     }
     return (
         <div className="z-50 relative w-fit mx-auto bg-white shadow-xl h-[60px] border border-solid border-slate-200 center gap-[10px] sticky top-[10px] px-[20px] rounded-[30px]">
@@ -209,25 +217,91 @@ export function HeaderUser({ logoutHead }) {
                     <p className={`${Down ? "text-[#BFBFBF] text-[5px] text-center my-[3px]" : "hidden"}`}>{isuid}</p>
                 </div>
             </div>
-            <div className="rounded-full w-[35px] h-[35px] cursor-pointer center duration-[0.5s] hover:bg-slate-200 active:bg-slate-200" onClick={() => setShowSearchPop(!ShowSearchPop)}>
-                <svg className={`duration-[1s] ${ShowSearchPop ? "translate-x-[-123px] translate-y-[102px] z-50" : "translate-x-[0px] translate-y-[0px]"}`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path fill="#BFBFBF" fill-rule="evenodd" d="m16.622 15.172l4.244 4.244l-1.414 1.415l-4.24-4.24a7 7 0 1 1 1.41-1.42zM16 11a5 5 0 1 0-10 0a5 5 0 0 0 10 0" />
-                </svg>
-            </div>
-            <div className={`${ShowSearchPop ? "bg-white absolute top-[70px] border border-solid border-[#BFBFBF] shadow-xl rounded-lg p-[10px]" : "hidden"}`}>
-                <section className="flex justify-end cursor-pointer">
-                    <div className="w-fit rounded-full duration-[0.5s] p-[5px] hover:bg-slate-200 active:bg-slate-200 mr-[4px] mb-[4px]">
-                        <svg className="" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
-                            <path fill="#BFBFBF" d="M19 17v2H7v-2s0-4 6-4s6 4 6 4m-3-9a3 3 0 1 0-3 3a3 3 0 0 0 3-3m3.2 5.06A5.6 5.6 0 0 1 21 17v2h3v-2s0-3.45-4.8-3.94M18 5a2.9 2.9 0 0 0-.89.14a5 5 0 0 1 0 5.72A2.9 2.9 0 0 0 18 11a3 3 0 0 0 0-6M8 10H5V7H3v3H0v2h3v3h2v-3h3Z" />
+            {markdown ? (
+                <>
+                    <div onClick={handleNavMarkdown}
+                        className="rounded-full w-[35px] h-[35px] cursor-pointer center duration-[0.5s] hover:bg-slate-200 active:bg-slate-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                            <g fill="none" stroke="#BFBFBF" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                                <path d="M20 15c0 1.864 0 2.796-.304 3.53a4 4 0 0 1-2.165 2.165C16.796 21 15.864 21 14 21h-3c-3.772 0-5.658 0-6.83-1.172C3 18.657 3 16.771 3 13V7a4 4 0 0 1 4-4" />
+                                <path d="m10 8.5l.434 3.969a.94.94 0 0 0 .552.753c.686.295 1.971.778 3.014.778s2.328-.483 3.014-.778a.94.94 0 0 0 .553-.753L18 8.5m2.5-1v3.77M14 4L7 7l7 3l7-3z" />
+                            </g>
                         </svg>
                     </div>
-                </section>
-                <input
-                    type="text"
-                    className={`${ShowSearchPop ? "w-[200px] h-[30px] bg-slate-200 rounded-[20px] pl-[30px] text-black text-[13px] inter-txwe outline-none" : "hidden"}`}
-                    placeholder="Search a Courses"
-                />
-            </div>
+                    
+                    <div className={`${courseNav} duration-[0.5s] border border-solid border-[#BFBFBF] rounded-lg absolute top-[70px] bg-white`}>
+                        <section className={`${courseTrue ? "hidden" : ""}`}>
+                            <div className="duration-[0.5s] hover:bg-slate-200 active:bg-slate-200 cursor-pointer flex items-center mt-[20px] py-[5px]">
+                                <div className="flex items-center w-fit gap-[10px] ml-[10px]">
+                                    <section className="center w-[20px] h-[20px] rounded-full border-bf">
+                                        <p className="text-[#BFBFBF] text-[12px] inter-txwe">1</p>
+                                    </section>
+                                    <p className="inter-txwe text-[#BFBFBF] font-bold text-[13px]">Introduce</p>
+                                </div>
+                                <p className="text-[#BFBFBF] translate-x-[190px] absolute">15%</p>
+                            </div>
+                            <div className="duration-[0.5s] hover:bg-slate-200 active:bg-slate-200 cursor-pointer flex items-center py-[5px]">
+                                <div className="flex items-center w-fit gap-[10px] ml-[10px]">
+                                    <section className="center w-[20px] h-[20px] rounded-full border-bf">
+                                        <p className="text-[#BFBFBF] text-[12px] inter-txwe">2</p>
+                                    </section>
+                                    <p className="inter-txwe text-[#BFBFBF] font-bold text-[13px]">Basic Learning</p>
+                                </div>
+                                <p className="text-[#BFBFBF] translate-x-[190px] absolute">26%</p>
+                            </div>
+                            <div className="duration-[0.5s] hover:bg-slate-200 active:bg-slate-200 cursor-pointer flex items-center py-[5px]">
+                                <div className="flex items-center w-fit gap-[10px] ml-[10px]">
+                                    <section className="center w-[20px] h-[20px] rounded-full border-bf">
+                                        <p className="text-[#BFBFBF] text-[12px] inter-txwe">3</p>
+                                    </section>
+                                    <p className="inter-txwe text-[#BFBFBF] font-bold text-[13px]">Intermediate Learning</p>
+                                </div>
+                                <p className="text-[#BFBFBF] translate-x-[190px] absolute">45%</p>
+                            </div>
+                            <div className="duration-[0.5s] hover:bg-slate-200 active:bg-slate-200 cursor-pointer flex items-center py-[5px]">
+                                <div className="flex items-center w-fit gap-[10px] ml-[10px]">
+                                    <section className="center w-[20px] h-[20px] rounded-full border-bf">
+                                        <p className="text-[#BFBFBF] text-[12px] inter-txwe">4</p>
+                                    </section>
+                                    <p className="inter-txwe text-[#BFBFBF] font-bold text-[13px]">Advanced Learning</p>
+                                </div>
+                                <p className="text-[#BFBFBF] translate-x-[190px] absolute">70%</p>
+                            </div>
+                            <div className="duration-[0.5s] hover:bg-slate-200 active:bg-slate-200 cursor-pointer flex items-center mb-[20px] py-[5px]">
+                                <div className="flex items-center w-fit gap-[10px] ml-[10px]">
+                                    <section className="center w-[20px] h-[20px] rounded-full border-bf">
+                                        <p className="text-[#BFBFBF] text-[12px] inter-txwe">5</p>
+                                    </section>
+                                    <p className="inter-txwe text-[#BFBFBF] font-bold text-[13px]">Project</p>
+                                </div>
+                                <p className="text-[#BFBFBF] translate-x-[190px] absolute">100%</p>
+                            </div>
+                        </section>
+                    </div>
+                </>
+            ) : (
+                <>
+                    <div className="rounded-full w-[35px] h-[35px] cursor-pointer center duration-[0.5s] hover:bg-slate-200 active:bg-slate-200" onClick={() => setShowSearchPop(!ShowSearchPop)}>
+                        <svg className={`duration-[1s] ${ShowSearchPop ? "translate-x-[-123px] translate-y-[102px] z-50" : "translate-x-[0px] translate-y-[0px]"}`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="#BFBFBF" fill-rule="evenodd" d="m16.622 15.172l4.244 4.244l-1.414 1.415l-4.24-4.24a7 7 0 1 1 1.41-1.42zM16 11a5 5 0 1 0-10 0a5 5 0 0 0 10 0" />
+                        </svg>
+                    </div>
+                    <div className={`${ShowSearchPop ? "bg-white absolute top-[70px] border border-solid border-[#BFBFBF] shadow-xl rounded-lg p-[10px]" : "hidden"}`}>
+                    <section className="flex justify-end cursor-pointer">
+                        <div className="w-fit rounded-full duration-[0.5s] p-[5px] hover:bg-slate-200 active:bg-slate-200 mr-[4px] mb-[4px]">
+                            <svg className="" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                                <path fill="#BFBFBF" d="M19 17v2H7v-2s0-4 6-4s6 4 6 4m-3-9a3 3 0 1 0-3 3a3 3 0 0 0 3-3m3.2 5.06A5.6 5.6 0 0 1 21 17v2h3v-2s0-3.45-4.8-3.94M18 5a2.9 2.9 0 0 0-.89.14a5 5 0 0 1 0 5.72A2.9 2.9 0 0 0 18 11a3 3 0 0 0 0-6M8 10H5V7H3v3H0v2h3v3h2v-3h3Z" />
+                            </svg>
+                        </div>
+                    </section>
+                    <input
+                        type="text"
+                        className={`${ShowSearchPop ? "w-[200px] h-[30px] bg-slate-200 rounded-[20px] pl-[30px] text-black text-[13px] inter-txwe outline-none" : "hidden"}`}
+                        placeholder="Search a Courses"
+                    />
+                    </div>
+                </>
+            )}
         </div>
     )
 }
