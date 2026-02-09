@@ -13,7 +13,7 @@ export default function Markdown({ logout }) {
   return (
     <div className="w-screen h-screen bg-white pt-[20px]">
       <HeaderUser logoutHead={logout} markdown={true}/>
-      <div className='border-test w-[320px] ml-[20px] bg-black rounded-xl overflow-hidden'>
+      <div className='w-[320px] ml-[20px] bg-black rounded-xl overflow-hidden'>
         <div className='center relative mt-[10px]'>
           <section className='center w-fit gap-[5px] absolute left-[20px]'>
             <div className='w-[15px] h-[15px] rounded-full bg-[#FF0000]'></div>
