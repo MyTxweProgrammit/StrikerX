@@ -46,7 +46,34 @@ export default function Markdown({ logout }) {
       <p className='text-black font-bold text-[20px] inter-txwe ml-[20px] mt-[15px]'>ฺBold</p>
       <p className='ml-[30px] text-black text-[16px] inter-txwe mr-[30px]'>
         To write a bold text We will use for 2 special characters. It's
-        <kbd className="kbd kbd-sm bg-white">Example101</kbd>
+        <kbd className="kbd kbd-sm bg-white">_</kbd>and
+        <kbd className="kbd kbd-sm bg-white">*</kbd>
+        You need use these characters for one. Type twice on the front of text and repeat it on the back of text. For example
+      </p>
+      <div className='w-[320px] h-[90px] my-[10px] ml-[40px] bg-black rounded-xl overflow-hidden'>
+        <div className='center relative mt-[10px]'>
+          <section className='center w-fit gap-[5px] absolute left-[20px]'>
+            <div className='w-[15px] h-[15px] rounded-full bg-[#FF0000]'></div>
+            <div className='w-[15px] h-[15px] rounded-full bg-[#FFD650]'></div>
+            <div className='w-[15px] h-[15px] rounded-full bg-[#00FF0D]'></div>
+          </section>
+          <div className='text-white text-center inter-txwe text-[12px] font-bold'>Example102.md</div>
+        </div>
+        <div className='relative mt-[10px]'>
+          <section>
+            <div className='absolute bg-zinc-800 w-full h-[18px] text-slate-300 flex items-center text-[12px] pl-[20px]'><p>1</p></div>
+            <p className='text-slate-300 z-50 text-[12px] text-left pl-[50px] absolute'>**Show 67**</p>
+          </section>
+          <section className='translate-y-[17px]'>
+            <div className='absolute bg-zinc-800 w-full h-[18px] text-slate-300 flex items-center text-[12px] pl-[20px]'><p>2</p></div>
+            <p className='text-slate-300 z-50 text-[12px] text-left pl-[50px] absolute'>__Show 67__</p>
+          </section>
+        </div>
+      </div>
+      <p className='ml-[30px] text-black text-[16px] inter-txwe mr-[30px]'>
+        From above of code. You will see the output that will show
+        <kbd className='kbd kbd-sm bg-white'>Show 67</kbd>
+        as a bold text to you
       </p>
       {/* <div className='w-[320px] ml-[20px] bg-black rounded-xl overflow-hidden'>
         <div className='center relative mt-[10px]'>
