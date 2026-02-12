@@ -43,7 +43,7 @@ export default function Markdown({ logout }) {
         <kbd className='kbd kbd-sm bg-white'>Hello Developer</kbd>.
         The value will show on the page with our text code.
       </p>
-      <p className='text-black font-bold text-[20px] inter-txwe ml-[20px] mt-[15px]'>ฺBold</p>
+      <p className='text-black font-bold text-[20px] inter-txwe ml-[20px] mt-[15px]'>Bold</p>
       <p className='ml-[30px] text-black text-[16px] inter-txwe mr-[30px]'>
         To write a bold text We will use for 2 special characters. It's
         <kbd className="kbd kbd-sm bg-white">_</kbd>and
