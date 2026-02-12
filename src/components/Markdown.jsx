@@ -12,7 +12,7 @@ export default function Markdown({ logout }) {
   //   }
   // }, [demonstrate])
   return (
-    <div className="w-screen h-screen bg-white pt-[20px]">
+    <div className="w-screen height-markdown bg-white pt-[20px]">
       <HeaderUser logoutHead={logout} markdown={true}/>
       <p className='text-black ml-[20px] font-bold inter-txwe text-[35px]'>Markdown Syntax</p>
       <div className='center w-fit ml-[20px] gap-[5px] text-[14px] mt-[-3px]'>

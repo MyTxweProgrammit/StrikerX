@@ -24,6 +24,7 @@
         font-optical-sizing: auto;
     }
     .height-change { height: calc(100vh + 40px) }
+    .height-markdown { height: calc(100vh + 120px) }
     .enroll-rounded {
         border-top-right-radius: 10px;
         border-bottom-left-radius: 10px;
