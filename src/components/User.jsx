@@ -6,6 +6,7 @@ import { ref, set, get, child } from "firebase/database"
 import CaptureLogo from "../assets/CaptureLogo.png"
 import Markdown from "../assets/Markdown.png"
 import { Link } from "react-router"
+import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 
 export default function User({ logout }) {
 
@@ -38,7 +39,7 @@ export default function User({ logout }) {
                     Expire: MarkdownExpire,
                     Enroll: true
                 });
-                
+
                 alert("You can start to learn now!");
                 document.getElementById('my_modal').close()
             } else {
@@ -90,36 +91,36 @@ export default function User({ logout }) {
                 <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px]">All Courses :</p>
                 {!disappearMarkDown ? (
                     <><div
-                    onClick={() => document.getElementById('my_modal').showModal()}
-                    className="py-[5px] overflow-hidden relative center duration-[0.5s] hover:scale-[1.1] gap-[10px] border border-solid border-slate-300 bg-white w-[165px] rounded-lg shadow-xl ml-[20px] mt-[10px] cursor-pointer">
-                    <div>
-                        <img src={Markdown} className="w-[26px] h-[26px]" />
-                    </div>
-                    <p className="inter-txwe text-slate-400 font-bold text-[13px]">Markdown</p>
-                    <section className="absolute bg-red-500 w-[60px] h-[12px] text-white inter-txwe text-[7px] text-center font-bold right-[-20px] top-[6px] rotate-[45deg]">NEW</section>
-                    </div>
-                    <dialog id="my_modal" className="modal">
-                    <div className="modal-box">
-                        <h3 className="font-bold text-lg">Markdown Language</h3>
-                        <p className="py-4">
-                            In this course You will learn an easiest programming language in the world.
-                            It's not like python because It just a lightweight markup language that you need to know it first. You will know about .md file and Its syntax.
-                        </p>
-                        <div className="modal-action">
-                            <div onClick={EnrollMarkDown}
-                                className="bg-blue-600 center px-[10px] py-[3px] rounded-[10px] cursor-pointer duration-[0.5s] hover:bg-blue-500 active:bg-blue-500">
-                                <p className="inter-txwe font-bold">Enroll</p>
-                            </div>
-                            <form method="dialog">
-                                <button className="btn">Ignore it</button>
-                            </form>
+                        onClick={() => document.getElementById('my_modal').showModal()}
+                        className="py-[5px] overflow-hidden relative center duration-[0.5s] hover:scale-[1.1] gap-[10px] border border-solid border-slate-300 bg-white w-[165px] rounded-lg shadow-xl ml-[20px] mt-[10px] cursor-pointer">
+                        <div>
+                            <img src={Markdown} className="w-[26px] h-[26px]" />
                         </div>
+                        <p className="inter-txwe text-slate-400 font-bold text-[13px]">Markdown</p>
+                        <section className="absolute bg-red-500 w-[60px] h-[12px] text-white inter-txwe text-[7px] text-center font-bold right-[-20px] top-[6px] rotate-[45deg]">NEW</section>
                     </div>
-                    <form method="dialog" className="modal-backdrop">
-                        <button>close</button>
-                    </form>
-                    </dialog></>
-                ) : null }
+                        <dialog id="my_modal" className="modal">
+                            <div className="modal-box">
+                                <h3 className="font-bold text-lg">Markdown Language</h3>
+                                <p className="py-4">
+                                    In this course You will learn an easiest programming language in the world.
+                                    It's not like python because It just a lightweight markup language that you need to know it first. You will know about .md file and Its syntax.
+                                </p>
+                                <div className="modal-action">
+                                    <div onClick={EnrollMarkDown}
+                                        className="bg-blue-600 center px-[10px] py-[3px] rounded-[10px] cursor-pointer duration-[0.5s] hover:bg-blue-500 active:bg-blue-500">
+                                        <p className="inter-txwe font-bold">Enroll</p>
+                                    </div>
+                                    <form method="dialog">
+                                        <button className="btn">Ignore it</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <form method="dialog" className="modal-backdrop">
+                                <button>close</button>
+                            </form>
+                        </dialog></>
+                ) : null}
             </div>
         </>
     )
@@ -129,6 +130,7 @@ export function HeaderUser({ logoutHead, markdown }) {
     const [displayName, setDisplayName] = useState('')
     const [isemail, setEmail] = useState('')
     const [isuid, setUID] = useState('')
+    const [openMarkProject, setOpenMarkProject] = useState(false)
     const nav = useNavigate()
     onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -228,7 +230,7 @@ export function HeaderUser({ logoutHead, markdown }) {
                             </g>
                         </svg>
                     </div>
-                    
+
                     <div className={`${courseNav} duration-[0.5s] border border-solid border-[#BFBFBF] rounded-lg absolute top-[70px] bg-white`}>
                         <section className={`${courseTrue ? "hidden" : ""}`}>
                             <div className="duration-[0.5s] hover:bg-slate-200 active:bg-slate-200 cursor-pointer flex items-center mt-[20px] py-[5px]">
@@ -236,46 +238,57 @@ export function HeaderUser({ logoutHead, markdown }) {
                                     <section className="center w-[20px] h-[20px] rounded-full border-bf">
                                         <p className="text-[#BFBFBF] text-[12px] inter-txwe">1</p>
                                     </section>
-                                    <p className="inter-txwe text-[#BFBFBF] font-bold text-[13px]">Introduce</p>
+                                    <p className="inter-txwe text-[#BFBFBF] font-bold text-[13px]">Basic Learning</p>
                                 </div>
-                                <p className="text-[#BFBFBF] translate-x-[190px] absolute">15%</p>
+                                <p className="text-[#BFBFBF] translate-x-[190px] absolute">60%</p>
                             </div>
-                            <div className="duration-[0.5s] hover:bg-slate-200 active:bg-slate-200 cursor-pointer flex items-center py-[5px]">
+                            <div className="duration-[0.5s] hover:bg-slate-200 active:bg-slate-200 cursor-pointer flex items-center py-[5px] mb-[20px]" onClick={() => setOpenMarkProject(true)}>
                                 <div className="flex items-center w-fit gap-[10px] ml-[10px]">
                                     <section className="center w-[20px] h-[20px] rounded-full border-bf">
                                         <p className="text-[#BFBFBF] text-[12px] inter-txwe">2</p>
                                     </section>
-                                    <p className="inter-txwe text-[#BFBFBF] font-bold text-[13px]">Basic Learning</p>
-                                </div>
-                                <p className="text-[#BFBFBF] translate-x-[190px] absolute">26%</p>
-                            </div>
-                            <div className="duration-[0.5s] hover:bg-slate-200 active:bg-slate-200 cursor-pointer flex items-center py-[5px]">
-                                <div className="flex items-center w-fit gap-[10px] ml-[10px]">
-                                    <section className="center w-[20px] h-[20px] rounded-full border-bf">
-                                        <p className="text-[#BFBFBF] text-[12px] inter-txwe">3</p>
-                                    </section>
-                                    <p className="inter-txwe text-[#BFBFBF] font-bold text-[13px]">Intermediate Learning</p>
-                                </div>
-                                <p className="text-[#BFBFBF] translate-x-[190px] absolute">45%</p>
-                            </div>
-                            <div className="duration-[0.5s] hover:bg-slate-200 active:bg-slate-200 cursor-pointer flex items-center py-[5px]">
-                                <div className="flex items-center w-fit gap-[10px] ml-[10px]">
-                                    <section className="center w-[20px] h-[20px] rounded-full border-bf">
-                                        <p className="text-[#BFBFBF] text-[12px] inter-txwe">4</p>
-                                    </section>
-                                    <p className="inter-txwe text-[#BFBFBF] font-bold text-[13px]">Advanced Learning</p>
-                                </div>
-                                <p className="text-[#BFBFBF] translate-x-[190px] absolute">70%</p>
-                            </div>
-                            <div className="duration-[0.5s] hover:bg-slate-200 active:bg-slate-200 cursor-pointer flex items-center mb-[20px] py-[5px]">
-                                <div className="flex items-center w-fit gap-[10px] ml-[10px]">
-                                    <section className="center w-[20px] h-[20px] rounded-full border-bf">
-                                        <p className="text-[#BFBFBF] text-[12px] inter-txwe">5</p>
-                                    </section>
                                     <p className="inter-txwe text-[#BFBFBF] font-bold text-[13px]">Project</p>
                                 </div>
-                                <p className="text-[#BFBFBF] translate-x-[190px] absolute">100%</p>
+                                <p className="text-[#BFBFBF] translate-x-[190px] absolute">40%</p>
                             </div>
+                            <Dialog open={openMarkProject} as="div" className="relative z-10 focus:outline-none z-50" onClose={() => setOpenMarkProject(false)}>
+                                <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+                                    <div className="flex min-h-full items-center justify-center p-4 bg-black">
+                                        <DialogPanel
+                                            transition
+                                            className="w-full max-w-md rounded-xl bg-white/5 p-6 backdrop-blur-2xl duration-300 ease-out data-closed:transform-[scale(95%)] data-closed:opacity-0"
+                                        >
+                                            <DialogTitle as="h3" className="text-base/7 font-medium text-white">
+                                                Project & Complication
+                                            </DialogTitle>
+                                            <p className="mt-2 text-sm/6 text-white/50">
+                                                This project You must to code some basic Markdown with .md file. Inside your project need to contain:
+                                            </p>
+                                            <p className="ml-[15px] text-sm/6 text-white/50">
+                                                - Your name and surname with any Headling tags <br/>
+                                                - Your school address with link tag <br/>
+                                                - Your 3 big plans to do in the future with bold text  
+                                            </p>
+                                            <p className="text-sm/6 text-white/50">
+                                                We have a link under this information to let you sent your project. First you must to cover your .md file under main folder. And then
+                                                You have to host it on Google Drive. make it as public and copy URL and paste under here. GOOD LUCK 
+                                            </p>
+                                            <div className="mt-4">
+                                                <Button
+                                                    className="inline-flex items-center gap-2 rounded-md bg-gray-700 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white data-hover:bg-gray-600 data-open:bg-gray-700"
+                                                    onClick={() => setOpenMarkProject(false)}
+                                                >
+                                                    Submit
+                                                </Button>
+                                                <input
+                                                    className="border border-solid border-slate-600 outline-none rounded-xl px-3 py-1.5 ml-[10px] pr-[20px]"
+                                                    type="text" 
+                                                    placeholder="Your URL Project"/>
+                                            </div>
+                                        </DialogPanel>
+                                    </div>
+                                </div>
+                            </Dialog>
                         </section>
                     </div>
                 </>
@@ -287,18 +300,18 @@ export function HeaderUser({ logoutHead, markdown }) {
                         </svg>
                     </div>
                     <div className={`${ShowSearchPop ? "bg-white absolute top-[70px] border border-solid border-[#BFBFBF] shadow-xl rounded-lg p-[10px]" : "hidden"}`}>
-                    <section className="flex justify-end cursor-pointer">
-                        <div className="w-fit rounded-full duration-[0.5s] p-[5px] hover:bg-slate-200 active:bg-slate-200 mr-[4px] mb-[4px]">
-                            <svg className="" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
-                                <path fill="#BFBFBF" d="M19 17v2H7v-2s0-4 6-4s6 4 6 4m-3-9a3 3 0 1 0-3 3a3 3 0 0 0 3-3m3.2 5.06A5.6 5.6 0 0 1 21 17v2h3v-2s0-3.45-4.8-3.94M18 5a2.9 2.9 0 0 0-.89.14a5 5 0 0 1 0 5.72A2.9 2.9 0 0 0 18 11a3 3 0 0 0 0-6M8 10H5V7H3v3H0v2h3v3h2v-3h3Z" />
-                            </svg>
-                        </div>
-                    </section>
-                    <input
-                        type="text"
-                        className={`${ShowSearchPop ? "w-[200px] h-[30px] bg-slate-200 rounded-[20px] pl-[30px] text-black text-[13px] inter-txwe outline-none" : "hidden"}`}
-                        placeholder="Search a Courses"
-                    />
+                        <section className="flex justify-end cursor-pointer">
+                            <div className="w-fit rounded-full duration-[0.5s] p-[5px] hover:bg-slate-200 active:bg-slate-200 mr-[4px] mb-[4px]">
+                                <svg className="" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                                    <path fill="#BFBFBF" d="M19 17v2H7v-2s0-4 6-4s6 4 6 4m-3-9a3 3 0 1 0-3 3a3 3 0 0 0 3-3m3.2 5.06A5.6 5.6 0 0 1 21 17v2h3v-2s0-3.45-4.8-3.94M18 5a2.9 2.9 0 0 0-.89.14a5 5 0 0 1 0 5.72A2.9 2.9 0 0 0 18 11a3 3 0 0 0 0-6M8 10H5V7H3v3H0v2h3v3h2v-3h3Z" />
+                                </svg>
+                            </div>
+                        </section>
+                        <input
+                            type="text"
+                            className={`${ShowSearchPop ? "w-[200px] h-[30px] bg-slate-200 rounded-[20px] pl-[30px] text-black text-[13px] inter-txwe outline-none" : "hidden"}`}
+                            placeholder="Search a Courses"
+                        />
                     </div>
                 </>
             )}

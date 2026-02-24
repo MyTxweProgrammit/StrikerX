@@ -12,7 +12,7 @@ export default function Markdown({ logout }) {
   //   }
   // }, [demonstrate])
   return (
-    <div className="w-screen height-markdown bg-white pt-[20px]">
+    <div className="w-screen h-fit bg-white pt-[20px] pb-[20px] relative top-[-18px]">
       <HeaderUser logoutHead={logout} markdown={true}/>
       <p className='text-black ml-[20px] font-bold inter-txwe text-[35px]'>Markdown Syntax</p>
       <div className='center w-fit ml-[20px] gap-[5px] text-[14px] mt-[-3px]'>
@@ -74,6 +74,13 @@ export default function Markdown({ logout }) {
         From above of code. You will see the output that will show
         <kbd className='kbd kbd-sm bg-white'>Show 67</kbd>
         as a bold text to you
+      </p>
+      <p className='text-black font-bold text-[20px] inter-txwe ml-[20px] mt-[15px]'>Headings</p>
+      <p className='ml-[30px] text-black text-[16px] inter-txwe mr-[30px]'>
+        Sometime when You want to create a topic name or main idea to cover about detail inside of it.
+        You can use
+        <kbd className='kbd kbd-sm bg-white'>#</kbd>
+        to make it easily to find the large information. 
       </p>
       {/* <div className='w-[320px] ml-[20px] bg-black rounded-xl overflow-hidden'>
         <div className='center relative mt-[10px]'>
