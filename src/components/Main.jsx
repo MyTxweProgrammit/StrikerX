@@ -6,10 +6,11 @@ import Markdown from "../assets/Markdown.png"
 import react from "../assets/React.png"
 import Python from "../assets/Python.png"
 import Marquee from "react-fast-marquee"
+import { motion } from "motion/react" 
 
 export default function Main() {
     return (
-        <div className="relative w-screen h-[1000px]">
+        <div className="relative w-screen h-[2000px]">
             <div className="absolute bg-white w-screen h-[60px]"></div>
             <title>StrikerX - Learn Everything About Programming!</title>
             <Header wants={false} />
@@ -80,7 +81,7 @@ export default function Main() {
                     </Marquee>
                 </div>
             </div>
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
         </div>
     )
 }

@@ -2,10 +2,12 @@ import React, { useState } from "react"
 import CaptureLogo from "../assets/CaptureLogo.png"
 import { Link } from "react-router-dom"
 import { darkON } from "./Auth/DarkModeSession"
+import { motion, useScroll } from "motion/react"
 
 export default function Header({ wants }) {
     const [touch, setTouch] = useState(false)
     const [colorWorldIcon, setColorWorldIcon] = useState("#495199")
+    const { scrollYProgress } = useScroll();
     const TrueAndChange = () => {
         setTouch(!touch)
         if (touch) { setColorWorldIcon("#495199") }
@@ -49,6 +51,21 @@ export default function Header({ wants }) {
                     </svg>
                 </div>
             </div>
+            <motion.div
+                id="scroll-indicator"
+                style={{
+                    scaleX: scrollYProgress,
+                    position: "fixed",
+                    top: 60,
+                    left: 0,
+                    right: 0,
+                    height: 6,
+                    originX: 0,
+                    background: "linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%)",
+                    zIndex: 99,
+                    borderRadius: 20
+                }}
+            />
         </div>
     )
 }

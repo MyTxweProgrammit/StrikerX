@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth, database } from "./../firebase-config"
-import { ref, set, get, child } from "firebase/database"
+import { ref, set, get, child, update } from "firebase/database"
 import CaptureLogo from "../assets/CaptureLogo.png"
 import Markdown from "../assets/Markdown.png"
 import { Link } from "react-router"
@@ -37,7 +37,8 @@ export default function User({ logout }) {
                 await set(ref(database, 'users/' + uid + '/courses/Markdown/'), {
                     EnrollDate: MarkdownDate,
                     Expire: MarkdownExpire,
-                    Enroll: true
+                    Enroll: true,
+                    Project: "",
                 });
 
                 alert("You can start to learn now!");
@@ -173,6 +174,20 @@ export function HeaderUser({ logoutHead, markdown }) {
         if (courseTrue) setCourseNav("w-[250px]")
         else setCourseNav("w-[0px] h-[0px]")
     }
+    const [markdownProject, setMarkdownProject] = useState("")
+    const sendMarkProject = () => {
+        const user = auth.currentUser
+        const uid = user.uid
+        const updates = {}
+        updates['users/' + uid + '/courses/Markdown/'] = { Project: markdownProject }
+        if (markdownProject == "") {
+            alert("You don't have any link of project!")
+        } else {
+            alert("Thanks you! Please wait for 2 or 3 days to recieve the value from admin.")
+            update(ref(database), updates)
+            setOpenMarkProject(false)
+        }
+    }
     return (
         <div className="z-50 relative w-fit mx-auto bg-white shadow-xl h-[60px] border border-solid border-slate-200 center gap-[10px] sticky top-[10px] px-[20px] rounded-[30px]">
             <img src={CaptureLogo} className="w-[25px] h-[25px]" />
@@ -276,11 +291,13 @@ export function HeaderUser({ logoutHead, markdown }) {
                                             <div className="mt-4">
                                                 <Button
                                                     className="inline-flex items-center gap-2 rounded-md bg-gray-700 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white data-hover:bg-gray-600 data-open:bg-gray-700"
-                                                    onClick={() => setOpenMarkProject(false)}
+                                                    onClick={sendMarkProject}
                                                 >
                                                     Submit
                                                 </Button>
                                                 <input
+                                                    value={markdownProject}
+                                                    onChange={(e) => setMarkdownProject(e.target.value)}
                                                     className="border border-solid border-slate-600 outline-none rounded-xl px-3 py-1.5 ml-[10px] pr-[20px]"
                                                     type="text" 
                                                     placeholder="Your URL Project"/>
