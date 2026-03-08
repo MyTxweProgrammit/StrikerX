@@ -12,7 +12,12 @@ import { database } from "./../firebase-config"
 import { ref, onValue, update } from "firebase/database"
 
 export default function Main() {
-    const [liked, setLiked] = useState(0)
+    const [liked, setLiked] = useState(0);
+    const [showPOP, setShowPOP] = useState(false)
+    const formatter = new Intl.NumberFormat('en-US', {
+        notation: 'compact',
+        maximumFractionDigits: 1
+    });
     useEffect(() => {
         const likedRef = ref(database, 'utilities/');
         const unsubscribe = onValue(likedRef, (snapshot) => {
@@ -30,6 +35,9 @@ export default function Main() {
         const updates = {};
         updates['utilities/'] = postData;
         update(ref(database), updates)
+    }
+    const closePOP = (e) => { // Click outside popup (glassmorphism) to close it which can't affect to inside popup
+        if (e.target === e.currentTarget) setShowPOP(false)
     }
 
     return (
@@ -126,11 +134,54 @@ export default function Main() {
                     <div className="mx-auto">
                         <p className="inter-txwe text-slate-500 text-[10px] mt-[10px] mx-[25px]">Hello everyone!, I'm T who is the ceo of this website. Actually I created this course because I want to have some project that can share your knowledge to other. I hope you all to enjoy with this project :)</p>
                     </div>
-                    <div className="center gap-[5px]">
-                        <div className="text-black cursor-pointer" onClick={updateLiked}>Click</div>
-                        <div className="text-black">{liked}</div>
+                    <div className="center w-fit relative left-[70%] mt-[15px]">
+                        <div className="cursor-pointer" onClick={updateLiked}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17px" height="17px" viewBox="0 0 24 24">
+                                <path fill="#ff1500" d="m12 21.35l-1.45-1.32C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53z" />
+                            </svg>
+                        </div>
+                        <div className="text-[#ff1500] text-[13px] font-bold ml-[5px]">{formatter.format(liked)}</div>
+                    </div>
+                    <div className="center w-fit relative left-[70%]">
+                        <div className="cursor-pointer" onClick={() => setShowPOP(true)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17px" height="17px" viewBox="0 0 24 24">
+                                <path fill="#BFBFBF" d="M12.36 4C6.58 4 2.644 9.857 4.824 15.21l.933 2.288a.5.5 0 0 1-.15.579L3.634 19.66a.5.5 0 0 0 .313.89h7.82a8.73 8.73 0 0 0 8.733-8.732C20.5 7.5 17 4 12.682 4z" />
+                            </svg>
+                        </div>
+                        <div className="text-[#BFBFBF] text-[13px] font-bold ml-[5px]">1</div>
                     </div>
                 </motion.div>
+                {showPOP ? (
+                        <div
+                            className="center bg-white/10 backdrop-blur-sm border-b border-white/10 w-full height-pop-main fixed top-[60px] z-40"  
+                            onClick={closePOP}
+                        >
+                            <motion.div
+                                className="bg-slate-100 w-[80%] h-[300px] rounded-[20px]"
+                                initial={{ scale: 0.7, opacity: 0 }}
+                                animate={{
+                                    scale: 1,
+                                    opacity: 1,
+                                    transition: { duration: 0.5 }
+                                }}
+                            >
+                                <div className="w-fit mt-[20px] ml-[30px]">
+                                    <p className="inter-txwe text-black font-bold text-[25px]">Comment</p>
+                                </div>
+                                <div className="border-test mx-auto w-[90%] h-[60%] overflow-hidden">
+                                    <div className="bg-slate-600 w-[100px] h-[1000px] overflow-y-auto"></div> {/* test */}
+                                </div>
+                                <div className="mx-auto w-[90%] h-[20%] center relative">
+                                    <input type="text" className="text-[#BFBFBF] border border-solid border-slate-400 rounded-[25px] pl-[20px] w-full h-[70%]" placeholder="Comment as Guess"/>
+                                    <div className="absolute right-[15px] cursor-pointer rounded-full p-[6px] center duration-[0.5s] hover:bg-slate-300 active:bg-slate-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px" viewBox="0 0 26 26">
+                                            <path fill="#0a44ff" d="M0 2v8.5L15 13L0 15.5V24l26-11z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
+                ) : null}
             </div>
             {/* <ThemeToggle /> */}
         </div>

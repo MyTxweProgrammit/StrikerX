@@ -40,6 +40,9 @@ export default function User({ logout }) {
                     Enroll: true,
                     Project: "",
                 });
+                await set(ref(database, 'users/' + uid + '/courses/Markdown/Project'), {
+                    Project: ""
+                });
 
                 alert("You can start to learn now!");
                 document.getElementById('my_modal').close()
@@ -179,7 +182,7 @@ export function HeaderUser({ logoutHead, markdown }) {
         const user = auth.currentUser
         const uid = user.uid
         const updates = {}
-        updates['users/' + uid + '/courses/Markdown/'] = { Project: markdownProject }
+        updates['users/' + uid + '/courses/Markdown/Project'] = { Project: markdownProject }
         if (markdownProject == "") {
             alert("You don't have any link of project!")
         } else {
