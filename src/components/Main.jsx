@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Header from "./Header"
 import ThemeToggle from "./ThemeToggle"
 import CaptureLogo from "../assets/CaptureLogo.png"
@@ -7,10 +7,33 @@ import react from "../assets/React.png"
 import Python from "../assets/Python.png"
 import Marquee from "react-fast-marquee"
 import { motion } from "motion/react" 
+import CEObigbrother from "../assets/CEObigbrother.png"
+import { database } from "./../firebase-config"
+import { ref, onValue, update } from "firebase/database"
 
 export default function Main() {
+    const [liked, setLiked] = useState(0)
+    useEffect(() => {
+        const likedRef = ref(database, 'utilities/');
+        const unsubscribe = onValue(likedRef, (snapshot) => {
+            const data = snapshot.val().likeCEO;
+            if (data !== null) {
+                setLiked(data);
+            }
+        });
+        return () => unsubscribe()
+    }, []);
+    const updateLiked = () => {
+        const postData = {
+            likeCEO: liked + 1
+        };
+        const updates = {};
+        updates['utilities/'] = postData;
+        update(ref(database), updates)
+    }
+
     return (
-        <div className="relative w-screen h-[2000px]">
+        <div className="relative w-screen h-full">
             <div className="absolute bg-white w-screen h-[60px]"></div>
             <title>StrikerX - Learn Everything About Programming!</title>
             <Header wants={false} />
@@ -80,6 +103,34 @@ export default function Main() {
                         </div>
                     </Marquee>
                 </div>
+            </div>
+            <div className="relative w-full h-[1380px] bg-[#242424]">
+                <motion.div
+                    className="absolute bg-slate-300 w-[230px] h-[280px] translate-y-[960px] rounded-[10px]"
+                    initial={{ translateX: "-200px", rotate: 0, opacity: 0 }}
+                    whileInView={{ translateX: "0px", rotate: 20, opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                >
+                </motion.div>
+                <motion.div
+                    className="bg-white w-[250px] h-[300px] translate-y-[1000px] rounded-[10px] pt-[10px] duration-[0.5s] hover:scale-[1.1]"
+                    initial={{ translateX: "-200px", rotate: 0, opacity: 0 }}
+                    whileInView={{ translateX: "0px", rotate: 30, opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                >
+                    <div className="rounded-full w-[60px] h-[60px] mx-auto overflow-hidden">
+                        <img src={CEObigbrother} alt="CEO of StikerX"/>
+                    </div>
+                    <p className="inter-txwe text-black font-bold text-center text-[14px] mt-[5px]">Maytee Sukchaung</p>
+                    <p className="inter-txwe text-black text-center text-[8px] ">CEO & Developer of StrikerX</p>
+                    <div className="mx-auto">
+                        <p className="inter-txwe text-slate-500 text-[10px] mt-[10px] mx-[25px]">Hello everyone!, I'm T who is the ceo of this website. Actually I created this course because I want to have some project that can share your knowledge to other. I hope you all to enjoy with this project :)</p>
+                    </div>
+                    <div className="center gap-[5px]">
+                        <div className="text-black cursor-pointer" onClick={updateLiked}>Click</div>
+                        <div className="text-black">{liked}</div>
+                    </div>
+                </motion.div>
             </div>
             {/* <ThemeToggle /> */}
         </div>
