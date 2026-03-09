@@ -15,7 +15,7 @@ export default function Header({ wants }) {
     }
 
     return (
-        <div className={`shadow-sm w-screen h-[60px] around sticky top-0 z-10 bg-white`}>
+        <motion.div initial={{ opacity: 0, translateY: "-15px" }} animate={{ opacity: 1, translateY: "0px", transition: { duration: 0.7 } }} className={`shadow-sm w-screen h-[60px] around sticky top-0 z-10 bg-white`}>
             {(wants) ? (
                 <Link to='/'>
                     <div className="center gap-[7px]">
@@ -66,6 +66,6 @@ export default function Header({ wants }) {
                     borderRadius: 20
                 }}
             />
-        </div>
+        </motion.div>
     )
 }
