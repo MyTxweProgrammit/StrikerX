@@ -8,20 +8,42 @@ import Register from "./components/Register";
 import ProtectedRoute from "./components/ProtectedRoute";
 import User from "./components/User";
 import Markdown from "./components/Markdown";
+import NotFound from "./components/NotFound";
+import { auth } from "./firebase-config";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const login = () => {
     setIsAuthenticated(true);
   };
   const logout = () => {
     setIsAuthenticated(false);
   };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
+      }
+      setIsLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
+        <Route
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              isLoading={isLoading}
+            />
+          }
+        >
           <Route path="dashboard" element={<Dashboard logout={logout} />} />
           <Route path="/user" element={<User logout={logout} />} />
           <Route path="/user/markdown" element={<Markdown logout={logout} />} />
