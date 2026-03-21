@@ -10,7 +10,7 @@ import User from "./components/User";
 import Markdown from "./components/Markdown";
 import NotFound from "./components/NotFound";
 import { auth } from "./firebase-config";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -19,7 +19,9 @@ export default function App() {
     setIsAuthenticated(true);
   };
   const logout = () => {
-    setIsAuthenticated(false);
+    signOut(auth).then(() => {
+      setIsAuthenticated(false);
+    });
   };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
