@@ -1,12 +1,14 @@
-import React from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
+import React from "react";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-const ProtectedRoute = (props) => {
-    // let auth={'token': false}
-    return (
-        props.isAuthenticated ?
-            <Outlet /> : <Navigate to="/" />
-    )
-}
+const ProtectedRoute = ({ isAuthenticated, isLoading }) => {
+  const location = useLocation();
+  if (isLoading) return null;
+  return isAuthenticated ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/" state={{ from: location }} replace />
+  );
+};
 
 export default ProtectedRoute;
