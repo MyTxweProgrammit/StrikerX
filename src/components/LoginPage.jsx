@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   signInWithPopup,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth, provider } from "./../firebase-config";
 
@@ -148,6 +149,21 @@ const LoginPage = ({ login }) => {
     if (openEye === "password") setOpenEye("text");
     else setOpenEye("password");
   };
+  async function handleResetPassword() {
+    if (!userId) {
+      alert("Please fill your email correctly!");
+      return;
+    }
+    try {
+      await sendPasswordResetEmail(auth, userId);
+      alert(
+        "Password reset email sent! Please check in your spam email options."
+      );
+    } catch (err) {
+      console.log(err.code);
+      console.log(err.message);
+    }
+  }
 
   return (
     <>
@@ -157,7 +173,7 @@ const LoginPage = ({ login }) => {
         <title>StrikerX - Login</title>
         <div className="center py-[30px]">
           <div className="border border-solid border-[#BFBFBF] w-[270px] pt-[20px] rounded-[10px] shadow-xl center">
-            <div>
+            <form>
               <p className="text-black font-bold inter-txwe text-[28px]">
                 Sign In
               </p>
@@ -181,7 +197,12 @@ const LoginPage = ({ login }) => {
                   <p className="text-black inter-txwe text-[12px] font-bold">
                     Password
                   </p>
-                  <Link className="text-[12px]">Forgot Password?</Link>
+                  <div
+                    onClick={() => handleResetPassword()}
+                    className="text-[12px] text-blue-400 font-bold cursor-pointer hover:text-blue-600 active:text-blue-600 duration-[0.5s]"
+                  >
+                    Forgot Password?
+                  </div>
                 </aside>
                 <div className="relative">
                   <input
@@ -298,7 +319,7 @@ const LoginPage = ({ login }) => {
               <p className="w-fit mx-auto my-[10px]">
                 <Link to="/signup">Create an Account</Link>
               </p>
-            </div>
+            </form>
           </div>
         </div>
       </div>

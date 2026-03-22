@@ -7,8 +7,31 @@ import CaptureLogo from "../assets/CaptureLogo.png";
 import Markdown from "../assets/Markdown.png";
 import { Link } from "react-router";
 import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
+import { restClient } from "@massive.com/client-js";
 
 export default function User({ logout }) {
+  const apiKey = import.meta.env.VITE_TOKEN_STOCK;
+  const [jsonStock, setJsonStock] = useState();
+  const rest = restClient(apiKey, "https://api.massive.com");
+  async function stock() {
+    try {
+      const response = await rest.getStocksAggregates({
+        stocksTicker: "SONY",
+        multiplier: "1",
+        timespan: "day",
+        from: "2026-03-19", // year/month/date
+        to: "2026-03-22",
+        adjusted: "true",
+        sort: "asc",
+        limit: "120",
+      });
+      console.log(response);
+      setJsonStock(response);
+    } catch (e) {
+      console.error("An error ouccured:", e);
+    }
+  }
+
   const [MarkdownDate, setMarkdownDate] = useState(new Date().toLocaleString());
   const [MarkdownExpire, setMarkdownExpire] = useState("");
   const [disappearMarkDown, setDissappearMarkDown] = useState(false);
@@ -35,6 +58,7 @@ export default function User({ logout }) {
       .catch((err) => {
         console.error(err);
       });
+    stock();
   }, []);
   const EnrollMarkDown = async () => {
     try {
@@ -112,6 +136,12 @@ export default function User({ logout }) {
             </Link>{" "}
             This will guide you how to learn our courses.
           </p>
+        </div>
+        <div className="">
+          <p className="text-black">
+            {jsonStock?.results?.[jsonStock.results.length - 1].c}
+          </p>
+          <p className="text-black">{jsonStock?.ticker}</p>
         </div>
         <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px]">
           Your Course (0) :
