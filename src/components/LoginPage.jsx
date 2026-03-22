@@ -11,7 +11,7 @@ import {
 import { auth, provider } from "./../firebase-config";
 
 const LoginPage = ({ login }) => {
-  // New Zone (firebase) test
+  // New Zone (firebase)
   const nav = useNavigate();
   const [emailFirebase, setEmailFirebase] = useState("");
   const [passwordFirebase, setPasswordFirebase] = useState("");
