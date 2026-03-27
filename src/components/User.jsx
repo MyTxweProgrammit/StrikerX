@@ -146,7 +146,7 @@ export default function User({ logout }) {
           <p className="text-black">{jsonStock?.ticker}</p>
         </div>
         <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px]">
-          Your Course (0) :
+          Your Course (0):
         </p>
         {disappearMarkDown ? (
           <Link to="/user/markdown">
@@ -237,7 +237,7 @@ export default function User({ logout }) {
           </Link>
         ) : null}
         <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px]">
-          All Courses :
+          All Courses:
         </p>
         {!disappearMarkDown ? (
           <>
