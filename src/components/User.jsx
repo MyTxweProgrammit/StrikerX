@@ -8,6 +8,7 @@ import Markdown from "../assets/Markdown.png";
 import { Link } from "react-router";
 import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { restClient } from "@massive.com/client-js";
+import { deleteUser } from "firebase/auth";
 
 export default function User({ logout }) {
   const apiKey = import.meta.env.VITE_TOKEN_STOCK;
@@ -353,6 +354,30 @@ export function HeaderUser({ logoutHead, markdown }) {
       setOpenMarkProject(false);
     }
   };
+
+  async function handleDeleteUser() {
+    const user = auth.currentUser;
+    if (!user) {
+      alert("Can't found a user's account.");
+      return;
+    }
+    try {
+      await deleteUser(user);
+      alert("Delete User Successfully!");
+      localStorage.removeItem("user_token");
+      logoutHead();
+      nav("/");
+    } catch (err) {
+      if (err.code === "auth/requires-recent-login")
+        alert(
+          "An Error Occured : Please Log out and Log in again before delete this account"
+        );
+      else {
+        alert("An Error Occured : " + err.message);
+      }
+      console.error(err);
+    }
+  }
   return (
     <div className="z-50 relative w-fit mx-auto bg-white shadow-xl h-[60px] border border-solid border-slate-200 center gap-[10px] sticky top-[10px] px-[20px] rounded-[30px]">
       <img src={CaptureLogo} className="w-[25px] h-[25px]" />
@@ -494,6 +519,24 @@ export function HeaderUser({ logoutHead, markdown }) {
               }`}
             >
               Sign Out
+            </p>
+          </div>
+          <div
+            className={`${
+              Down
+                ? "relative rounded-[7px] flex items-center hover:bg-slate-100 active:bg-slate-100 duration-[0.5s] gap-[5px] cursor-pointer py-[5px] pl-[5px]"
+                : "hidden"
+            }`}
+            onClick={handleDeleteUser}
+          >
+            <p
+              className={`${
+                Down
+                  ? "text-[#BFBFBF] inter-txwe font-bold text-[11px]"
+                  : "hidden"
+              }`}
+            >
+              Delete User Test
             </p>
           </div>
           <p
