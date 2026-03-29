@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, deleteUser } from "firebase/auth";
 import { auth, database } from "./../firebase-config";
 import { ref, set, get, child, update } from "firebase/database";
 import CaptureLogo from "../assets/CaptureLogo.png";
@@ -8,7 +8,6 @@ import Markdown from "../assets/Markdown.png";
 import { Link } from "react-router";
 import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { restClient } from "@massive.com/client-js";
-import { deleteUser } from "firebase/auth";
 import PythonCourse from "../assets/PythonCourse.png";
 import ReactCourse from "../assets/ReactCourse.png";
 import CardCourse from "./CardCourse";
@@ -332,6 +331,17 @@ export function HeaderUser({ logoutHead, markdown }) {
       nav("/signin");
     }
   };
+  const MessageFromAdmin = async () => {
+    get(child(ref(database), `utilities/notifications/message`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        alert(snapshot.val().admin)
+      } else {
+        alert("No data available");
+      }
+    }).catch((error) => {
+      alert(error);
+    });
+  }
 
   const [Down, setDown] = useState(false);
   const [Size, setSize] = useState("w-[0px] h-[0px] p-[0px]");
@@ -482,6 +492,7 @@ export function HeaderUser({ logoutHead, markdown }) {
             </p>
           </div>
           <div
+            onClick={MessageFromAdmin}
             className={`${
               Down
                 ? "relative rounded-[7px] flex items-center hover:bg-slate-100 active:bg-slate-100 duration-[0.5s] gap-[5px] cursor-pointer py-[5px] pl-[5px]"
