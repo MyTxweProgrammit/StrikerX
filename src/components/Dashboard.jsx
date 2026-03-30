@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { database } from "./../firebase-config";
-import { ref, update, child, get } from "firebase/database";
+import { ref, update, child, get, push, set } from "firebase/database";
 
 const Dashboard = ({ logout }) => {
   const [message, setMessage] = useState("");
@@ -11,14 +11,12 @@ const Dashboard = ({ logout }) => {
     logout();
     navigate("/signin");
   };
-  const handleAddNotification = async () => {
+  const handleAddNotification = async (data) => {
     try {
-      await update(ref(database, "utilities/notifications/message"), { "admin": message }).then(() => {
-        alert("Message Send!");
-      }).catch((err) => {
-        alert("Can't send a message")
-        console.log(err.message);
-      }) // Add Message
+      const newKey = push(ref(database, 'utilities/notifications/message'))
+      await set(newKey, data).then(() => {
+        alert("Add data Successfully!")
+      })
     } catch (err) {
       alert("Can't Send a message");
       console.log(err.message);
@@ -41,7 +39,7 @@ const Dashboard = ({ logout }) => {
           className="text-black cursor-pointer"
           type="submit"
           value="SEND"
-          onClick={handleAddNotification}
+          onClick={() => handleAddNotification(message)}
         />
       </div>
       <button onClick={handleLogout}>Logout</button>

@@ -11,6 +11,7 @@ import { restClient } from "@massive.com/client-js";
 import PythonCourse from "../assets/PythonCourse.png";
 import ReactCourse from "../assets/ReactCourse.png";
 import CardCourse from "./CardCourse";
+import Chat from "./Chat"
 
 export default function User({ logout }) {
   const apiKey = import.meta.env.VITE_TOKEN_STOCK;
@@ -752,6 +753,7 @@ export function HeaderUser({ logoutHead, markdown }) {
           </div>
         </>
       )}
+      <Chat />
     </div>
   );
 }
