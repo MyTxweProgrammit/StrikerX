@@ -48,11 +48,6 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} isLoading={isLoading} />}>
-          <Route path="dashboard" element={<Dashboard logout={logout} />} />
-          <Route path="/user" element={<User logout={logout} />} />
-          <Route path="/user/markdown" element={<Markdown logout={logout} />} />
-        </Route> */}
         <Route element={<RoleBasedRoute requiredRole="admin" isLoading={isLoading} />}>
           <Route path="dashboard" element={<Dashboard logout={logout}/>} />
         </Route>
