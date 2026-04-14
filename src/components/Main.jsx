@@ -236,7 +236,7 @@ export default function Main() {
           </Marquee>
         </div>
       </div>
-      <div className="relative w-full h-[1380px] bg-[#242424]">
+      <div className="relative w-full h-fit bg-[#242424]">
         <motion.div
           className="absolute bg-slate-300 w-[230px] h-[280px] translate-y-[50px] rounded-[10px]"
           initial={{ translateX: "-200px", rotate: 0, opacity: 0 }}
@@ -405,6 +405,48 @@ export default function Main() {
         </Swiper>
       </div>
       {/* <ThemeToggle /> */}
+      <div className="w-screen bg-gradient-left pt-[40px]">
+        <p className="font-bold text-[#756bff] text-[25px] ml-[20px]">Core Disciplines</p>
+        <p className="text-white text-[16px] ml-[20px]">Specialized tracks designed for professional advancement.</p>
+        <section className="w-[100%] grid grid-cols-4 pl-[20px] max-[1170px]:grid-cols-3 max-[900px]:grid-cols-2 max-[600px]:grid-cols-1 ">
+          <div className="bg-[#eee6f2] rounded-xl w-[270px] h-[160px] my-[30px] pt-[25px] px-[25px] max-[600px]:mx-auto duration-[0.5s] hover:scale-[1.05] active:scale-[1.05]">
+            <div className="w-[40px] h-[40px] rounded-xl bg-white center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="#7c00ff" d="m8 18l-6-6l6-6l1.425 1.425l-4.6 4.6L9.4 16.6zm8 0l-1.425-1.425l4.6-4.6L14.6 7.4L16 6l6 6z"/>
+              </svg>
+            </div>
+            <p className="text-blue-900 font-bold mt-[7px] text-[17px]">Web Development</p>
+            <p className="text-slate-700 text-[11px] ">Modern architectures and high performance frameworks.</p>
+          </div> 
+          <div className="bg-[#eee6f2] rounded-xl w-[270px] h-[160px] my-[30px] pt-[25px] px-[25px] max-[600px]:mx-auto duration-[0.5s] hover:scale-[1.05] active:scale-[1.05]">
+            <div className="w-[40px] h-[40px] rounded-xl bg-white center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="none" stroke="#7c00ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m3 11l2.5-2.5c1.017-1.017 1.526-1.526 2.137-1.638a2 2 0 0 1 .726 0c.611.112 1.12.62 2.137 1.638s1.526 1.526 2.137 1.638c.24.045.486.045.726 0c.611-.112 1.12-.621 2.137-1.638L21 3M3 15v6m6-8v8m6-5v5m6-12v12"/>
+              </svg>
+            </div>
+            <p className="text-blue-900 font-bold mt-[7px] text-[17px]">Data Science</p>
+            <p className="text-slate-700 text-[11px] ">Statistical modeling, AI implementation and MLOps.</p>
+          </div> 
+          <div className="bg-[#eee6f2] rounded-xl w-[270px] h-[160px] my-[30px] pt-[25px] px-[25px] max-[600px]:mx-auto duration-[0.5s] hover:scale-[1.05] active:scale-[1.05]">
+            <div className="w-[40px] h-[40px] rounded-xl bg-white center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="#7c00ff" fill-rule="evenodd" d="M6.697 6.697a7.5 7.5 0 0 1 12.794 4.927A4.002 4.002 0 0 1 18.5 19.5h-12a5 5 0 0 1-1.667-9.715a7.5 7.5 0 0 1 1.864-3.088m9.01 5.01a1 1 0 0 0-1.414-1.414L11 13.586l-1.293-1.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <p className="text-blue-900 font-bold mt-[7px] text-[17px]">DevOps</p>
+            <p className="text-slate-700 text-[11px] ">Infrastructure as code and scalable cloud systems.</p>
+          </div> 
+          <div className="bg-[#eee6f2] rounded-xl w-[270px] h-[160px] my-[30px] pt-[25px] px-[25px] max-[600px]:mx-auto duration-[0.5s] hover:scale-[1.05] active:scale-[1.05]">
+            <div className="w-[40px] h-[40px] rounded-xl bg-white center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 16 16">
+                <path fill="#7c00ff" d="M3 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm6 11a1 1 0 1 0-2 0a1 1 0 0 0 2 0"/>
+              </svg>
+            </div>
+            <p className="text-blue-900 font-bold mt-[7px] text-[17px]">Mobile Apps</p>
+            <p className="text-slate-700 text-[11px] ">Native performance for iOS, Android and cross-platform.</p>
+          </div> 
+        </section>
+      </div>
       <Footer />
     </div>
   );

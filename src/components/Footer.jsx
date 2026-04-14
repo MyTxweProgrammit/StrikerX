@@ -54,9 +54,9 @@ export default function Footer() {
             ) : (
                 <div className="bg-white w-full h-fit pl-[20px] pt-[70px]">
                     <p className="font-bold text-black text-[25px]">StrikerX</p> <hr className="my-[15px]"/>
-                    <Link to="*" style={{ color: "black", fontWeight: 400 }}>About</Link> <br/> <hr className="my-[7px]"/>
-                    <Link to="*" style={{ color: "black", fontWeight: 400 }}>Features</Link> <br/> <hr className="my-[7px]"/>
-                    <Link to="*" style={{ color: "black", fontWeight: 400 }}>Works</Link> <br/> <hr className="my-[7px]"/>
+                    <Link to="*" style={{ color: "black", fontWeight: 400 }}>About</Link> <br/> <hr className="my-[7px] border border-solid border-white"/>
+                    <Link to="*" style={{ color: "black", fontWeight: 400 }}>Features</Link> <br/> <hr className="my-[7px] border border-solid border-white"/>
+                    <Link to="*" style={{ color: "black", fontWeight: 400 }}>Works</Link> <br/> <hr className="my-[7px] border border-solid border-white"/>
                     <Link to="*" style={{ color: "black", fontWeight: 400 }}>Support</Link> <br/>
                     <div className="center gap-[10px] w-fit mt-[25px]">
                             <div className="cursor-pointer">
