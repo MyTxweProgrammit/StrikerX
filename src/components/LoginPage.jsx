@@ -4,8 +4,11 @@ import Header from './Header';
 import ThemeToggle from './ThemeToggle';
 import { signInWithEmailAndPassword, signOut, signInWithPopup } from 'firebase/auth';
 import { auth, provider } from './../firebase-config'
+import Swal from "sweetalert2"
+import withReactContent from "sweetalert2-react-content"
 
 const LoginPage = ({ login }) => {
+    const setSwal = withReactContent(Swal);
     // New Zone (firebase)
     const nav = useNavigate();
     const [emailFirebase, setEmailFirebase] = useState('');
@@ -81,20 +84,38 @@ const LoginPage = ({ login }) => {
                 const user = userCredential.user;
 
                 if (user.emailVerified === false) {
-                    alert("คุณยังไม่ได้ยืนยันอีเมล! กรุณากดลิงก์ในอีเมลก่อน");
+                    setSwal.fire({
+                        title: "Invalid Login!",
+                        text: "Please verify your identify in the email and come to login again.",
+                        icon: "error"
+                    })
                     setAuthentication(false)
                     await signOut(auth);
                 } else {
-                    alert("ยินดีต้อนรับ!");
+                    setSwal.fire({
+                        title: "Welcome Back!",
+                        text: "Let's see what you've missed.",
+                        icon: "success"
+                    })
                     login(userId, pass);
                     localStorage.setItem('user_token', JSON.stringify(sessionUser))
                     nav('/user');
                 }
             } catch (err) {
-                alert(err.message);
+                setSwal.fire({
+                    title: "Invalid Login!",
+                    text: "Authenthication is invalid.",
+                    icon: "error"
+                })
             }
         }
-        else { alert('Invalid login!') }
+        else {
+            setSwal.fire({
+                title: "Invalid Login!",
+                text: "Please type a correct information again.",
+                icon: "error"
+            })
+        }
     }
     const handlePopupSignin = async () => { // Have a problem
         let userCredential;

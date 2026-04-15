@@ -12,6 +12,8 @@ import PythonCourse from "../assets/PythonCourse.png";
 import ReactCourse from "../assets/ReactCourse.png";
 import CardCourse from "./CardCourse";
 import Chat from "./Chat"
+import Swal from "sweetalert2"
+import withReactContent from "sweetalert2-react-content";
 
 export default function User({ logout }) {
   const apiKey = import.meta.env.VITE_TOKEN_STOCK;
@@ -305,6 +307,7 @@ export default function User({ logout }) {
 }
 
 export function HeaderUser({ logoutHead, markdown }) {
+  const setSwal = withReactContent(Swal)
   const [displayName, setDisplayName] = useState("");
   const [isemail, setEmail] = useState("");
   const [isuid, setUID] = useState("");
@@ -325,12 +328,25 @@ export function HeaderUser({ logoutHead, markdown }) {
     }
   });
   const handleLogout = () => {
-    if (confirm("Are you sure to sign out?")) {
-      alert("See you!");
-      localStorage.removeItem("user_token");
-      logoutHead();
-      nav("/signin");
-    }
+    setSwal.fire({
+      title: "Do you want to sign out?",
+      confirmButtonText: "Yes",
+      showDenyButton: true,
+      denyButtonText: "No",
+      icon: "question",
+      confirmButtonColor: "green"
+    }).then((result) => {
+      if (result.isConfirmed) {
+          setSwal.fire({
+            title: "See you!",
+            text: "Do not forget to come back in another time.",
+            icon: "success"
+          })
+          localStorage.removeItem("user_token");
+          logoutHead();
+          nav("/signin");
+      } else if (result.isDenied) null
+    })
   };
   const MessageFromAdmin = async () => {
     get(child(ref(database), `utilities/notifications/message`)).then((snapshot) => {

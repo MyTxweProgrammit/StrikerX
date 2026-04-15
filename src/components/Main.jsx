@@ -84,6 +84,7 @@ export default function Main() {
           name="google-adsense-account"
           content="ca-pub-5211508376773772"
         ></meta>
+        <script src="https://pl29156560.profitablecpmratenetwork.com/55/ad/3f/55ad3ffbb8d961b905c063526c8b7c30.js"></script>
       </head>
       <Header wants={false} />
       <div

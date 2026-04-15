@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function CardCourse({
   Picture,
@@ -13,7 +13,7 @@ export default function CardCourse({
       <div className="w-full h-[40%] overflow-hidden">
         <img
           src={Picture}
-          alt="Python Course's Picture"
+          alt="Course's Picture"
           className="w-[115%] h-[115%]"
         />
       </div>
