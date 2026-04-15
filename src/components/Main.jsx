@@ -66,6 +66,8 @@ export default function Main() {
           name="google-adsense-account"
           content="ca-pub-5211508376773772"
         ></meta>
+        <script async="async" data-cfasync="false" src="https://pl29156561.profitablecpmratenetwork.com/3d8d4df0c6a6041d9d8ca120272411cf/invoke.js">
+        </script>
       </head>
       <Header wants={false} />
       <div
@@ -447,6 +449,7 @@ export default function Main() {
           </div> 
         </section>
       </div>
+      <div id="container-3d8d4df0c6a6041d9d8ca120272411cf"></div>
       <Footer />
     </div>
   );
