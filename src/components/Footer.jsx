@@ -53,7 +53,7 @@ export default function Footer() {
                 </div>
             ) : (
                 <div className="bg-white w-full h-fit pl-[20px] pt-[70px]">
-                    <p className="font-bold text-black text-[25px]">StrikerX</p> <hr className="my-[15px]"/>
+                    <p className="font-bold text-black text-[25px]">StrikerX</p> <hr className="my-[15px] border border-solid border-white"/>
                     <Link to="*" style={{ color: "black", fontWeight: 400 }}>About</Link> <br/> <hr className="my-[7px] border border-solid border-white"/>
                     <Link to="*" style={{ color: "black", fontWeight: 400 }}>Features</Link> <br/> <hr className="my-[7px] border border-solid border-white"/>
                     <Link to="*" style={{ color: "black", fontWeight: 400 }}>Works</Link> <br/> <hr className="my-[7px] border border-solid border-white"/>

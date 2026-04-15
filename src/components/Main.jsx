@@ -51,6 +51,24 @@ export default function Main() {
     // Click outside popup (glassmorphism) to close it which can't affect to inside popup
     if (e.target === e.currentTarget) setShowPOP(false);
   };
+  useEffect(() => {
+    const SCRIPT_ID = 'adsterra-popunder-js';
+    if (document.getElementById(SCRIPT_ID)) return;
+    const script = document.createElement('script');
+    script.id = SCRIPT_ID;
+    script.src = "https://pl29156560.profitablecpmratenetwork.com/55/ad/3f/55ad3ffbb8d961b905c063526c8b7c30.js";
+    script.async = true;
+    script.type = 'text/javascript';
+    try {document.body.appendChild(script);} 
+    catch (err) {console.error("Failed to append Adsterra script", err);}
+    return () => {
+      const target = document.getElementById(SCRIPT_ID);
+      if (target && target.parentNode === document.body) {
+        try {document.body.removeChild(target);} 
+        catch (e) {console.warn("Script removal skipped");}
+      }
+    };
+  }, []);
 
   return (
     <div className="relative w-screen h-full">
@@ -66,8 +84,6 @@ export default function Main() {
           name="google-adsense-account"
           content="ca-pub-5211508376773772"
         ></meta>
-        <script async="async" data-cfasync="false" src="https://pl29156561.profitablecpmratenetwork.com/3d8d4df0c6a6041d9d8ca120272411cf/invoke.js">
-        </script>
       </head>
       <Header wants={false} />
       <div
