@@ -50,6 +50,10 @@ export default function Footer() {
                             <p className="text-black text-[14px]">Terms & Conditions</p>    
                         </div>
                     </div>
+                    <div className="pb-[10px]">
+                        <hr className="border border-solid border-slate-200 mx-auto mb-[15px] w-[80%]"/>
+                        <p className="text-black text-center">View <Link to="https://github.com/MyTxweProgrammit/prodevs" target="_blank">Source Code</Link> on Github</p>
+                    </div>
                 </div>
             ) : (
                 <div className="bg-white w-full h-fit pl-[20px] pt-[70px]">
@@ -85,6 +89,7 @@ export default function Footer() {
                     <p className="text-black text-[14px] my-[30px]">@ Copyright 2024, All Rights Reserved</p>
                     <Link to="*" style={{ color: "black", fontWeight: 400, fontSize: "14px" }}>Privacy Policy</Link>
                     <Link to="*" style={{ color: "black", fontWeight: 400, fontSize: "14px", marginLeft: "20px" }}>Terms & Conditions</Link> <br/>
+                    <p className="text-black font-[400] text-[14px] mt-[10px]">View <Link to="https://github.com/MyTxweProgrammit/prodevs" target="_blank">Source Code</Link> on Github</p>
                     <section className="w-full h-[60px] ml-[-20px]"></section>
                 </div>
             )}

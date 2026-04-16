@@ -12,6 +12,7 @@ import PythonCourse from "../assets/PythonCourse.png";
 import ReactCourse from "../assets/ReactCourse.png";
 import CardCourse from "./CardCourse";
 import Chat from "./Chat"
+import Footer from "./Footer"
 import Swal from "sweetalert2"
 import withReactContent from "sweetalert2-react-content";
 
@@ -93,7 +94,7 @@ export default function User({ logout }) {
   return (
     <>
       <title>StrikerX - User</title>
-      <div className="w-screen h-[1000px] bg-white">
+      <div className="w-screen h-fit bg-white">
         <HeaderUser logoutHead={logout} />
         <div className="border border-solid border-orange-500 w-[90%] mx-auto mt-[20px] bg-orange-200 rounded-xl py-[8px] px-[8px]">
           <div className="center w-fit gap-[5px]">
@@ -286,7 +287,7 @@ export default function User({ logout }) {
             </dialog>
           </>
         ) : null}
-        <div className="min-[450px]:flex mx-[20px] gap-[10px]">
+        <div className="min-[450px]:flex mx-[20px] gap-[10px] my-[15px]">
           <CardCourse
             Picture={PythonCourse}
             Name="Python for Beginner"
@@ -301,6 +302,10 @@ export default function User({ logout }) {
             ComingSOON={true}
           />
         </div>
+        <div className="w-full bg-gradient-left">
+          <div id="container-3d8d4df0c6a6041d9d8ca120272411cf"></div>
+        </div>
+        <Footer />
       </div>
     </>
   );
