@@ -302,9 +302,6 @@ export default function User({ logout }) {
             ComingSOON={true}
           />
         </div>
-        <div className="w-full bg-gradient-left">
-          <div id="container-3d8d4df0c6a6041d9d8ca120272411cf"></div>
-        </div>
         <Footer />
       </div>
     </>
