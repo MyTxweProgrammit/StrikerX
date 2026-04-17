@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link, useLocation } from "react-router";
 import { onAuthStateChanged, deleteUser } from "firebase/auth";
 import { auth, database } from "./../firebase-config";
 import { ref, set, get, child, update } from "firebase/database";
 import CaptureLogo from "../assets/CaptureLogo.png";
 import Markdown from "../assets/Markdown.png";
-import { Link } from "react-router";
 import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { restClient } from "@massive.com/client-js";
 import PythonCourse from "../assets/PythonCourse.png";
@@ -91,9 +90,30 @@ export default function User({ logout }) {
       alert(err.message);
     }
   };
+  useEffect(() => {
+    const SCRIPT_ID = 'adsterra-popunder-js';
+    if (document.getElementById(SCRIPT_ID)) return;
+    const script = document.createElement('script');
+    script.id = SCRIPT_ID;
+    script.src = "https://pl29156560.profitablecpmratenetwork.com/55/ad/3f/55ad3ffbb8d961b905c063526c8b7c30.js";
+    script.async = true;
+    script.type = 'text/javascript';
+    try {document.body.appendChild(script);} 
+    catch (err) {console.error("Failed to append Adsterra script", err);}
+    return () => {
+      const target = document.getElementById(SCRIPT_ID);
+      if (target && target.parentNode === document.body) {
+        try {document.body.removeChild(target);} 
+        catch (e) {console.warn("Script removal skipped");}
+      }
+    };
+ }, [])
   return (
     <>
       <title>StrikerX - User</title>
+      <head>
+        <script async="async" data-cfasync="false" src="https://pl29156561.profitablecpmratenetwork.com/3d8d4df0c6a6041d9d8ca120272411cf/invoke.js"></script>
+      </head>
       <div className="w-screen h-fit bg-white">
         <HeaderUser logoutHead={logout} />
         <div className="border border-solid border-orange-500 w-[90%] mx-auto mt-[20px] bg-orange-200 rounded-xl py-[8px] px-[8px]">
@@ -302,6 +322,7 @@ export default function User({ logout }) {
             ComingSOON={true}
           />
         </div>
+        <div className="mt-[20px]" id="container-3d8d4df0c6a6041d9d8ca120272411cf"></div>
         <Footer />
       </div>
     </>
@@ -309,6 +330,7 @@ export default function User({ logout }) {
 }
 
 export function HeaderUser({ logoutHead, markdown }) {
+  const location = useLocation();
   const setSwal = withReactContent(Swal)
   const [displayName, setDisplayName] = useState("");
   const [isemail, setEmail] = useState("");
@@ -481,37 +503,24 @@ export function HeaderUser({ logoutHead, markdown }) {
               </div>
             </section>
           </div>
-          <div
-            className={`${
+          <Link to="/user/setting" state={{ from: location.pathname }} className={`${
               Down
                 ? "rounded-[7px] flex items-center hover:bg-slate-100 active:bg-slate-100 duration-[0.5s] gap-[5px] cursor-pointer py-[5px] pl-[5px] mt-[10px]"
                 : "hidden"
             }`}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
               <path
                 fill="#BFBFBF"
                 fill-rule="evenodd"
                 d="M14.208 4.83q.68.21 1.3.54l1.833-1.1a1 1 0 0 1 1.221.15l1.018 1.018a1 1 0 0 1 .15 1.221l-1.1 1.833q.33.62.54 1.3l2.073.519a1 1 0 0 1 .757.97v1.438a1 1 0 0 1-.757.97l-2.073.519q-.21.68-.54 1.3l1.1 1.833a1 1 0 0 1-.15 1.221l-1.018 1.018a1 1 0 0 1-1.221.15l-1.833-1.1q-.62.33-1.3.54l-.519 2.073a1 1 0 0 1-.97.757h-1.438a1 1 0 0 1-.97-.757l-.519-2.073a7.5 7.5 0 0 1-1.3-.54l-1.833 1.1a1 1 0 0 1-1.221-.15L4.42 18.562a1 1 0 0 1-.15-1.221l1.1-1.833a7.5 7.5 0 0 1-.54-1.3l-2.073-.519A1 1 0 0 1 2 12.72v-1.438a1 1 0 0 1 .757-.97l2.073-.519q.21-.68.54-1.3L4.27 6.66a1 1 0 0 1 .15-1.221L5.438 4.42a1 1 0 0 1 1.221-.15l1.833 1.1q.62-.33 1.3-.54l.519-2.073A1 1 0 0 1 11.28 2h1.438a1 1 0 0 1 .97.757zM12 16a4 4 0 1 0 0-8a4 4 0 0 0 0 8"
               />
             </svg>
-            <p
-              className={`${
-                Down
-                  ? "text-[#BFBFBF] inter-txwe font-bold text-[11px]"
-                  : "hidden"
-              }`}
-            >
+            <p className={`${Down ? "text-[#BFBFBF] inter-txwe font-bold text-[11px]": "hidden"}`}>
               Setting
             </p>
-          </div>
-          <div
-            onClick={MessageFromAdmin}
+          </Link>
+          <div onClick={MessageFromAdmin}
             className={`${
               Down
                 ? "relative rounded-[7px] flex items-center hover:bg-slate-100 active:bg-slate-100 duration-[0.5s] gap-[5px] cursor-pointer py-[5px] pl-[5px]"

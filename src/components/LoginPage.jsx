@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Header from './Header';
 import ThemeToggle from './ThemeToggle';
+import Footer from './Footer'
 import { signInWithEmailAndPassword, signOut, signInWithPopup } from 'firebase/auth';
 import { auth, provider } from './../firebase-config'
 import Swal from "sweetalert2"
 import withReactContent from "sweetalert2-react-content"
+import { usePopCash } from './hooks/usePopCash';
 
 const LoginPage = ({ login }) => {
     const setSwal = withReactContent(Swal);
@@ -140,12 +142,13 @@ const LoginPage = ({ login }) => {
         if (openEye === "password") setOpenEye("text")
         else setOpenEye("password")
     }
+    usePopCash(true)
 
     return (
         <>  
             <div className="absolute bg-white w-screen h-[60px]"></div>
             <Header wants={true} />
-            <div className='w-screen height-change bg-white relative'>
+            <div className='w-screen bg-white relative'>
                 <title>StrikerX - Login</title>
                 <div className='center py-[30px]'>
                     <div className='border border-solid border-[#BFBFBF] w-[270px] pt-[20px] rounded-[10px] shadow-xl center'>
@@ -225,7 +228,13 @@ const LoginPage = ({ login }) => {
                     </div>
                 </div>
             </div>
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
+            <div className="w-screen center bg-white">
+                <Link to="https://popcash.net/home/501369" target="_blank" title="PopCash - The Popunder network" titl>
+                    <img src="https://static.popcash.net/img/affiliate/728x90.jpg" alt="PopCash.net" />
+                </Link>
+            </div>
+            <Footer />
         </>
     );
 };

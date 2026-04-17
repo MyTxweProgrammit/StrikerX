@@ -18,6 +18,8 @@ import { useMediaQuery } from "@react-hooks-hub/use-media-query";
 import CEObigbrother from "../assets/CEObigbrother.png";
 import { database } from "./../firebase-config";
 import { ref, onValue, update } from "firebase/database";
+import { Link } from 'react-router-dom'
+import { usePopCash } from "./hooks/usePopCash";
 
 export default function Main() {
   const { device } = useMediaQuery({
@@ -51,6 +53,7 @@ export default function Main() {
     // Click outside popup (glassmorphism) to close it which can't affect to inside popup
     if (e.target === e.currentTarget) setShowPOP(false);
   };
+  usePopCash(true);
 
   return (
     <div className="relative w-screen h-full">
@@ -447,7 +450,11 @@ export default function Main() {
           </div> 
         </section>
       </div>
-      
+      <div className="w-screen center">
+        <Link to="https://popcash.net/home/501369" target="_blank" title="PopCash - The Popunder network" titl>
+          <img src="https://static.popcash.net/img/affiliate/728x90.jpg" alt="PopCash.net" />
+        </Link>
+      </div>
       <Footer />
     </div>
   );

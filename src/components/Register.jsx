@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import Header from './Header'
+import Footer from './Footer'
 import { useNavigate, Link } from 'react-router'
 import { createUserWithEmailAndPassword, sendEmailVerification, signOut, updateProfile } from 'firebase/auth'
 import { auth, database } from './../firebase-config'
 import { ref, set } from 'firebase/database'
+import { usePopCash } from './hooks/usePopCash'
 
 export default function Register() {
     const nav = useNavigate()
@@ -39,14 +41,14 @@ export default function Register() {
             }
         } else { alert('Please accept the our condition!') }
     }
-
+    usePopCash(true);
 
     return (
         <>
             <title>StrikerX - Register</title>
             <div className="absolute bg-white w-screen h-[60px]"></div>
             <Header wants={true} />
-            <div className='w-screen h-screen bg-white'>
+            <div className='w-screen bg-white'>
                 <div className='border border-solid border-[#BFBFBF] shadow-xl rounded-[10px] w-[250px] mx-auto translate-y-[30px] relative flex overflow-hidden'>
                     <div className={`p-[20px] rounded-[10px] w-[250px] duration-[0.5s] ${isOut ? 'translate-x-[-250px]' : 'translate-x-[0px]'} `}> {/* inner first authentication */}
                         <div className='flex justify-end items-center'>
@@ -154,6 +156,12 @@ export default function Register() {
                         </p>
                     </div>
                 </div>
+                <div className="w-screen center bg-white mt-[70px]">
+                    <Link to="https://popcash.net/home/501369" target="_blank" title="PopCash - The Popunder network" titl>
+                        <img src="https://static.popcash.net/img/affiliate/728x90.jpg" alt="PopCash.net" />
+                    </Link>
+                </div>
+                <Footer />
             </div>
         </>
     )
