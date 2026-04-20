@@ -9,12 +9,12 @@ import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { restClient } from "@massive.com/client-js";
 import PythonCourse from "../assets/PythonCourse.png";
 import ReactCourse from "../assets/ReactCourse.png";
+import Challenge_Day from "../assets/Challenge_Day.png";
 import CardCourse from "./CardCourse";
 import Chat from "./Chat"
 import Footer from "./Footer"
 import Swal from "sweetalert2"
 import withReactContent from "sweetalert2-react-content";
-
 export default function User({ logout }) {
   const apiKey = import.meta.env.VITE_TOKEN_STOCK;
   const [jsonStock, setJsonStock] = useState();
@@ -164,7 +164,7 @@ export default function User({ logout }) {
             This will guide you how to learn our courses.
           </p>
         </div>
-        <div className="">
+        <div>
           <p className="text-black">
             {jsonStock?.results?.[jsonStock.results.length - 1].c}
           </p>
@@ -321,6 +321,36 @@ export default function User({ logout }) {
             Author="Mr. Maytee Sukchaung"
             ComingSOON={true}
           />
+        </div>
+        <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px]">
+          Challenges (Newest):
+        </p>
+        <div className="w-full px-[20px] mt-[10px]">
+          <div className="shadow-xl border border-solid border-slate-100 w-[230px] h-fit overflow-hidden rounded-[20px] hover:scale-[1.1] hover:shadow-xl active:scale-[1.1] duration-[0.3s]">
+            <div className="w-full h-[120px] overflow-hidden">
+              <img src={Challenge_Day} className="w-full h-[140%]"/>
+            </div>
+            <p className="text-black font-bold inter-txwe text-[13px] mt-[10px] text-center">The Challenge Day 2026</p>
+            <p className="text-slate-600 inter-txwe text-[10px] mt-[10px] mx-[20px]">A First Coding Chellenge in our Website. Let's participate to recieve some reward and more informations below this.</p>
+            <ul className="mx-[20px] mt-[10px]">
+              <li className="text-slate-600 text-[9px] center gap-[5px] w-fit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="#7c7c7c" d="M10.586 2.1a2 2 0 0 1 2.7-.116l.128.117L15.314 4H18a2 2 0 0 1 1.994 1.85L20 6v2.686l1.9 1.9a2 2 0 0 1 .116 2.701l-.117.127l-1.9 1.9V18a2 2 0 0 1-1.85 1.995L18 20h-2.685l-1.9 1.9a2 2 0 0 1-2.701.116l-.127-.116l-1.9-1.9H6a2 2 0 0 1-1.995-1.85L4 18v-2.686l-1.9-1.9a2 2 0 0 1-.116-2.701l.116-.127l1.9-1.9V6a2 2 0 0 1 1.85-1.994L6 4h2.686zm4.493 6.883l-4.244 4.244l-1.768-1.768a1 1 0 0 0-1.414 1.415l2.404 2.404a1.1 1.1 0 0 0 1.556 0l4.88-4.881a1 1 0 0 0-1.414-1.414"/></g>
+                </svg>
+                Certificate for All
+              </li>
+              <li className="text-slate-600 text-[9px] center gap-[5px] w-fit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24">
+                  <path fill="#7c7c7c" d="M16 18v2H8v-2zM11 7.99V16h2V7.99h3L12 4L8 7.99z"/>
+                </svg>
+                200 points to grow badge learner
+              </li>
+            </ul>
+            <hr className="w-[190px] border border-solid border-slate-200 my-[10px] mx-auto" />
+            <div className="bg-[#ffde82] [#ebb82d] rounded-xl mx-auto w-[90%] center mb-[6px] cursor-not-allowed"> {/* Have 2 Colors in class to use if Button Ready */}
+              <p className="text-[12px] font-bold text-white rubik-txwe my-[7px]">COMING SOON</p>
+            </div>
+            <p className="text-slate-400 text-center rubik-txwe text-[8px] mb-[2px]">This will open on 1 Oct 2026</p>
+          </div>
         </div>
         <div className="mt-[20px]" id="container-3d8d4df0c6a6041d9d8ca120272411cf"></div>
         <Footer />
