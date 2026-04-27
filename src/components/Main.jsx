@@ -53,7 +53,7 @@ export default function Main() {
     // Click outside popup (glassmorphism) to close it which can't affect to inside popup
     if (e.target === e.currentTarget) setShowPOP(false);
   };
-  usePopCash(true);
+  // usePopCash(true); Temporary Stopped
 
   return (
     <div className="relative w-screen h-full">

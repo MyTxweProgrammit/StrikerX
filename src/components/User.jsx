@@ -90,24 +90,24 @@ export default function User({ logout }) {
       alert(err.message);
     }
   };
-  useEffect(() => {
-    const SCRIPT_ID = 'adsterra-popunder-js';
-    if (document.getElementById(SCRIPT_ID)) return;
-    const script = document.createElement('script');
-    script.id = SCRIPT_ID;
-    script.src = "https://pl29156560.profitablecpmratenetwork.com/55/ad/3f/55ad3ffbb8d961b905c063526c8b7c30.js";
-    script.async = true;
-    script.type = 'text/javascript';
-    try {document.body.appendChild(script);} 
-    catch (err) {console.error("Failed to append Adsterra script", err);}
-    return () => {
-      const target = document.getElementById(SCRIPT_ID);
-      if (target && target.parentNode === document.body) {
-        try {document.body.removeChild(target);} 
-        catch (e) {console.warn("Script removal skipped");}
-      }
-    };
- }, [])
+//   useEffect(() => {
+//     const SCRIPT_ID = 'adsterra-popunder-js';
+//     if (document.getElementById(SCRIPT_ID)) return;
+//     const script = document.createElement('script');
+//     script.id = SCRIPT_ID;
+//     script.src = "https://pl29156560.profitablecpmratenetwork.com/55/ad/3f/55ad3ffbb8d961b905c063526c8b7c30.js";
+//     script.async = true;
+//     script.type = 'text/javascript';
+//     try {document.body.appendChild(script);} 
+//     catch (err) {console.error("Failed to append Adsterra script", err);}
+//     return () => {
+//       const target = document.getElementById(SCRIPT_ID);
+//       if (target && target.parentNode === document.body) {
+//         try {document.body.removeChild(target);} 
+//         catch (e) {console.warn("Script removal skipped");}
+//       }
+//     };
+//  }, []) Temporary Stopped
   return (
     <>
       <title>StrikerX - User</title>
@@ -325,7 +325,7 @@ export default function User({ logout }) {
         <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px]">
           Challenges (Newest):
         </p>
-        <div className="w-full px-[20px] mt-[10px]">
+        <div className="w-full px-[20px] mt-[10px] grid grid-cols-2 max-[540px]:grid-cols-1 max-[540px]:gap-y-[30px]">
           <div className="shadow-xl border border-solid border-slate-100 w-[230px] h-fit overflow-hidden rounded-[20px] hover:scale-[1.1] hover:shadow-xl active:scale-[1.1] duration-[0.3s]">
             <div className="w-full h-[120px] overflow-hidden">
               <img src={Challenge_Day} className="w-full h-[140%]"/>
@@ -347,9 +347,25 @@ export default function User({ logout }) {
             </ul>
             <hr className="w-[190px] border border-solid border-slate-200 my-[10px] mx-auto" />
             <div className="bg-[#ffde82] [#ebb82d] rounded-xl mx-auto w-[90%] center mb-[6px] cursor-not-allowed"> {/* Have 2 Colors in class to use if Button Ready */}
-              <p className="text-[12px] font-bold text-white rubik-txwe my-[7px]">COMING SOON</p>
+              <p className="text-[12px] font-bold text-white rubik-txwe my-[7px]">Closing</p>
             </div>
             <p className="text-slate-400 text-center rubik-txwe text-[8px] mb-[2px]">This will open on 1 Oct 2026</p>
+          </div>
+          <div className="shadow-xl border border-solid border-slate-100 w-[230px] h-[317.7px] overflow-hidden rounded-[20px] hover:scale-[1.1] hover:shadow-xl active:scale-[1.1] duration-[0.3s]">
+            <div className="w-full h-[120px] skeleton bg-slate-100 center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 20 20">
+                <path fill="#7c7c7c" d="M19.09 2a.9.9 0 0 1 .91.889V17.11a.9.9 0 0 1-.91.889H.91A.9.9 0 0 1 0 17.11V2.89A.9.9 0 0 1 .91 2zM5.416 8.417l-4.06 4.042v4.217H18.64v-1.433l-3.2-3.12l-2.777 2.333q-.249.175-.48.155a.8.8 0 0 1-.439-.189zm13.22-5.086H1.362v7.23L4.968 6.97a.72.72 0 0 1 .44-.156q.232 0 .41.14l6.431 6.088l2.805-2.35a.7.7 0 0 1 .421-.146a.7.7 0 0 1 .418.145l2.742 2.665zM15.273 5.23c.753 0 1.363.597 1.363 1.333s-.61 1.333-1.363 1.333c-.754 0-1.364-.597-1.364-1.333s.61-1.333 1.364-1.333"/>
+              </svg>
+            </div>
+            <p className="skeleton skeleton-text font-bold inter-txwe text-[13px] mt-[10px] text-center">Coming Soon</p>
+            <div className="mt-[10px] mx-auto skeleton w-[90%] bg-slate-100 h-[20px]"></div>
+            <div className="mt-[10px] mx-auto skeleton w-[90%] bg-slate-100 h-[20px]"></div>
+            <div className="mt-[10px] mb-[12px] mx-auto skeleton w-[90%] bg-slate-100 h-[20px]"></div>
+            <hr className="w-[190px] border border-solid border-slate-200 my-[10px] mx-auto" />
+            <div className="bg-slate-100 skeleton rounded-xl mx-auto w-[90%] center mb-[6px] cursor-not-allowed"> {/* Have 2 Colors in class to use if Button Ready */}
+              <p className="text-[12px] font-bold text-white rubik-txwe my-[7px]">Closing</p>
+            </div>
+            <p className="skeleton skeleton-text text-center rubik-txwe text-[8px] mb-[2px]">No Information Yet</p>
           </div>
         </div>
         <div className="mt-[20px]" id="container-3d8d4df0c6a6041d9d8ca120272411cf"></div>
