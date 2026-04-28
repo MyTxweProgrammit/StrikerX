@@ -389,7 +389,7 @@ export default function User({ logout }) {
                 <p className="text-black rubik-txwe font-bold text-[25px]">$50/ye</p>
               </>
             )}
-            <p className="text-slate-600 rubik-txwe text-[14px] mt-[10px]">A best package for beginner. Which include some basic feature to user. And let these user get a new experience in our website. Let's explore!</p>
+            <p className="text-slate-600 rubik-txwe text-[14px] mt-[10px]">A best package for beginner which include some basic feature to user. And let these user get a new experience in our website. Let's explore!</p>
             <div className="grid grid-cols-3 max-[890px]:grid-cols-2 max-[590px]:grid-cols-1 w-full mx-auto mt-[20px]">
               <div className="center w-fit gap-[5px]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
@@ -465,7 +465,7 @@ export default function User({ logout }) {
                 <p className="text-black rubik-txwe font-bold text-[25px]">$52/ye</p>
               </>
             )}
-            <p className="text-slate-600 rubik-txwe text-[14px] mt-[10px]">A Package which include many new feature than Starter Pack. We will authorize these user to get some event/challenge and useful experience. Let's explore!</p>
+            <p className="text-slate-600 rubik-txwe text-[14px] mt-[10px]">The limit package which come for a while on Big event and have time for sell about 1-3 hours. This include a many higher feature for Pre-VIP user. Let's explore!</p>
             <div className="grid grid-cols-3 max-[1260px]:grid-cols-2 max-[870px]:grid-cols-1 w-full mx-auto mt-[20px]">
               <div className="center w-fit gap-[5px]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
