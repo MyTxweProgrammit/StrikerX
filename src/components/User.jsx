@@ -16,6 +16,7 @@ import Footer from "./Footer"
 import Swal from "sweetalert2"
 import withReactContent from "sweetalert2-react-content";
 export default function User({ logout }) {
+  const [pricePackage, setPricePackage] = useState("Monthly")
   const apiKey = import.meta.env.VITE_TOKEN_STOCK;
   const [jsonStock, setJsonStock] = useState();
   const rest = restClient(apiKey, "https://api.massive.com");
@@ -368,6 +369,129 @@ export default function User({ logout }) {
             <p className="skeleton skeleton-text text-center rubik-txwe text-[8px] mb-[2px]">No Information Yet</p>
           </div>
         </div>
+        <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px]">
+          Our Packages:
+        </p>
+        <div className="w-screen h-full">
+          <section className="w-fit center">
+            <div onClick={() => setPricePackage("Yearly")} className={`cursor-pointer ml-[10px] mt-[10px] w-fit p-[7px] right-[20px] top-[20px] text-[12px] rounded-lg ${pricePackage == "Yearly" ? "bg-slate-600 text-white" : "border border-solid border-slate-600 text-slate-600" }`}>Yearly</div>
+            <div onClick={() => setPricePackage("Monthly")} className={`cursor-pointer ml-[10px] mt-[10px] w-fit p-[7px] right-[20px] top-[20px] text-[12px] rounded-lg ${pricePackage == "Monthly" ? "bg-slate-600 text-white" : "border border-solid border-slate-600 text-slate-600" }`}>Monthly</div>
+          </section>
+          <section className="shadow-xl rounded-[15px] border border-solid border-slate-200 w-[80%] mx-auto my-[20px] px-[20px] relative">
+            {pricePackage == "Monthly" ? (
+              <>
+                <p className="text-slate-600 rubik-txwe mt-[20px] text-[15px]">Monthly</p>
+                <p className="text-black rubik-txwe font-bold text-[25px]">$4/mo</p>
+              </>
+            ) : (
+              <>
+                <p className="text-slate-600 rubik-txwe mt-[20px] text-[15px]">Yearly</p>
+                <p className="text-black rubik-txwe font-bold text-[25px]">$50/ye</p>
+              </>
+            )}
+            <p className="text-slate-600 rubik-txwe text-[14px] mt-[10px]">A best package for beginner. Which include some basic feature to user. And let these user get a new experience in our website. Let's explore!</p>
+            <div className="grid grid-cols-3 max-[890px]:grid-cols-2 max-[590px]:grid-cols-1 w-full mx-auto mt-[20px]">
+              <div className="center w-fit gap-[5px]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                  <path fill="#7c7c7c" fill-rule="evenodd" stroke="#7c7c7c" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m4 24l5-5l10 10L39 9l5 5l-25 25z" clip-rule="evenodd"/>
+                </svg>
+                <p className="translate-y-[-4px] text-slate-600 rubik-txwe text-[12px] mt-[10px]">Get Expire Course Notification</p>
+              </div>
+              <div className="center w-fit gap-[5px]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                  <path fill="#7c7c7c" fill-rule="evenodd" stroke="#7c7c7c" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m4 24l5-5l10 10L39 9l5 5l-25 25z" clip-rule="evenodd"/>
+                </svg>
+                <p className="translate-y-[-4px] text-slate-600 rubik-txwe text-[12px] mt-[10px]">Buy 2 Courses Get 1 For Free</p>
+              </div>
+              <div className="center w-fit gap-[5px]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                  <path fill="#7c7c7c" fill-rule="evenodd" stroke="#7c7c7c" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m4 24l5-5l10 10L39 9l5 5l-25 25z" clip-rule="evenodd"/>
+                </svg>
+                <p className="translate-y-[-4px] text-slate-600 rubik-txwe text-[12px] mt-[10px]">3% Point Growth</p>
+              </div>
+            </div>
+            {/* <div className="text-white text-center bg-black py-[10px] rubik-txwe rounded-[25px] my-[20px] cursor-pointer duration-[0.5s] hover:bg-white hover:text-black hover:border hover:border-black active:bg-white active:text-black active:border active:border-black">Buy or Get 3 Days Trial</div> */}
+            <div className="text-slate-500 text-center bg-slate-200 cursor-not-allowed py-[10px] rubik-txwe rounded-[25px] my-[20px] duration-[0.5s] active:bg-slate-300 hover:bg-slate-300 active:text-slate-600 hover:text-slate-600">Coming Soon</div>
+            <div className="absolute text-black p-[7px] right-[20px] top-[20px] text-slate-600 text-[12px] border border-solid border-slate-600 rounded-lg">GOOD TO START</div>
+            <div className="absolute text-black p-[7px] right-[15px] top-[50px] font-bold text-black text-[12px]">STARTER PACKAGE</div>
+          </section>
+          <section className="shadow-xl rounded-[15px] border border-solid border-slate-200 w-[80%] mx-auto my-[20px] px-[20px] relative">
+            {pricePackage == "Monthly" ? (
+              <>
+                <p className="text-slate-600 rubik-txwe mt-[20px] text-[15px]">Monthly</p>
+                <p className="text-black rubik-txwe font-bold text-[25px]">$10/mo</p>
+              </>
+            ) : (
+              <>
+                <p className="text-slate-600 rubik-txwe mt-[20px] text-[15px]">Yearly</p>
+                <p className="text-black rubik-txwe font-bold text-[25px]">$125/ye</p>
+              </>
+            )}
+            <p className="text-slate-600 rubik-txwe text-[14px] mt-[10px]">A Package which include many new feature than Starter Pack. We will authorize these user to get some event/challenge and useful experience. Let's explore!</p>
+            <div className="grid grid-cols-3 max-[1100px]:grid-cols-2 max-[750px]:grid-cols-1 w-full mx-auto mt-[20px]">
+              <div className="center w-fit gap-[5px]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                  <path fill="#7c7c7c" fill-rule="evenodd" stroke="#7c7c7c" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m4 24l5-5l10 10L39 9l5 5l-25 25z" clip-rule="evenodd"/>
+                </svg>
+                <p className="translate-y-[-4px] text-slate-600 rubik-txwe text-[12px] mt-[10px]">Chance to Get A Discount Package Ticket</p>
+              </div>
+              <div className="center w-fit gap-[5px]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                  <path fill="#7c7c7c" fill-rule="evenodd" stroke="#7c7c7c" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m4 24l5-5l10 10L39 9l5 5l-25 25z" clip-rule="evenodd"/>
+                </svg>
+                <p className="translate-y-[-4px] text-slate-600 rubik-txwe text-[12px] mt-[10px]">Authorize to use <Link to="*">StrikerX Anthem</Link></p>
+              </div>
+              <div className="center w-fit gap-[5px]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                  <path fill="#7c7c7c" fill-rule="evenodd" stroke="#7c7c7c" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m4 24l5-5l10 10L39 9l5 5l-25 25z" clip-rule="evenodd"/>
+                </svg>
+                <p className="translate-y-[-4px] text-slate-600 rubik-txwe text-[12px] mt-[10px]">5% Point Growth</p>
+              </div>
+            </div>
+            {/* <div className="text-white text-center bg-black py-[10px] rubik-txwe rounded-[25px] my-[20px] cursor-pointer duration-[0.5s] hover:bg-white hover:text-black hover:border hover:border-black active:bg-white active:text-black active:border active:border-black">Buy Now</div> */}
+            <div className="text-slate-500 text-center bg-slate-200 cursor-not-allowed py-[10px] rubik-txwe rounded-[25px] my-[20px] duration-[0.5s] active:bg-slate-300 hover:bg-slate-300 active:text-slate-600 hover:text-slate-600">Coming Soon</div>
+            <div className="absolute text-black p-[7px] right-[20px] top-[20px] text-slate-600 text-[12px] border border-solid border-slate-600 rounded-lg">RECOMMENDED</div>
+            <div className="absolute text-black p-[7px] right-[15px] top-[50px] font-bold text-black text-[12px]">PREMIUM PACKAGE</div>
+          </section>
+          <section className="shadow-xl rounded-[15px] border border-solid border-slate-200 w-[80%] mx-auto my-[20px] px-[20px] relative">
+            {pricePackage == "Monthly" ? (
+              <>
+                <p className="text-slate-600 rubik-txwe mt-[20px] text-[15px]">Monthly</p>
+                <p className="text-black rubik-txwe font-bold text-[25px]">$4.3/mo</p>
+              </>
+            ) : (
+              <>
+                <p className="text-slate-600 rubik-txwe mt-[20px] text-[15px]">Yearly</p>
+                <p className="text-black rubik-txwe font-bold text-[25px]">$52/ye</p>
+              </>
+            )}
+            <p className="text-slate-600 rubik-txwe text-[14px] mt-[10px]">A Package which include many new feature than Starter Pack. We will authorize these user to get some event/challenge and useful experience. Let's explore!</p>
+            <div className="grid grid-cols-3 max-[1260px]:grid-cols-2 max-[870px]:grid-cols-1 w-full mx-auto mt-[20px]">
+              <div className="center w-fit gap-[5px]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                  <path fill="#7c7c7c" fill-rule="evenodd" stroke="#7c7c7c" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m4 24l5-5l10 10L39 9l5 5l-25 25z" clip-rule="evenodd"/>
+                </svg>
+                <p className="translate-y-[-4px] text-slate-600 rubik-txwe text-[12px] mt-[10px]">Sent Request & Chance to Be DEV In Our Website</p>
+              </div>
+              <div className="center w-fit gap-[5px]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                  <path fill="#7c7c7c" fill-rule="evenodd" stroke="#7c7c7c" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m4 24l5-5l10 10L39 9l5 5l-25 25z" clip-rule="evenodd"/>
+                </svg>
+                <p className="translate-y-[-4px] text-slate-600 rubik-txwe text-[12px] mt-[10px]">Chat With CEO About Website Directly</p>
+              </div>
+              <div className="center w-fit gap-[5px]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                  <path fill="#7c7c7c" fill-rule="evenodd" stroke="#7c7c7c" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m4 24l5-5l10 10L39 9l5 5l-25 25z" clip-rule="evenodd"/>
+                </svg>
+                <p className="translate-y-[-4px] text-slate-600 rubik-txwe text-[12px] mt-[10px]">5.5% Point Growth</p>
+              </div>
+            </div>
+            {/* <div className="text-white text-center bg-black py-[10px] rubik-txwe rounded-[25px] my-[20px] cursor-pointer duration-[0.5s] hover:bg-white hover:text-black hover:border hover:border-black active:bg-white active:text-black active:border active:border-black">CLOSING</div> */}
+            <div className="text-slate-500 text-center bg-slate-200 cursor-not-allowed py-[10px] rubik-txwe rounded-[25px] my-[20px] duration-[0.5s] active:bg-slate-300 hover:bg-slate-300 active:text-slate-600 hover:text-slate-600">Closing Now</div>
+            <div className="absolute text-black p-[7px] right-[20px] top-[20px] text-slate-600 text-[12px] border border-solid border-slate-600 rounded-lg">LIMITED</div>
+            <div className="absolute text-black p-[7px] right-[15px] top-[50px] font-bold text-black text-[12px]">SPECIAL PACKAGE</div>
+          </section>
+        </div>
         <div className="mt-[20px]" id="container-3d8d4df0c6a6041d9d8ca120272411cf"></div>
         <Footer />
       </div>
@@ -499,8 +623,8 @@ export function HeaderUser({ logoutHead, markdown }) {
     <div className="z-50 relative w-fit mx-auto bg-white shadow-xl h-[60px] border border-solid border-slate-200 center gap-[10px] sticky top-[10px] px-[20px] rounded-[30px]">
       <img src={CaptureLogo} className="w-[25px] h-[25px]" />
       <div
-        onClick={handlePopup}
-        className="relative rounded-full w-[35px] h-[35px] cursor-pointer center duration-[0.5s] hover:bg-slate-200 active:bg-slate-200"
+        onClick={handlePopup} data-tip="Profile"
+        className="tooltip tooltip-bottom relative rounded-full w-[35px] h-[35px] cursor-pointer center duration-[0.5s] hover:bg-slate-200 active:bg-slate-200"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -538,8 +662,8 @@ export function HeaderUser({ logoutHead, markdown }) {
               >
                 {displayName}
               </p>
-              <div className={`${Down ? "center mt-[-3px]" : "hidden"}`}>
-                <div className="inline-grid *:[grid-area:1/1] translate-x-[-5px]">
+              <div className={`${Down ? "center mt-[-3px] gap-[5px] w-fit" : "hidden"}`}>
+                <div className="inline-grid *:[grid-area:1/1]">
                   <div className="status status-success animate-ping"></div>
                   <div className="status status-success"></div>
                 </div>
@@ -626,22 +750,18 @@ export function HeaderUser({ logoutHead, markdown }) {
               Sign Out
             </p>
           </div>
-          <div
-            className={`${
-              Down
-                ? "relative rounded-[7px] flex items-center hover:bg-slate-100 active:bg-slate-100 duration-[0.5s] gap-[5px] cursor-pointer py-[5px] pl-[5px]"
-                : "hidden"
-            }`}
-            onClick={handleDeleteUser}
-          >
-            <p
-              className={`${
-                Down
-                  ? "text-[#BFBFBF] inter-txwe font-bold text-[11px]"
-                  : "hidden"
-              }`}
-            >
+          <div className={`${Down? "relative rounded-[7px] flex items-center hover:bg-slate-100 active:bg-slate-100 duration-[0.5s] gap-[5px] cursor-pointer py-[5px] pl-[5px]" : "hidden" }`} onClick={handleDeleteUser} >
+            <p className={`${Down ? "text-[#BFBFBF] inter-txwe font-bold text-[11px]" : "hidden"}`}>
               Delete User Test
+            </p>
+          </div>
+          <div className={`${Down? "center relative rounded-[7px] gap-[10px] py-[10px]" : "hidden" }`}>
+            <p className={`${Down ? "text-black inter-txwe font-bold text-[11px]" : "hidden"}`}>
+              English
+            </p>
+            <input type="checkbox" className="toggle border-indigo-600 bg-indigo-500 checked:border-orange-500 checked:bg-orange-400 checked:text-orange-800 hover:toggle-primary" />
+            <p className={`${Down ? "text-black inter-txwe font-bold text-[11px]" : "hidden"}`}>
+              Thai
             </p>
           </div>
           <p
@@ -770,7 +890,8 @@ export function HeaderUser({ logoutHead, markdown }) {
       ) : (
         <>
           <div
-            className="rounded-full w-[35px] h-[35px] cursor-pointer center duration-[0.5s] hover:bg-slate-200 active:bg-slate-200"
+            data-tip="Search"
+            className="tooltip tooltip-bottom rounded-full w-[35px] h-[35px] cursor-pointer center duration-[0.5s] hover:bg-slate-200 active:bg-slate-200"
             onClick={() => setShowSearchPop(!ShowSearchPop)}
           >
             <svg

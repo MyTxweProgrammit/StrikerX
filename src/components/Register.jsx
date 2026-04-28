@@ -29,7 +29,8 @@ export default function Register() {
                     username: username,
                     email: email,
                     Created: dateCreated,
-                    AllCourse: 0
+                    AllCourse: 0,
+                    Translate: "English"
                 })
                 await sendEmailVerification(userCredential.user)
                 await signOut(auth)
