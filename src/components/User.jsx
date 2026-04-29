@@ -15,8 +15,10 @@ import Chat from "./Chat"
 import Footer from "./Footer"
 import Swal from "sweetalert2"
 import withReactContent from "sweetalert2-react-content";
+
 export default function User({ logout }) {
   const [pricePackage, setPricePackage] = useState("Monthly")
+  const [UID, setUID] = useState('')
   const apiKey = import.meta.env.VITE_TOKEN_STOCK;
   const [jsonStock, setJsonStock] = useState();
   const rest = restClient(apiKey, "https://api.massive.com");
@@ -89,6 +91,21 @@ export default function User({ logout }) {
       }
     } catch (err) {
       alert(err.message);
+    }
+  };
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const uid = user.uid
+      setUID(uid)
+    } else {
+      null;
+    }
+  });
+  const handlePayment = (packaged, date) => {
+    if (packaged === "starter" && date === "monthly") {
+      window.location.href = `https://buy.stripe.com/test_7sY14mcxo3YQeKRftrao804?client_reference_id=${UID}`;
+    } else if (packaged === "starter" && date === "yearly") {
+      window.location.href = `https://buy.stripe.com/test_4gMbJ0dBs52UcCJ80Zao805?client_reference_id=${UID}`;
     }
   };
 //   useEffect(() => {
@@ -410,8 +427,9 @@ export default function User({ logout }) {
                 <p className="translate-y-[-4px] text-slate-600 rubik-txwe text-[12px] mt-[10px]">3% Point Growth</p>
               </div>
             </div>
-            {/* <div className="text-white text-center bg-black py-[10px] rubik-txwe rounded-[25px] my-[20px] cursor-pointer duration-[0.5s] hover:bg-white hover:text-black hover:border hover:border-black active:bg-white active:text-black active:border active:border-black">Buy or Get 3 Days Trial</div> */}
-            <div className="text-slate-500 text-center bg-slate-200 cursor-not-allowed py-[10px] rubik-txwe rounded-[25px] my-[20px] duration-[0.5s] active:bg-slate-300 hover:bg-slate-300 active:text-slate-600 hover:text-slate-600">Coming Soon</div>
+            <div onClick={() => handlePayment("starter", pricePackage === "Monthly" ? "monthly" : "yearly")}
+              className="text-white text-center bg-black py-[10px] rubik-txwe rounded-[25px] my-[20px] cursor-pointer duration-[0.5s] hover:bg-white hover:text-black hover:border hover:border-black active:bg-white active:text-black active:border active:border-black">Buy or Get 3 Days Trial</div>
+            {/* <div className="text-slate-500 text-center bg-slate-200 cursor-not-allowed py-[10px] rubik-txwe rounded-[25px] my-[20px] duration-[0.5s] active:bg-slate-300 hover:bg-slate-300 active:text-slate-600 hover:text-slate-600">Coming Soon</div> */}
             <div className="absolute text-black p-[7px] right-[20px] top-[20px] text-slate-600 text-[12px] border border-solid border-slate-600 rounded-lg">GOOD TO START</div>
             <div className="absolute text-black p-[7px] right-[15px] top-[50px] font-bold text-black text-[12px]">STARTER PACKAGE</div>
           </section>
@@ -428,7 +446,7 @@ export default function User({ logout }) {
               </>
             )}
             <p className="text-slate-600 rubik-txwe text-[14px] mt-[10px]">A Package which include many new feature than Starter Pack. We will authorize these user to get some event/challenge and useful experience. Let's explore!</p>
-            <div className="grid grid-cols-3 max-[1100px]:grid-cols-2 max-[750px]:grid-cols-1 w-full mx-auto mt-[20px]">
+            <div className="grid grid-cols-4 max-[1300px]:grid-cols-3 max-[1100px]:grid-cols-2 max-[750px]:grid-cols-1 w-full mx-auto mt-[20px]">
               <div className="center w-fit gap-[5px]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
                   <path fill="#7c7c7c" fill-rule="evenodd" stroke="#7c7c7c" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m4 24l5-5l10 10L39 9l5 5l-25 25z" clip-rule="evenodd"/>
@@ -440,6 +458,12 @@ export default function User({ logout }) {
                   <path fill="#7c7c7c" fill-rule="evenodd" stroke="#7c7c7c" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m4 24l5-5l10 10L39 9l5 5l-25 25z" clip-rule="evenodd"/>
                 </svg>
                 <p className="translate-y-[-4px] text-slate-600 rubik-txwe text-[12px] mt-[10px]">Authorize to use <Link to="*">StrikerX Anthem</Link></p>
+              </div>
+              <div className="center w-fit gap-[5px]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                  <path fill="#7c7c7c" fill-rule="evenodd" stroke="#7c7c7c" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m4 24l5-5l10 10L39 9l5 5l-25 25z" clip-rule="evenodd"/>
+                </svg>
+                <p className="translate-y-[-4px] text-slate-600 rubik-txwe text-[12px] mt-[10px]">Disappear All Ads</p>
               </div>
               <div className="center w-fit gap-[5px]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
@@ -487,7 +511,7 @@ export default function User({ logout }) {
               </div>
             </div>
             {/* <div className="text-white text-center bg-black py-[10px] rubik-txwe rounded-[25px] my-[20px] cursor-pointer duration-[0.5s] hover:bg-white hover:text-black hover:border hover:border-black active:bg-white active:text-black active:border active:border-black">CLOSING</div> */}
-            <div className="text-slate-500 text-center bg-slate-200 cursor-not-allowed py-[10px] rubik-txwe rounded-[25px] my-[20px] duration-[0.5s] active:bg-slate-300 hover:bg-slate-300 active:text-slate-600 hover:text-slate-600">Closing Now</div>
+            <div className="text-slate-500 text-center bg-slate-200 cursor-not-allowed py-[10px] rubik-txwe rounded-[25px] my-[20px] duration-[0.5s] active:bg-slate-300 hover:bg-slate-300 active:text-slate-600 hover:text-slate-600">Coming Soon</div>
             <div className="absolute text-black p-[7px] right-[20px] top-[20px] text-slate-600 text-[12px] border border-solid border-slate-600 rounded-lg">LIMITED</div>
             <div className="absolute text-black p-[7px] right-[15px] top-[50px] font-bold text-black text-[12px]">SPECIAL PACKAGE</div>
           </section>
