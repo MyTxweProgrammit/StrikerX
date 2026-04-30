@@ -12,6 +12,8 @@ import NotFound from "./components/NotFound";
 import { auth } from "./firebase-config";
 import RoleBasedRoute from "./components/Auth/RoleBasedRoute";
 import Setting from "./components/Setting"
+import SuccessPayment from "./components/SuccessPayment";
+import CancelPayment from "./components/CancelPayment";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 
 export default function App() {
@@ -56,11 +58,14 @@ export default function App() {
           <Route path="/user" element={<User logout={logout} />} />
           <Route path="/user/markdown" element={<Markdown logout={logout} />} />
           <Route path="/user/setting" element={<Setting logout={logout}/>} />
+          <Route path="/success" element={<SuccessPayment />} />
+          <Route path="/cancel" element={<CancelPayment />} />
         </Route>
         <Route path="/signin" element={<LoginPage login={login} />} />
         <Route path="/" element={<Main />} />
         <Route path="/signup" element={<Register />} />
         <Route path="*" element={<NotFound />} />
+
       </Routes>
     </BrowserRouter>
   );

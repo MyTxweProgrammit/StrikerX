@@ -19,6 +19,70 @@ import withReactContent from "sweetalert2-react-content";
 export default function User({ logout }) {
   const [pricePackage, setPricePackage] = useState("Monthly")
   const [UID, setUID] = useState('')
+  const [SessionID, setSessionID] = useState('')
+  const [isPaid, setIsPaid] = useState(false);
+  const [expiryDate, setExpiryDate] = useState(null)
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const checkPaymentStatus = async () => {
+      const lastSession = localStorage.getItem("lastSessionId");
+      if (lastSession) {
+        try {
+          const response = await fetch(`https://striker-xapi.vercel.app/checkout-payment/${lastSession}`);
+          const data = await response.json();
+          if (data.status === 'paid' && data.paidAt) {
+            const paidDate = new Date(data.paidAt * 1000);
+            const expire = new Date(paidDate);
+            expire.setDate(expire.getDate() + 3);
+            const today = new Date();
+            if (today > expire) {
+              setIsPaid(false);
+              setExpiryDate(expire.toLocaleDateString());
+            } else {
+              setIsPaid(true);
+              setExpiryDate(expire.toLocaleDateString());
+            }
+          }
+        } catch (error) {
+          console.error("Error checking status:", error);
+        }
+      }
+      setLoading(false);
+    };
+
+    checkPaymentStatus();
+  }, []);
+  const handleCheckout = async () => {
+    if (!UID) {
+      alert("Please sign in first");
+      return;
+    }
+    try {
+      const response = await fetch("https://striker-xapi.vercel.app/checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: UID })
+      })
+      
+      if (!response.ok) {
+        const text = await response.text();
+        console.error("API Error:", text);
+        alert("API Error: " + response.status);
+        return;
+      }
+  
+      const { url, sessionId } = await response.json()
+      setSessionID(sessionId)
+      localStorage.setItem("lastSessionId", sessionId)
+      window.location.href = url
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error: " + error.message);
+    }
+  }
+
+
+
   const apiKey = import.meta.env.VITE_TOKEN_STOCK;
   const [jsonStock, setJsonStock] = useState();
   const rest = restClient(apiKey, "https://api.massive.com");
@@ -427,8 +491,13 @@ export default function User({ logout }) {
                 <p className="translate-y-[-4px] text-slate-600 rubik-txwe text-[12px] mt-[10px]">3% Point Growth</p>
               </div>
             </div>
-            <div onClick={() => handlePayment("starter", pricePackage === "Monthly" ? "monthly" : "yearly")}
-              className="text-white text-center bg-black py-[10px] rubik-txwe rounded-[25px] my-[20px] cursor-pointer duration-[0.5s] hover:bg-white hover:text-black hover:border hover:border-black active:bg-white active:text-black active:border active:border-black">Buy or Get 3 Days Trial</div>
+            {/* onClick={() => handlePayment("starter", pricePackage === "Monthly" ? "monthly" : "yearly")} */}
+            {loading ? ( <p className="text-black">Loading...</p> ) : isPaid ? (
+              <div className="text-slate-500 text-center bg-slate-200 cursor-not-allowed py-[10px] rubik-txwe rounded-[25px] my-[20px] duration-[0.5s] active:bg-slate-300 hover:bg-slate-300 active:text-slate-600 hover:text-slate-600">Already Paid</div>
+            ) : (
+              <div onClick={handleCheckout}
+                className="text-white text-center bg-black py-[10px] rubik-txwe rounded-[25px] my-[20px] cursor-pointer duration-[0.5s] hover:bg-white hover:text-black hover:border hover:border-black active:bg-white active:text-black active:border active:border-black">Buy or Get 3 Days Trial</div>
+            )}
             {/* <div className="text-slate-500 text-center bg-slate-200 cursor-not-allowed py-[10px] rubik-txwe rounded-[25px] my-[20px] duration-[0.5s] active:bg-slate-300 hover:bg-slate-300 active:text-slate-600 hover:text-slate-600">Coming Soon</div> */}
             <div className="absolute text-black p-[7px] right-[20px] top-[20px] text-slate-600 text-[12px] border border-solid border-slate-600 rounded-lg">GOOD TO START</div>
             <div className="absolute text-black p-[7px] right-[15px] top-[50px] font-bold text-black text-[12px]">STARTER PACKAGE</div>
