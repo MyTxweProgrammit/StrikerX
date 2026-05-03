@@ -6,6 +6,7 @@ import CaptureLogo from "../assets/CaptureLogo.png";
 import Markdown from "../assets/Markdown.png";
 import react from "../assets/React.png";
 import Python from "../assets/Python.png";
+import BackgroundMain from "../assets/BackgroundMain.jpg"
 import Marquee from "react-fast-marquee";
 import { motion } from "motion/react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -19,6 +20,7 @@ import CEObigbrother from "../assets/CEObigbrother.png";
 import { database } from "./../firebase-config";
 import { ref, onValue, update } from "firebase/database";
 import { Link } from 'react-router-dom'
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { usePopCash } from "./hooks/usePopCash";
 
 export default function Main() {
@@ -71,65 +73,25 @@ export default function Main() {
         ></meta>
       </head>
       <Header wants={false} />
-      <div
-        className="bg-white w-screen bg-white pt-[10%] pb-[25px] max-[450px]:pt-[80px]"
-        id="test"
-      >
-        <motion.div
-          className="center"
-          initial={{ opacity: 0, translateY: "-15px" }}
-          animate={{
-            opacity: 1,
-            translateY: "0px",
-            transition: { duration: 1 },
-          }}
-        >
-          {" "}
-          {/* Logo */}
-          <img src={CaptureLogo} />
-        </motion.div>
-        <motion.p
-          className="text-center bg-conic-180 from-indigo-600 via-indigo-50 to-indigo-600 text-transparent bg-clip-text text-[50px] font-medium max-[520px]:text-[35px]"
-          initial={{ opacity: 0, translateY: "-15px" }}
-          animate={{
-            opacity: 1,
-            translateY: "0px",
-            transition: { duration: 0.7 },
-          }}
-        >
-          StrikerX
-        </motion.p>
-        <div className="w-fit mx-auto text-black">
-          <motion.p
-            initial={{ opacity: 0, translateY: "-15px" }}
-            animate={{
-              opacity: 1,
-              translateY: "0px",
-              transition: { duration: 1 },
-            }}
-            className="text-black text-center text-[26px] font-medium max-[520px]:text-[20px]"
-          >
-            The area of code learning for DEV!
-          </motion.p>
-        </div>
-        <motion.div
-          initial={{ opacity: 0, translateY: "-15px" }}
-          animate={{
-            opacity: 1,
-            translateY: "0px",
-            transition: { duration: 1 },
-          }}
-          className="mx-auto w-fit h-fit mt-[10px] group"
-        >
-          <div
-            className="py-2 px-[10px] rounded-[25px] max-[520px]:text-[11px] w-fit text-white bg-[#5482ff] font-medium cursor-pointer duration-[0.5s] group-hover:bg-white group-hover:border-2 group-hover:border-solid group-hover:border-[#5482ff] group-hover:text-[#5482ff] relative overflow-hidden
-                    active:bg-white active:border-2 active:border-solid active:border-[#5482ff] active:text-[#5482ff]
-                    "
-          >
-            Start Learning
-            <div className="absolute bg-[#5482ff] w-[30px] h-full top-0 translate-x-[-40px] group-hover:translate-x-[115px] duration-[0.5s]"></div>
+      <div className="overflow-hidden relative bg-white w-screen h-fit py-[10%] center" id="test">
+        <img src={BackgroundMain} className="absolute z-10 w-full h-full" />
+        <div className="glass border border-solid border-slate-200 w-[300px] py-[25px] px-[23px] rounded-xl z-20">
+          <motion.p initial={{ opacity: 0, translateY: "-15px" }} animate={{opacity: 1,translateY: "0px",transition: { duration: 0.7 },}}
+              className="rubik-txwe text-indigo-200 text-[30px] max-[680px]:text-[24px]">Challenge Yourself With StrikerX.</motion.p>
+          <motion.p initial={{ opacity: 0, translateY: "-15px" }} animate={{opacity: 1,translateY: "0px",transition: { duration: 0.7 },}}
+            className="rubik-txwe text-blue-900 text-[14px] max-[680px]:text-[11px]">Learn a lot of free courses to get increase your points. And bring it to exchange the amazing rewards</motion.p>
+          <div className="relative group w-fit">
+            <div className="absolute w-[0px] duration-[0.5s] group-hover:w-full bg-white border-white h-[1px] bottom-[-1px]"></div>
+            <Link style={{ color: "#cfedfc", fontSize: 12, }} to="/signin">TRY NOW</Link> 
           </div>
-        </motion.div>
+        </div>
+        <div className="w-[350px] h-[200px] z-20 max-[680px]:w-[300px] max-[680px]:h-[150px]">
+          <DotLottieReact
+            src="https://lottie.host/1697e7a4-9e7f-4b15-a6ae-c0fd625300e7/PGMUjxqNZ5.lottie"
+            loop
+            autoplay
+          />
+        </div>
       </div>
       <div className="bg-gradient-left w-screen pt-[20px]">
         <motion.p

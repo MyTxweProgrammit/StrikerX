@@ -21,7 +21,7 @@ export default function Header({ wants }) {
     <motion.div
       initial={{ opacity: 0, translateY: "-15px" }}
       animate={{ opacity: 1, translateY: "0px", transition: { duration: 0.7 } }}
-      className={`shadow-sm w-screen h-[60px] around sticky top-0 z-10 bg-white dark:bg-slate-800`}
+      className={`shadow-sm w-screen h-[60px] around sticky top-0 z-50 bg-white dark:bg-slate-800`}
     >
       {wants ? (
         <Link to="/">
@@ -32,10 +32,10 @@ export default function Header({ wants }) {
               class="w-[32px] h-[30px]"
             />
             <div className="center">
-              <h3 className="text-[#495199] dark:text-blue-200 text-lg font-extrabold max-[440px]:hidden">
+              <h3 className="text-[#495199] dark:text-blue-200 text-lg font-extrabold max-[440px]:hidden rubik-txwe">
                 Striker
               </h3>
-              <h3 className="text-[#495199] dark:text-blue-200 text-lg font-medium max-[440px]:hidden">
+              <h3 className="text-[#495199] dark:text-blue-200 text-lg font-medium max-[440px]:hidden rubik-txwe">
                 X
               </h3>
             </div>
