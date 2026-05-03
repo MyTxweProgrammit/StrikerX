@@ -74,23 +74,27 @@ export default function Main() {
       </head>
       <Header wants={false} />
       <div className="overflow-hidden relative bg-white w-screen h-fit py-[10%] center" id="test">
-        <img src={BackgroundMain} className="absolute z-10 w-full h-full" />
-        <div className="glass border border-solid border-slate-200 w-[300px] py-[25px] px-[23px] rounded-xl z-20">
-          <motion.p initial={{ opacity: 0, translateY: "-15px" }} animate={{opacity: 1,translateY: "0px",transition: { duration: 0.7 },}}
-              className="rubik-txwe text-indigo-200 text-[30px] max-[680px]:text-[24px]">Challenge Yourself With StrikerX.</motion.p>
-          <motion.p initial={{ opacity: 0, translateY: "-15px" }} animate={{opacity: 1,translateY: "0px",transition: { duration: 0.7 },}}
-            className="rubik-txwe text-blue-900 text-[14px] max-[680px]:text-[11px]">Learn a lot of free courses to get increase your points. And bring it to exchange the amazing rewards</motion.p>
-          <div className="relative group w-fit">
-            <div className="absolute w-[0px] duration-[0.5s] group-hover:w-full bg-white border-white h-[1px] bottom-[-1px]"></div>
-            <Link style={{ color: "#cfedfc", fontSize: 12, }} to="/signin">TRY NOW</Link> 
-          </div>
-        </div>
-        <div className="w-[350px] h-[200px] z-20 max-[680px]:w-[300px] max-[680px]:h-[150px]">
-          <DotLottieReact
-            src="https://lottie.host/1697e7a4-9e7f-4b15-a6ae-c0fd625300e7/PGMUjxqNZ5.lottie"
-            loop
-            autoplay
-          />
+        <img src={BackgroundMain} className="absolute z-10 w-full h-full duration-[0.5s] active:scale-[1.05] hover:scale-[1.05]" />
+        <div className="shadow-xl glass duration-[0.5s] active:rotate-[5deg] hover:rotate-[5deg] border border-solid border-slate-200 w-[500px] py-[25px] px-[23px] rounded-xl z-20 center max-[600px]:w-[300px]">
+          <section>
+            <motion.p initial={{ opacity: 0, translateY: "-15px" }} animate={{opacity: 1,translateY: "0px",transition: { duration: 0.7 },}}
+                className="rubik-txwe text-indigo-200 text-[30px] max-[680px]:text-[24px] max-[600px]:text-[22px]">Challenge Yourself With StrikerX.</motion.p>
+            <motion.p initial={{ opacity: 0, translateY: "-15px" }} animate={{opacity: 1,translateY: "0px",transition: { duration: 0.7 },}}
+              className="rubik-txwe text-blue-900 text-[14px] max-[680px]:text-[11px]">Learn a lot of free courses to get increase your points. And bring it to exchange the amazing rewards</motion.p>
+            <motion.div initial={{ opacity: 0, translateY: "-15px" }} animate={{opacity: 1,translateY: "0px",transition: { duration: 0.7 },}}
+              className="relative group w-fit">
+              <div className="absolute w-[0px] duration-[0.5s] group-hover:w-full bg-white border-white h-[1px] bottom-[-1px]"></div>
+              <Link style={{ color: "#cfedfc", fontSize: 12, }} to="/signin">TRY NOW</Link> 
+            </motion.div>
+          </section>
+          <motion.div initial={{ opacity: 0, translateY: "-15px" }} animate={{opacity: 1,translateY: "0px",transition: { duration: 0.7 },}}
+            className="w-[400px] h-[250px] z-20 max-[680px]:w-[300px] max-[680px]:h-[150px]">
+              <DotLottieReact
+                src="https://lottie.host/1697e7a4-9e7f-4b15-a6ae-c0fd625300e7/PGMUjxqNZ5.lottie"
+                loop
+                autoplay
+              />
+          </motion.div>
         </div>
       </div>
       <div className="bg-gradient-left w-screen pt-[20px]">
