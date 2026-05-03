@@ -450,6 +450,15 @@ export default function Main() {
           </div> 
         </section>
       </div>
+      <div className="py-[40px]" style={{background: "linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 19%, rgba(0, 65, 207, 1) 46%, rgba(22, 91, 175, 1) 100%, rgba(31, 102, 161, 1) 70%, rgba(0, 212, 255, 1) 100%)",}}>
+        <div className="glass mx-auto w-[90%] p-[20px] rounded-xl shadow-xl duration-[0.5s] hover:scale-[1.05] active:scale-[1.05]">
+          <p className="text-white font-bold text-[25px] rubik-txwe">FAQ</p>
+          <p className="text-slate-100 mt-[10px] rubik-txwe text-[17px] font-bold">1. Are all the courses free?</p>
+          <p className="text-slate-100 ml-[17px] rubik-txwe text-[14px]">Answer: No It's not, But more of our courses can learn for free. Except the rare courses.</p>
+          <p className="text-slate-100 mt-[10px] rubik-txwe text-[17px] font-bold">2. Which courses can we begin?</p>
+          <p className="text-slate-100 ml-[17px] rubik-txwe text-[14px]">Answer: All of it that you want. But we recommend to start with Python course first.</p>
+        </div>
+      </div>
       <div className="w-screen center">
         <Link to="https://popcash.net/home/501369" target="_blank" title="PopCash - The Popunder network" titl>
           <img src="https://static.popcash.net/img/affiliate/728x90.jpg" alt="PopCash.net" />
