@@ -7,6 +7,7 @@ import Markdown from "../assets/Markdown.png";
 import react from "../assets/React.png";
 import Python from "../assets/Python.png";
 import BackgroundMain from "../assets/BackgroundMain.jpg"
+import StrikerXBanner from "../assets/StrikerXBanner.jpg"
 import Marquee from "react-fast-marquee";
 import { motion } from "motion/react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -425,9 +426,12 @@ export default function Main() {
           <p className="text-slate-100 ml-[17px] rubik-txwe text-[14px]">Answer: All of it that you want. But we recommend to start with Python course first.</p>
         </div>
       </div>
-      <div className="w-screen center">
-        <Link to="https://popcash.net/home/501369" target="_blank" title="PopCash - The Popunder network" titl>
-          <img src="https://static.popcash.net/img/affiliate/728x90.jpg" alt="PopCash.net" />
+      <div className="w-screen">
+        <Link className="" to="https://popcash.net/home/501369" target="_blank" title="PopCash - The Popunder network" titl>
+          <img className="mx-auto" src="https://static.popcash.net/img/affiliate/728x90.jpg" alt="PopCash.net" />
+        </Link> <br />
+        <Link to="/signup">
+          <img src={StrikerXBanner}/>
         </Link>
       </div>
       <Footer />
