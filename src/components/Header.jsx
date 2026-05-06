@@ -119,6 +119,7 @@ export default function Header({ wants }) {
         <Link style={{ display: "inline-block" }} to="/signin">
           <p className="w-fit rubik-txwe text-black text-[30px] mt-[30px] duration-500 active:ml-[20px] hover:ml-[20px] hover:text-slate-500 dark:text-white">Sign In</p>
         </Link>
+        <p className="w-fit rubik-txwe text-black text-[14px] mt-[30px] duration-500 active:ml-[20px] hover:ml-[20px] hover:text-slate-500 dark:text-slate-400">V0.1.0 - ALPHA</p>
       </div>
     </>
   );

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import ThemeToggle from "./ThemeToggle";
 import Footer from "./Footer";
-import CaptureLogo from "../assets/CaptureLogo.png";
+import StrikerX from "../assets/StrikerXlogo.svg"
 import Markdown from "../assets/Markdown.png";
 import react from "../assets/React.png";
 import Python from "../assets/Python.png";
@@ -21,7 +21,6 @@ import CEObigbrother from "../assets/CEObigbrother.png";
 import { database } from "./../firebase-config";
 import { ref, onValue, update } from "firebase/database";
 import { Link } from 'react-router-dom'
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { usePopCash } from "./hooks/usePopCash";
 
 export default function Main() {
@@ -90,11 +89,7 @@ export default function Main() {
           </section>
           <motion.div initial={{ opacity: 0, translateY: "-15px" }} animate={{opacity: 1,translateY: "0px",transition: { duration: 0.7 },}}
             className="w-[400px] h-[250px] z-20 max-[680px]:w-[300px] max-[680px]:h-[150px]">
-              <DotLottieReact
-                src="https://lottie.host/1697e7a4-9e7f-4b15-a6ae-c0fd625300e7/PGMUjxqNZ5.lottie"
-                loop
-                autoplay
-              />
+              <img src={StrikerX} />
           </motion.div>
         </div>
       </div>
