@@ -9,7 +9,7 @@ export default function CardCourse({
   ComingSOON = false,
 }) {
   return (
-    <div className="shadow-xl w-[200px] h-[250px] border border-solid border-slate-100 rounded-[20px] overflow-hidden hover:scale-[1.1] hover:shadow-xl active:scale-[1.1] active:shadow-xl duration-[0.3s] max-[449px]:mx-auto max-[449px]:my-[12px]">
+    <div className="shadow-xl w-[200px] h-[250px] border border-solid border-slate-100 rounded-[20px] overflow-hidden hover:scale-[1.1] hover:shadow-xl active:scale-[1.1] active:shadow-xl duration-[0.3s] max-[449px]:mx-auto max-[449px]:my-[12px] bg-white dark:border-none">
       <div className="w-full h-[40%] overflow-hidden">
         <img
           src={Picture}

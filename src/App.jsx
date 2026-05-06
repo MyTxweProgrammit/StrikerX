@@ -65,7 +65,6 @@ export default function App() {
         <Route path="/" element={<Main />} />
         <Route path="/signup" element={<Register />} />
         <Route path="*" element={<NotFound />} />
-
       </Routes>
     </BrowserRouter>
   );

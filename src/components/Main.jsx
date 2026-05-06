@@ -427,7 +427,7 @@ export default function Main() {
         </div>
       </div>
       <div className="w-screen">
-        <Link className="" to="https://popcash.net/home/501369" target="_blank" title="PopCash - The Popunder network" titl>
+        <Link className="" to="https://popcash.net/home/501369" target="_blank" title="PopCash - The Popunder network">
           <img className="mx-auto" src="https://static.popcash.net/img/affiliate/728x90.jpg" alt="PopCash.net" />
         </Link> <br />
         <Link to="/signup">

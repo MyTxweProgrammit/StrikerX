@@ -35,11 +35,8 @@ export default function Header({ wants }) {
                 class="w-[32px] h-[30px]"
               />
               <div className="center">
-                <h3 className="text-[#495199] dark:text-blue-200 text-lg font-extrabold max-[440px]:hidden rubik-txwe">
-                  Striker
-                </h3>
-                <h3 className="text-[#495199] dark:text-blue-200 text-lg font-medium max-[440px]:hidden rubik-txwe">
-                  X
+                <h3 className="text-[#495199] outfit-txwe dark:text-blue-200 text-lg font-bold max-[440px]:hidden rubik-txwe">
+                  StrikerX
                 </h3>
               </div>
             </div>
@@ -48,11 +45,8 @@ export default function Header({ wants }) {
           <div className="center gap-[7px] cursor-pointer">
             <img src={CaptureLogo} alt="logo website" class="w-[32px] h-[30px]" />
             <div className="center">
-              <h3 className="text-[#495199] dark:text-blue-200 text-lg font-extrabold max-[440px]:hidden">
-                Striker
-              </h3>
-              <h3 className="text-[#495199] dark:text-blue-200 text-lg font-medium max-[440px]:hidden">
-                X
+              <h3 className="text-[#495199] outfit-txwe dark:text-blue-200 text-lg font-bold max-[440px]:hidden">
+                StrikerX
               </h3>
             </div>
           </div>
@@ -103,11 +97,14 @@ export default function Header({ wants }) {
             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 7L7 17M8 7h9v9"/>
           </svg>
         </Link> <br />
-        <Link style={{ display: "inline-block" }} to="*">
+        <Link style={{ display: "inline-block" }} to="/blog">
           <p className="w-fit rubik-txwe text-black text-[30px] mt-[30px] duration-500 active:ml-[20px] hover:ml-[20px] hover:text-slate-500 dark:text-white">Blog</p>
         </Link> <br />
         <Link style={{ display: "inline-block" }} to="*">
           <p className="w-fit rubik-txwe text-black text-[30px] mt-[30px] duration-500 active:ml-[20px] hover:ml-[20px] hover:text-slate-500 dark:text-white">About Us</p>
+        </Link> <br />
+        <Link style={{ display: "inline-block" }} to="/community">
+          <p className="w-fit rubik-txwe text-black text-[30px] mt-[30px] duration-500 active:ml-[20px] hover:ml-[20px] hover:text-slate-500 dark:text-white">Community</p>
         </Link> <br />
         <Link style={{ display: "inline-block" }} to="*">
           <p className="w-fit rubik-txwe text-black text-[30px] mt-[30px] duration-500 active:ml-[20px] hover:ml-[20px] hover:text-slate-500 dark:text-white">Sponsor</p>
@@ -119,7 +116,7 @@ export default function Header({ wants }) {
             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 7L7 17M8 7h9v9"/>
           </svg>
         </Link> <br />
-        <Link style={{ display: "inline-block" }} to="*">
+        <Link style={{ display: "inline-block" }} to="/signin">
           <p className="w-fit rubik-txwe text-black text-[30px] mt-[30px] duration-500 active:ml-[20px] hover:ml-[20px] hover:text-slate-500 dark:text-white">Sign In</p>
         </Link>
       </div>

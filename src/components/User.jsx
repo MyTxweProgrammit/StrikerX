@@ -125,7 +125,7 @@ export default function User({ logout }) {
       <head>
         <script async="async" data-cfasync="false" src="https://pl29156561.profitablecpmratenetwork.com/3d8d4df0c6a6041d9d8ca120272411cf/invoke.js"></script>
       </head>
-      <div className="w-screen h-fit bg-white">
+      <div className="w-screen h-fit bg-white dark:bg-slate-800">
         <HeaderUser logoutHead={logout} />
         <div className="border border-solid border-orange-500 w-[90%] mx-auto mt-[20px] bg-orange-200 rounded-xl py-[8px] px-[8px]">
           <div className="center w-fit gap-[5px]">
@@ -181,7 +181,7 @@ export default function User({ logout }) {
           </p>
           <p className="text-black">{jsonStock?.ticker}</p>
         </div>
-        <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px]">
+        <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px] dark:text-[#8fa5ff]">
           Your Course (0):
         </p>
         {disappearMarkDown ? (
@@ -272,7 +272,7 @@ export default function User({ logout }) {
             </div>
           </Link>
         ) : null}
-        <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px]">
+        <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px] dark:text-[#8fa5ff]">
           All Courses:
         </p>
         {!disappearMarkDown ? (
@@ -333,11 +333,11 @@ export default function User({ logout }) {
             ComingSOON={true}
           />
         </div>
-        <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px]">
+        <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px] dark:text-[#8fa5ff]">
           Challenges (Newest):
         </p>
         <div className="w-full px-[20px] mt-[10px] grid grid-cols-2 max-[540px]:grid-cols-1 max-[540px]:gap-y-[30px]">
-          <div className="shadow-xl border border-solid border-slate-100 w-[230px] h-fit overflow-hidden rounded-[20px] hover:scale-[1.1] hover:shadow-xl active:scale-[1.1] duration-[0.3s]">
+          <div className="shadow-xl border border-solid border-slate-100 w-[230px] h-fit overflow-hidden rounded-[20px] hover:scale-[1.1] hover:shadow-xl active:scale-[1.1] duration-[0.3s] bg-white dark:border-none">
             <div className="w-full h-[120px] overflow-hidden">
               <img src={Challenge_Day} className="w-full h-[140%]"/>
             </div>
@@ -362,7 +362,7 @@ export default function User({ logout }) {
             </div>
             <p className="text-slate-400 text-center rubik-txwe text-[8px] mb-[2px]">This will open on 1 Oct 2026</p>
           </div>
-          <div className="shadow-xl border border-solid border-slate-100 w-[230px] h-[317.7px] overflow-hidden rounded-[20px] hover:scale-[1.1] hover:shadow-xl active:scale-[1.1] duration-[0.3s]">
+          <div className="shadow-xl border border-solid border-slate-100 w-[230px] h-[317.7px] overflow-hidden rounded-[20px] hover:scale-[1.1] hover:shadow-xl active:scale-[1.1] duration-[0.3s] bg-white dark:border-none">
             <div className="w-full h-[120px] skeleton bg-slate-100 center">
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 20 20">
                 <path fill="#7c7c7c" d="M19.09 2a.9.9 0 0 1 .91.889V17.11a.9.9 0 0 1-.91.889H.91A.9.9 0 0 1 0 17.11V2.89A.9.9 0 0 1 .91 2zM5.416 8.417l-4.06 4.042v4.217H18.64v-1.433l-3.2-3.12l-2.777 2.333q-.249.175-.48.155a.8.8 0 0 1-.439-.189zm13.22-5.086H1.362v7.23L4.968 6.97a.72.72 0 0 1 .44-.156q.232 0 .41.14l6.431 6.088l2.805-2.35a.7.7 0 0 1 .421-.146a.7.7 0 0 1 .418.145l2.742 2.665zM15.273 5.23c.753 0 1.363.597 1.363 1.333s-.61 1.333-1.363 1.333c-.754 0-1.364-.597-1.364-1.333s.61-1.333 1.364-1.333"/>
@@ -379,7 +379,7 @@ export default function User({ logout }) {
             <p className="skeleton skeleton-text text-center rubik-txwe text-[8px] mb-[2px]">No Information Yet</p>
           </div>
         </div>
-        <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px]">
+        <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px] dark:text-[#8fa5ff]">
           Our Packages:
         </p>
         <div className="w-screen h-full">
@@ -387,7 +387,7 @@ export default function User({ logout }) {
             <div onClick={() => setPricePackage("Yearly")} className={`cursor-pointer ml-[10px] mt-[10px] w-fit p-[7px] right-[20px] top-[20px] text-[12px] rounded-lg ${pricePackage == "Yearly" ? "bg-slate-600 text-white" : "border border-solid border-slate-600 text-slate-600" }`}>Yearly</div>
             <div onClick={() => setPricePackage("Monthly")} className={`cursor-pointer ml-[10px] mt-[10px] w-fit p-[7px] right-[20px] top-[20px] text-[12px] rounded-lg ${pricePackage == "Monthly" ? "bg-slate-600 text-white" : "border border-solid border-slate-600 text-slate-600" }`}>Monthly</div>
           </section>
-          <section className="shadow-xl rounded-[15px] border border-solid border-slate-200 w-[80%] mx-auto my-[20px] px-[20px] relative">
+          <section className="shadow-xl rounded-[15px] border border-solid border-slate-200 w-[80%] mx-auto my-[20px] px-[20px] relative bg-white">
             {pricePackage == "Monthly" ? (
               <>
                 <p className="text-slate-600 rubik-txwe mt-[20px] text-[15px]">Monthly</p>
@@ -425,7 +425,7 @@ export default function User({ logout }) {
             <div className="absolute text-black p-[7px] right-[20px] top-[20px] text-slate-600 text-[12px] border border-solid border-slate-600 rounded-lg">GOOD TO START</div>
             <div className="absolute text-black p-[7px] right-[15px] top-[50px] font-bold text-black text-[12px]">STARTER PACKAGE</div>
           </section>
-          <section className="shadow-xl rounded-[15px] border border-solid border-slate-200 w-[80%] mx-auto my-[20px] px-[20px] relative">
+          <section className="shadow-xl rounded-[15px] border border-solid border-slate-200 w-[80%] mx-auto my-[20px] px-[20px] relative bg-white">
             {pricePackage == "Monthly" ? (
               <>
                 <p className="text-slate-600 rubik-txwe mt-[20px] text-[15px]">Monthly</p>
@@ -469,7 +469,7 @@ export default function User({ logout }) {
             <div className="absolute text-black p-[7px] right-[20px] top-[20px] text-slate-600 text-[12px] border border-solid border-slate-600 rounded-lg">RECOMMENDED</div>
             <div className="absolute text-black p-[7px] right-[15px] top-[50px] font-bold text-black text-[12px]">PREMIUM PACKAGE</div>
           </section>
-          <section className="shadow-xl rounded-[15px] border border-solid border-slate-200 w-[80%] mx-auto my-[20px] px-[20px] relative">
+          <section className="shadow-xl rounded-[15px] border border-solid border-slate-200 w-[80%] mx-auto my-[20px] px-[20px] relative bg-white">
             {pricePackage == "Monthly" ? (
               <>
                 <p className="text-slate-600 rubik-txwe mt-[20px] text-[15px]">Monthly</p>
