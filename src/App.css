@@ -55,6 +55,6 @@
     @keyframes animateToLeft_F {
         from { transform: translateX(0px); }
         to { transform: translateX(-250px);; }
-    } 
-
+    }
+    
 }

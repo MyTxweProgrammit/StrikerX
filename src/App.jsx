@@ -14,6 +14,7 @@ import RoleBasedRoute from "./components/Auth/RoleBasedRoute";
 import Setting from "./components/Setting"
 import SuccessPayment from "./components/SuccessPayment";
 import CancelPayment from "./components/CancelPayment";
+import Community from "./components/Community"
 import { onAuthStateChanged, signOut } from "firebase/auth";
 
 export default function App() {
@@ -58,6 +59,7 @@ export default function App() {
           <Route path="/user" element={<User logout={logout} />} />
           <Route path="/user/markdown" element={<Markdown logout={logout} />} />
           <Route path="/user/setting" element={<Setting logout={logout}/>} />
+          <Route path="/user/community" element={<Community logout={logout} />} />
           <Route path="/success" element={<SuccessPayment />} />
           <Route path="/cancel" element={<CancelPayment />} />
         </Route>
