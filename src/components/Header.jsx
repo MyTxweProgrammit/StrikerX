@@ -103,8 +103,11 @@ export default function Header({ wants }) {
         <Link style={{ display: "inline-block" }} to="*">
           <p className="w-fit rubik-txwe text-black text-[30px] mt-[30px] duration-500 active:ml-[20px] hover:ml-[20px] hover:text-slate-500 dark:text-white">About Us</p>
         </Link> <br />
-        <Link style={{ display: "inline-block" }} to="/community">
+        <Link style={{ display: "inline-block" }} to="/user/community">
           <p className="w-fit rubik-txwe text-black text-[30px] mt-[30px] duration-500 active:ml-[20px] hover:ml-[20px] hover:text-slate-500 dark:text-white">Community</p>
+          <div className="bg-blue-500 w-fit py-[5px] px-[7px] rounded-[10px] absolute top-[240px] left-[200px]">
+            <p className="text-white outfit-txwe text-[12px]">NEW</p>
+          </div>
         </Link> <br />
         <Link style={{ display: "inline-block" }} to="*">
           <p className="w-fit rubik-txwe text-black text-[30px] mt-[30px] duration-500 active:ml-[20px] hover:ml-[20px] hover:text-slate-500 dark:text-white">Sponsor</p>
