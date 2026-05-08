@@ -9,7 +9,7 @@ export default function Community() {
     const [classAnimateWrite, setClassAnimateWrite] = useState('w-[80px] h-[50px] center')
     const [classAnimateSVG, setClassAnimateSVG] = useState('rotate-[0deg]')
     const [classAnimateProfile, setClassAnimateProfile] = useState('center')
-    const [ShowStatus, setShowStatus] = useState('')
+    const [ShowStatus, setShowStatus] = useState('default_name')
     const [detail, setDetail] = useState('')
     const [dateCreated, setDateCreated] = useState(new Date().toLocaleString())
     const [data, setData] = useState(null)
@@ -54,24 +54,24 @@ export default function Community() {
         });
         return () => unsubscribe();
     }, []) // Get Post & Comment Data
-    useEffect(() => {
-        const SCRIPT_ID = 'adsterra-popunder-js';
-        if (document.getElementById(SCRIPT_ID)) return;
-        const script = document.createElement('script');
-        script.id = SCRIPT_ID;
-        script.src = "https://pl29156560.profitablecpmratenetwork.com/55/ad/3f/55ad3ffbb8d961b905c063526c8b7c30.js";
-        script.async = true;
-        script.type = 'text/javascript';
-        try {document.body.appendChild(script);} 
-        catch (err) {console.error("Failed to append Adsterra script", err);}
-        return () => {
-          const target = document.getElementById(SCRIPT_ID);
-          if (target && target.parentNode === document.body) {
-            try {document.body.removeChild(target);} 
-            catch (e) {console.warn("Script removal skipped");}
-          }
-        };
-     }, []) // Adsterra PopUp
+    // useEffect(() => {
+    //     const SCRIPT_ID = 'adsterra-popunder-js';
+    //     if (document.getElementById(SCRIPT_ID)) return;
+    //     const script = document.createElement('script');
+    //     script.id = SCRIPT_ID;
+    //     script.src = "https://pl29156560.profitablecpmratenetwork.com/55/ad/3f/55ad3ffbb8d961b905c063526c8b7c30.js";
+    //     script.async = true;
+    //     script.type = 'text/javascript';
+    //     try {document.body.appendChild(script);} 
+    //     catch (err) {console.error("Failed to append Adsterra script", err);}
+    //     return () => {
+    //       const target = document.getElementById(SCRIPT_ID);
+    //       if (target && target.parentNode === document.body) {
+    //         try {document.body.removeChild(target);} 
+    //         catch (e) {console.warn("Script removal skipped");}
+    //       }
+    //     };
+    //  }, []) // Adsterra PopUp
     return (
         <>
             <title>StrikerX - Community</title>
@@ -94,10 +94,10 @@ export default function Community() {
                     </div>
                     { classAnimateWrite === 'w-[80%]' ? (
                         <div>
-                            <select className='bg-white text-black border-slate-300 cursor-pointer text-[14px] py-[5px] px-[10px] outfit-txwe rounded-[5px] duration-500 hover:bg-slate-300 active:bg-slate-300 outline-none'>
-                            <option value="none" onChange={(e) => setShowStatus(e.target.value)}>None</option>
-                                <option value="default_name" onChange={(e) => setShowStatus(e.target.value)}>Default Name</option>
-                                <option value="incognito" onChange={(e) => setShowStatus(e.target.value)}>Incognito</option>
+                            <select value={ShowStatus} onChange={e => setShowStatus(e.target.value)}
+                                className='bg-white text-black border-slate-300 cursor-pointer text-[14px] py-[5px] px-[10px] outfit-txwe rounded-[5px] duration-500 hover:bg-slate-300 active:bg-slate-300 outline-none'>
+                                <option value="default_name">Default Name</option>
+                                <option value="incognito">Incognito</option>
                             </select> <br />
                             <textarea 
                                 value={detail} onChange={(e) => setDetail(e.target.value)}
@@ -111,8 +111,22 @@ export default function Community() {
                 </div>
 
                 {/* Post User */}
-                <div className='border-test w-full h-[200px] mt-[20px]'>
-
+                <div className='w-full h-[200px] mt-[20px]'>
+                    {data && Object.entries(data).map(([id, value]) => (
+                        <div key={id} className="bg-slate-100 w-full p-[10px] mb-[15px] border-slate-300 shadow-xl rounded-xl">
+                            <div className='center w-fit gap-[7px]'>
+                                <section className='bg-slate-200 w-fit rounded-full p-[5px]'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"><path fill="#BFBFBF" fill-rule="evenodd" d="M8 7a4 4 0 1 1 8 0a4 4 0 0 1-8 0m0 6a5 5 0 0 0-5 5a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3a5 5 0 0 0-5-5z" clip-rule="evenodd"/>
+                                    </svg>
+                                </section>
+                                <div className='grid grid-cols-2 w-fit max-[360px]:grid-cols-1'>
+                                    <p className="text-slate-800 outfit-txwe text-[14px]">{value.username}</p>
+                                    <p className="text-slate-400 outfit-txwe text-[11px] ml-[5px] h-fit max-[360px]:ml-[0px]">{value.dated}</p>
+                                </div>
+                            </div>
+                            <p className="text-black outfit-txwe text-[18px] mt-[10px] ml-[10px]">{value.detail}</p>
+                        </div>
+                    ))}
                 </div>
                 <div className="mt-[20px]" id="container-3d8d4df0c6a6041d9d8ca120272411cf"></div>
                 <Footer />
