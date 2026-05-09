@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, Link, useLocation } from "react-router";
 import { onAuthStateChanged, deleteUser } from "firebase/auth";
 import { auth, database } from "./../firebase-config";
@@ -18,6 +18,8 @@ import withReactContent from "sweetalert2-react-content";
 
 export default function User({ logout }) {
   const [pricePackage, setPricePackage] = useState("Monthly")
+  const [dataFromChild, setDataFromChild] = useState('Waiting for data...')
+  console.log(dataFromChild)
 
   const apiKey = import.meta.env.VITE_TOKEN_STOCK;
   const [jsonStock, setJsonStock] = useState();
@@ -93,14 +95,6 @@ export default function User({ logout }) {
       alert(err.message);
     }
   };
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const uid = user.uid
-      setUID(uid)
-    } else {
-      null;
-    }
-  });
 //   useEffect(() => {
 //     const SCRIPT_ID = 'adsterra-popunder-js';
 //     if (document.getElementById(SCRIPT_ID)) return;
@@ -126,7 +120,7 @@ export default function User({ logout }) {
         <script async="async" data-cfasync="false" src="https://pl29156561.profitablecpmratenetwork.com/3d8d4df0c6a6041d9d8ca120272411cf/invoke.js"></script>
       </head>
       <div className="w-screen h-fit bg-white dark:bg-slate-800">
-        <HeaderUser logoutHead={logout} />
+        <HeaderUser logoutHead={logout} setDataFromChild={setDataFromChild} />
         <div className="border border-solid border-orange-500 w-[90%] mx-auto mt-[20px] bg-orange-200 rounded-xl py-[8px] px-[8px]">
           <div className="center w-fit gap-[5px]">
             <svg
@@ -163,16 +157,16 @@ export default function User({ logout }) {
               </defs>
               <path fill="#f38000" d="M0 0h48v48H0z" mask="url(#SVGX9qUOAmp)" />
             </svg>
-            <p className="inter-txwe text-orange-500 font-bold text-[14px]">
-              Are you a starter? Let's started!
+            <p className="outfit-txwe text-orange-500 font-bold text-[14px]">
+              {dataFromChild ? 'เป็นผู้เริ่มต้นใหม่ใช่ไหม? มาเริ่มกันเลย' : "Are you a starter? Let's started!"}
             </p>
           </div>
           <p className="inter-txwe text-orange-500 text-[12px] mx-[22px]">
-            You can follow this link{" "}
+            {dataFromChild ? "ตามมาที่ลิ้งค์นี้ได้เลย" : "You can follow this link"}{" "}
             <Link to="/overview" className="inter-txwe text-[12px]">
               Overview.
             </Link>{" "}
-            This will guide you how to learn our courses.
+            {dataFromChild ? "มันจะคอยช่วยคุณตลอดเวลาที่สงสัยเว็ปเรา" : "This will guide you how to learn our courses."}
           </p>
         </div>
         <div>
@@ -182,7 +176,7 @@ export default function User({ logout }) {
           <p className="text-black">{jsonStock?.ticker}</p>
         </div>
         <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px] dark:text-[#8fa5ff]">
-          Your Course (0):
+          {dataFromChild ? "คอร์สเรียนของคุณ" : "Your Course"} (0):
         </p>
         {disappearMarkDown ? (
           <Link to="/user/markdown">
@@ -273,7 +267,7 @@ export default function User({ logout }) {
           </Link>
         ) : null}
         <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px] dark:text-[#8fa5ff]">
-          All Courses:
+          {dataFromChild ? "คอร์สเรียนทั้งหมด" : "All Courses"}:
         </p>
         {!disappearMarkDown ? (
           <>
@@ -334,7 +328,7 @@ export default function User({ logout }) {
           />
         </div>
         <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px] dark:text-[#8fa5ff]">
-          Challenges (Newest):
+          {dataFromChild ? "การแข่งขัน (ใหม่ล่าสุด)" : "Challenges (Newest)"}:
         </p>
         <div className="w-full px-[20px] mt-[10px] grid grid-cols-2 max-[540px]:grid-cols-1 max-[540px]:gap-y-[30px]">
           <div className="shadow-xl border border-solid border-slate-100 w-[230px] h-fit overflow-hidden rounded-[20px] hover:scale-[1.1] hover:shadow-xl active:scale-[1.1] duration-[0.3s] bg-white dark:border-none">
@@ -380,12 +374,16 @@ export default function User({ logout }) {
           </div>
         </div>
         <p className="text-black inter-txwe font-bold text-xl ml-[10px] mt-[30px] dark:text-[#8fa5ff]">
-          Our Packages:
+          {dataFromChild ? "แพ็กเกจ" : "Our Packages"}:
         </p>
         <div className="w-screen h-full">
           <section className="w-fit center">
-            <div onClick={() => setPricePackage("Yearly")} className={`cursor-pointer ml-[10px] mt-[10px] w-fit p-[7px] right-[20px] top-[20px] text-[12px] rounded-lg ${pricePackage == "Yearly" ? "bg-slate-600 text-white" : "border border-solid border-slate-600 text-slate-600" }`}>Yearly</div>
-            <div onClick={() => setPricePackage("Monthly")} className={`cursor-pointer ml-[10px] mt-[10px] w-fit p-[7px] right-[20px] top-[20px] text-[12px] rounded-lg ${pricePackage == "Monthly" ? "bg-slate-600 text-white" : "border border-solid border-slate-600 text-slate-600" }`}>Monthly</div>
+            <div onClick={() => setPricePackage("Yearly")} className={`cursor-pointer ml-[10px] mt-[10px] w-fit p-[7px] right-[20px] top-[20px] text-[12px] rounded-lg ${pricePackage == "Yearly" ? "bg-slate-600 text-white" : "border border-solid border-slate-600 text-slate-600" }`}>
+              {dataFromChild ? "รายปี" : "Yearly"}
+            </div>
+            <div onClick={() => setPricePackage("Monthly")} className={`cursor-pointer ml-[10px] mt-[10px] w-fit p-[7px] right-[20px] top-[20px] text-[12px] rounded-lg ${pricePackage == "Monthly" ? "bg-slate-600 text-white" : "border border-solid border-slate-600 text-slate-600" }`}>
+              {dataFromChild ? "รายเดือน" : "Monthly"}
+            </div>
           </section>
           <section className="shadow-xl rounded-[15px] border border-solid border-slate-200 w-[80%] mx-auto my-[20px] px-[20px] relative bg-white">
             {pricePackage == "Monthly" ? (
@@ -515,7 +513,7 @@ export default function User({ logout }) {
   );
 }
 
-export function HeaderUser({ logoutHead, markdown }) {
+export function HeaderUser({ logoutHead, markdown, setDataFromChild }) {
   const location = useLocation();
   const setSwal = withReactContent(Swal)
   const [displayName, setDisplayName] = useState("");
@@ -523,6 +521,7 @@ export function HeaderUser({ logoutHead, markdown }) {
   const [isuid, setUID] = useState("");
   const [openMarkProject, setOpenMarkProject] = useState(false);
   const nav = useNavigate();
+  const [translate, setTranslate] = useState(false)
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const displayname = user.displayName;
@@ -532,10 +531,29 @@ export function HeaderUser({ logoutHead, markdown }) {
       setEmail(email);
       setUID(uid);
       setDisplayName(displayname);
-    } else {
-      null;
     }
   });
+  useEffect(() => { // translate idea
+    if (!isuid) return;
+    get(child(ref(database), `users/${isuid}`)).then((snapshot) => {
+        if (snapshot.exists()) {
+          if (snapshot.val().Translate  === "English") setTranslate(false)
+          else setTranslate(true)
+        }
+    }).catch((err) => alert(`Can't get translate data: ${err.message}`))
+  }, [isuid])
+  const handleTranslate = (e) => {
+    e.stopPropagation()
+    const isChecked = e.target.checked;
+    setTranslate(isChecked);
+    const userRef = ref(database, `users/${isuid}`);
+    update(userRef, { Translate: isChecked ? "Thai" : "English" })
+  }
+  useEffect(() => {
+    if (setDataFromChild) {
+      setDataFromChild(translate)
+    }
+  }, [translate, setDataFromChild])
   const handleLogout = () => {
     setSwal.fire({
       title: "Do you want to sign out?",
@@ -783,11 +801,13 @@ export function HeaderUser({ logoutHead, markdown }) {
               Delete User Test
             </p>
           </div>
-          <div className={`${Down? "center relative rounded-[7px] gap-[10px] py-[10px]" : "hidden" }`}>
+          <div className={`${Down? "center relative rounded-[7px] gap-[10px] py-[10px]" : "hidden" }`}
+              onClick={(e) => e.stopPropagation()}
+          >
             <p className={`${Down ? "text-black inter-txwe font-bold text-[11px]" : "hidden"}`}>
               English
             </p>
-            <input type="checkbox" className="toggle border-indigo-600 bg-indigo-500 checked:border-orange-500 checked:bg-orange-400 checked:text-orange-800 hover:toggle-primary" />
+            <input type="checkbox" checked={translate} onChange={handleTranslate} className="toggle border-indigo-600 bg-indigo-500 checked:border-orange-500 checked:bg-orange-400 checked:text-orange-800 hover:toggle-primary" />
             <p className={`${Down ? "text-black inter-txwe font-bold text-[11px]" : "hidden"}`}>
               Thai
             </p>

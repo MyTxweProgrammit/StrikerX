@@ -111,7 +111,7 @@ export default function Community() {
                 </div>
 
                 {/* Post User */}
-                <div className='w-full h-[200px] mt-[20px]'>
+                <div className='w-full h-fit mt-[20px]'>
                     {data && Object.entries(data).map(([id, value]) => (
                         <div key={id} className="bg-slate-100 w-full p-[10px] mb-[15px] border-slate-300 shadow-xl rounded-xl">
                             <div className='center w-fit gap-[7px]'>
