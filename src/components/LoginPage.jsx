@@ -8,6 +8,7 @@ import { auth, provider } from './../firebase-config'
 import Swal from "sweetalert2"
 import withReactContent from "sweetalert2-react-content"
 import { usePopCash } from './hooks/usePopCash';
+import { TextField } from '@mui/material';
 
 const LoginPage = ({ login }) => {
     const setSwal = withReactContent(Swal);
@@ -156,8 +157,9 @@ const LoginPage = ({ login }) => {
                             <p className='text-black font-bold inter-txwe text-[28px]'>Sign In</p>
                             <p className='text-black inter-txwe text-[15px] mt-[-5px]'>Welcome Back My Friend!</p>
                             <section className='mt-[20px]'>
-                                <p className='text-black inter-txwe text-[12px] font-bold'>Username or Email Address</p>
-                                <input
+                                <TextField
+                                    variant='outlined'
+                                    label='Email'
                                     className='text-[#A7A7A7] border border-solid border-[#A7A7A7] rounded-[5px] w-[212.4px] px-[15px] py-[6px] outline-none'
                                     type="text"
                                     placeholder="Example@gmail.com"
@@ -166,12 +168,13 @@ const LoginPage = ({ login }) => {
                                 />
                             </section>
                             <section className='mt-[20px] w-fit'>
-                                <aside className='flex justify-between items-center'>
-                                    <p className='text-black inter-txwe text-[12px] font-bold'>Password</p>
+                                <aside className='flex justify-end items-center'>
                                     <Link className='text-[12px]'>Forgot Password?</Link>
                                 </aside>
                                 <div className='relative'>
-                                    <input
+                                    <TextField
+                                        variant='outlined'
+                                        label='Password'
                                         className='text-[#A7A7A7] border border-solid border-[#A7A7A7] rounded-[5px] w-[212.4px] pl-[15px] pr-[42px] py-[6px] outline-none'
                                         type={openEye}
                                         placeholder="Password"
@@ -179,7 +182,7 @@ const LoginPage = ({ login }) => {
                                         onChange={(e) => setPass(e.target.value)}
                                     />
                                     <svg onClick={handleOpenEye}
-                                        className='absolute right-[15px] top-[7px] cursor-pointer'
+                                        className='absolute right-[15px] top-[15px] cursor-pointer'
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <path fill="#A7A7A7" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5" />
                                     </svg>
