@@ -97,8 +97,8 @@ export default function Header({ wants }) {
             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 7L7 17M8 7h9v9"/>
           </svg>
         </Link> <br />
-        <Link style={{ display: "inline-block" }} to="/blog">
-          <p className="w-fit rubik-txwe text-black text-[30px] mt-[30px] duration-500 active:ml-[20px] hover:ml-[20px] hover:text-slate-500 dark:text-white">Blog</p>
+        <Link style={{ display: "inline-block" }} to="/feature">
+          <p className="w-fit rubik-txwe text-black text-[30px] mt-[30px] duration-500 active:ml-[20px] hover:ml-[20px] hover:text-slate-500 dark:text-white">Features</p>
         </Link> <br />
         <Link style={{ display: "inline-block" }} to="*">
           <p className="w-fit rubik-txwe text-black text-[30px] mt-[30px] duration-500 active:ml-[20px] hover:ml-[20px] hover:text-slate-500 dark:text-white">About Us</p>

@@ -15,6 +15,7 @@ import Setting from "./components/Setting"
 import SuccessPayment from "./components/SuccessPayment";
 import CancelPayment from "./components/CancelPayment";
 import Community from "./components/Community"
+import FeaturePage from "./components/FeaturePage"
 import { onAuthStateChanged, signOut } from "firebase/auth";
 
 export default function App() {
@@ -66,6 +67,7 @@ export default function App() {
         <Route path="/signin" element={<LoginPage login={login} />} />
         <Route path="/" element={<Main />} />
         <Route path="/signup" element={<Register />} />
+        <Route path="/feature" element={<FeaturePage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
