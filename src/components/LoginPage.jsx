@@ -143,7 +143,7 @@ const LoginPage = ({ login }) => {
         if (openEye === "password") setOpenEye("text")
         else setOpenEye("password")
     }
-    usePopCash(true)
+    // usePopCash(true)
 
     return (
         <>  
