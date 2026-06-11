@@ -42,7 +42,7 @@ export default function Register() {
             }
         } else { alert('Please accept the our condition!') }
     }
-    usePopCash(true);
+    // usePopCash(true);
 
     return (
         <>
