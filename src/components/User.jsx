@@ -506,7 +506,7 @@ export default function User({ logout }) {
             <div className="absolute text-black p-[7px] right-[15px] top-[50px] font-bold text-black text-[12px]">SPECIAL PACKAGE</div>
           </section>
         </div>
-        <div className="mt-[20px]" id="container-3d8d4df0c6a6041d9d8ca120272411cf"></div>
+        {/* <div className="mt-[20px]" id="container-3d8d4df0c6a6041d9d8ca120272411cf"></div> */}
         <Footer />
       </div>
     </>
