@@ -14,6 +14,7 @@ export default function Header({ wants }) {
   const { device } = useMediaQuery({
     breakpoints: {
       mobile: 577,
+      smallMobile: 415,
     },
   });
 
@@ -54,7 +55,7 @@ export default function Header({ wants }) {
           <Link to="/">
             <div className="center gap-[7px]">
               <div className="center">
-                <h3 className="text-[#C0C1FF] outfit-txwe dark:text-blue-200 text-lg font-bold max-[440px]:hidden rubik-txwe">
+                <h3 className="text-[#C0C1FF] outfit-txwe dark:text-blue-200 text-lg font-bold rubik-txwe max-[415px]:text-[25px]">
                   StrikerX
                 </h3>
               </div>
@@ -63,7 +64,7 @@ export default function Header({ wants }) {
         ) : (
           <div className="center gap-[7px] cursor-pointer">
             <div className="center">
-              <h3 className="text-[#C0C1FF] outfit-txwe dark:text-blue-200 text-lg font-bold max-[440px]:hidden">
+              <h3 className="text-[#C0C1FF] outfit-txwe dark:text-blue-200 text-lg font-bold max-[415px]:text-[25px]">
                 StrikerX
               </h3>
             </div>
@@ -92,14 +93,15 @@ export default function Header({ wants }) {
               </Link>
             </>
           ) : null}
+          { device <= "smallMobile" ?
+            <Link to="/signin" style={{ color: "#8990A8" }}>
+              <p className="text-[#8990A8] hover:text-white active:text-white duration-500">
+                Sign in
+              </p>
+            </Link> : null
+          }
 
-          <Link to="/signin" style={{ color: "#8990A8" }}>
-            <p className="text-[#8990A8] hover:text-white active:text-white duration-500">
-              Sign in
-            </p>
-          </Link>
-
-          <div className="bg-[#C0C1FF] py-[5px] px-[10px] rounded-[7px] group hover:bg-[#8083FF] duration-500">
+          <div className="bg-[#C0C1FF] py-[5px] px-[10px] rounded-[7px] group hover:bg-[#8083FF] duration-500 max-[415px]:px-[30px]">
             <Link to="/signup">
               <p className="text-[#1000A9] group-hover:text-white group-active:text-white duration-500">
                 Join Now

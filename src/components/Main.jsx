@@ -26,7 +26,8 @@ import { usePopCash } from "./hooks/usePopCash";
 export default function Main() {
   const { device } = useMediaQuery({
     breakpoints: { 
-      mobile: 600 
+      mobile: 600,
+      smallMobile: 415, 
     },
   });
   const [liked, setLiked] = useState(0);
@@ -76,7 +77,7 @@ export default function Main() {
       </head>
       <Header wants={false} />
       <div
-        className="overflow-hidden relative bg-[#131B2E] w-screen h-fit py-[60px] pl-[25px]"
+        className="overflow-hidden relative bg-[#131B2E] w-full h-fit py-[60px] pl-[25px]"
         id="test"
       >
         <motion.div 
@@ -116,7 +117,7 @@ export default function Main() {
             translateY: "0px",
             transition: { duration: 0.5 },
           }} 
-          className="text-slate-300 text-[16px] mt-[15px] w-[415.36px] max-[480px]:w-[360px]">
+          className="text-slate-300 text-[16px] mt-[15px] w-[415.36px] max-[480px]:w-[360px] max-[415px]:w-[340px]">
           StrikerX isn't a tutorial site. It's a high-performance training enviroment for the next generation of world-class software engineers.
         </motion.p>
         <motion.section 
@@ -126,8 +127,8 @@ export default function Main() {
             translateY: "0px",
             transition: { duration: 0.5 },
           }}
-          className="center w-fit mt-[30px] gap-[20px]">
-          <div className="bg-[#C0C1FF] center w-fit cursor-pointer px-[25px] py-[14px] rounded-[7px]">
+          className="center w-fit mt-[30px] gap-[20px] max-[415px]:flex-col max-[415px]:w-full max-[415px]:pr-[25px]">
+          <div className="bg-[#C0C1FF] center w-fit cursor-pointer px-[25px] py-[14px] rounded-[7px] max-[415px]:w-full">
             <Link to="/signin" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 7,width: "100%", height: "100%" }}>
               <p className="text-[#1000A9]">Start Learning</p>
                 <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24">
@@ -136,7 +137,7 @@ export default function Main() {
                 </svg>
             </Link>
           </div>
-          <div className="bg-[#131B2E] center w-fit cursor-pointer px-[25px] py-[14px] rounded-[7px] border border-solid border-slate-700">
+          <div className="bg-[#131B2E] center w-fit cursor-pointer px-[25px] py-[14px] rounded-[7px] border border-solid border-slate-700 max-[415px]:w-full">
             <Link to="*" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 7,width: "100%", height: "100%" }}>
               <p className="text-white">Browse Courses</p>
             </Link>
