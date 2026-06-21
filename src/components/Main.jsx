@@ -32,6 +32,7 @@ export default function Main() {
   });
   const [liked, setLiked] = useState(0);
   const [showPOP, setShowPOP] = useState(false);
+  const [StrikerXAds, setStrikerXAds] = useState(true);
   const formatter = new Intl.NumberFormat("en-US", {
     notation: "compact",
     maximumFractionDigits: 1,
@@ -54,6 +55,10 @@ export default function Main() {
     updates["utilities/"] = postData;
     update(ref(database), updates);
   };
+  const CloseStrikerXAds = (e) => {
+    e.stopPropagation();
+    setStrikerXAds(false);
+  }
   const closePOP = (e) => {
     // Click outside popup (glassmorphism) to close it which can't affect to inside popup
     if (e.target === e.currentTarget) setShowPOP(false);
@@ -577,6 +582,17 @@ export default function Main() {
           <img src={StrikerXBanner} />
         </Link>
       </div>
+      { StrikerXAds ?
+        <div onClick={CloseStrikerXAds} className="fixed top-0 w-screen h-screen center bg-black/70 z-50">
+          <div className="absolute center top-[20px] left-[20px] cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24">
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2" d="M20 20L4 4m16 0L4 20" />
+            </svg>
+          </div>
+          <iframe className="w-[70%] h-[50%]" src="https://youtube.com/embed/bnYw9hj1h-s?si=BsEQtfioFDT2iWP1"></iframe>
+        </div> : null
+      }
       <Footer />
     </div>
   );
