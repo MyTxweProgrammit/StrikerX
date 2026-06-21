@@ -1,13 +1,8 @@
 import React, { useState } from "react";
-
 import CaptureLogo from "../assets/CaptureLogo.png";
-
 import { Link } from "react-router-dom";
-
 import { darkON } from "./Auth/DarkModeSession";
-
 import { motion, useScroll } from "motion/react";
-
 import { useMediaQuery } from "@react-hooks-hub/use-media-query";
 
 export default function Header({ wants }) {
@@ -19,13 +14,9 @@ export default function Header({ wants }) {
   });
 
   const [touch, setTouch] = useState(false);
-
   const [colorWorldIcon, setColorWorldIcon] = useState("#495199");
-
   const [heightNav, setheightNav] = useState(false);
-
   const { scrollYProgress } = useScroll();
-
   const TrueAndChange = () => {
     setTouch(!touch);
 
@@ -49,7 +40,7 @@ export default function Header({ wants }) {
 
           transition: { duration: 0.7 },
         }}
-        className={`shadow-sm w-screen h-[60px] around sticky top-0 z-50 bg-[#131B2E] border border-solid borderslate-300`}
+        className={`shadow-sm w-screen h-[60px] around sticky top-0 z-50 bg-[#131B2E]`}
       >
         {wants ? (
           <Link to="/">
